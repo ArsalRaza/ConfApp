@@ -1,0 +1,51 @@
+DJWE 2016 _Operations plan
+
+
+Shiraz.Abid@ekalsoft.com\
+
+
+Pakistan se ya america se pay kerdo medicine ka ..
+
+Update-SPSolution -Identity Elan.wsp -LiteralPath D:\File\Elan.wsp -GACDeployment
+
+
+@model List<ConferenceWebApp.Models.MyAgenda>
+@{
+    ViewBag.Title = "MyAgenda";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<h2>My Agenda</h2>
+
+<div id="vsc_row_qtthewsiil" class="vc_row vc_inner vc_row-fluid container" style="" data-token="owQKV">
+
+    <div class="vc_col-sm-6 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <div class="vc_tta-container" data-vc-action="collapseAll">
+                <div class="vc_general vc_tta vc_tta-accordion vc_tta-color-accent-color vc_tta-spacing-10 vc_tta-gap-10 vc_tta-controls-align-left vc_tta-o-no-fill vc_tta-o-all-clickable">
+                    <div class="vc_tta-panels-container">
+                        <div class="vc_tta-panels">
+                            @Html.ActionLink("Add New Agenda", "AddMyAgenda", "App") <br /><br />
+
+                            @foreach (var Agenda in Model)
+                            {
+                                <div class="vc_tta-panel vc_active" id="@Agenda.ID" data-vc-content=".vc_tta-panel-body">
+                                    <div class="vc_tta-panel-heading"><h4 class="vc_tta-panel-title vc_tta-controls-icon-position-right"><a href="#@Agenda.ID" data-vc-accordion data-vc-container=".vc_tta-container"><span class="vc_tta-title-text">@Agenda.Date.Value.ToShortDateString() &nbsp; | &nbsp; @Agenda.Title </span><i class="vc_tta-controls-icon vc_tta-controls-icon-chevron"></i></a></h4></div><div class="vc_tta-panel-body">
+                                        <div class="wpb_text_column wpb_content_element ">
+                                            <div class="wpb_wrapper">
+                                                <p>@Agenda.Agenda </p>
+ @Html.ActionLink("Edit", "EditAgenda", new { AgendaId = @Agenda.ID })  <br /> @Html.ActionLink("Delete", "DeleteAgenda", new { AgendaId = @Agenda.ID })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

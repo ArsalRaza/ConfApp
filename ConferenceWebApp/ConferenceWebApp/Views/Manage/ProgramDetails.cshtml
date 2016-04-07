@@ -1,0 +1,30 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ViewModel.ManageListsModel
+@{
+    ViewBag.Title = "ProgramDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ProgramDetails</h2>
+
+@Html.Hidden("ProgramId", Request.QueryString["ProgramId"])
+
+@Model.Program.ProgrameName <br />
+@Model.Program.StartTime &nbsp; @Model.Program.EndTime <br />@Html.ActionLink("Edit", "EditProgram", new { Programid = Request.QueryString["ProgramId"] }, null)<br />
+
+
+<h3>Keynote Members</h3>
+@Html.ActionLink("Add", "AddMemberToProgram", new { Programid = Request.QueryString["ProgramId"] }) <br /><br />
+
+@foreach (var Category in Model.Categories)
+{
+    <h4>@Category.CategoryName</h4><br />
+
+    var ProgramPeopleIDs = Model.Program.ProgramPeople.Where(x => x.CategoryId == Category.ID).Select(y => y.UserId);
+
+    foreach (var KeyNoteMember in Model.UserProfiles.Where(x => ProgramPeopleIDs.Contains(x.ID)))
+    {
+        @KeyNoteMember.Name<br />
+        @KeyNoteMember.Organization <br /> @KeyNoteMember.Profile  <br />     @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');" })<hr />
+    }
+
+}

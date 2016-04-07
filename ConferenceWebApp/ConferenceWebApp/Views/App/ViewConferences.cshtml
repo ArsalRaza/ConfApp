@@ -1,0 +1,13 @@
+﻿@model List<ConferenceWebApp.Models.Conference>
+@{
+    ViewBag.Title = "ViewConferences";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewConferences</h2>
+
+@foreach (var item in Model)
+{
+    @item.ConferenceName <br>
+    @item.ConferenceName <br>
+}    

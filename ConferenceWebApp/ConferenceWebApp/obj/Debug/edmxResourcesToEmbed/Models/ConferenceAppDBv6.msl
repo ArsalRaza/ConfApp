@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ConferenceAppNewModelStoreContainer" CdmEntityContainer="ConferenceAppNewEntities">
+    <EntitySetMapping Name="Conference">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Conference">
+        <MappingFragment StoreEntitySet="Conference">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ConferenceName" ColumnName="ConferenceName" />
+          <ScalarProperty Name="ConferenceDate" ColumnName="ConferenceDate" />
+          <ScalarProperty Name="Organizer" ColumnName="Organizer" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ConferenceDescription" ColumnName="ConferenceDescription" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MyAgenda">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.MyAgenda">
+        <MappingFragment StoreEntitySet="MyAgenda">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Program">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Program">
+        <MappingFragment StoreEntitySet="Program">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProgrameName" ColumnName="ProgrameName" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="ConferenceID" ColumnName="ConferenceID" />
+          <ScalarProperty Name="ProgramDescription" ColumnName="ProgramDescription" />
+          <ScalarProperty Name="ProgramDate" ColumnName="ProgramDate" />
+          <ScalarProperty Name="ProgramDay" ColumnName="ProgramDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramMemberCategories">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.ProgramMemberCategories">
+        <MappingFragment StoreEntitySet="ProgramMemberCategories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramPeople">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.ProgramPeople">
+        <MappingFragment StoreEntitySet="ProgramPeople">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfile">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Profile" ColumnName="Profile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

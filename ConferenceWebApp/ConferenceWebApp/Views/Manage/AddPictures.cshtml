@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "AddPictures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.MultiFile.js"></script>
+
+<h2>AddPictures</h2>
+
+@using (@Html.BeginForm("AddPictures", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <input type="file" multiple accept="gif|png|jpeg|jpg" name="UploadFiles" /><br />
+    
+    <input type="submit" class="button default" value="Upload Pictures" />
+
+}

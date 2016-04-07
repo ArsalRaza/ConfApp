@@ -1,0 +1,101 @@
+﻿@model List<ConferenceWebApp.Models.Conversation_reply>
+@{
+    Layout = null;
+}
+
+@*<!DOCTYPE HTML>
+
+        <html>
+        <head>
+            <meta name="viewport" content="width=device-width" />
+            <title>ConversationReplies</title>
+        </head>
+        <body>
+            <div>
+            </div>
+        </body>
+    </html>*@
+
+    @Html.Hidden("ConversationId", (object)ViewBag.ConversationId)
+<div class="containerChat">
+    @foreach (var ConversationReply in Model)
+    {
+        if (@ConversationReply.UserId == @ConferenceWebApp.BL.Helper.AuthenticationHelper.GetUserId())
+        {
+
+            <div class="Area">
+                <div class="L">
+                    <a href="https://twitter.com/SamiMassadeh">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
+                        <div class="tooltip"> @ConversationReply.UserProfile.Name<br /> @ConversationReply.UserProfile.Designation <br /></div>
+                    </a>
+                </div>
+                <div class="text R textR">
+                    @ConversationReply.Reply
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="Area">
+                <div class="R">
+                    <a href="https://twitter.com/SamiMassadeh">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
+                        <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
+                    </a>
+                </div>
+                <div class="text L textL">
+                    @ConversationReply.Reply
+                </div>
+            </div>
+
+        }
+
+
+
+
+        @*<div class="Area">
+                <div class="R">
+                    <a href="https://twitter.com/MariamMassadeh">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5" />
+                        <div class="tooltip">Mariam Massadeh - 23 Years<br />Computer Engineer<br />Jordan</div>
+                    </a>
+                </div>
+                <div class="text L textL">
+                    Hi Sami, Fine, Thank You, How Are You?
+                </div>
+            </div>
+            <div class="Area">
+                <div class="L">
+                    <a href="https://twitter.com/SamiMassadeh">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
+                        <div class="tooltip">Sami Massadeh - 28 Years<br />Doctor <br />Jordan</div>
+                    </a>
+                </div>
+                <div class="text R textR">
+                    Fine, Can I see you tomorrow?
+                </div>
+            </div>
+            <div class="Area">
+                <div class="R">
+                    <a href="https://twitter.com/MariamMassadeh">
+                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5" />
+                        <div class="tooltip">Mariam Massadeh - 23 Years<br />Computer Engineer<br />Jordan</div>
+                    </a>
+                </div>
+                <div class="text L textL">
+                    sure, Yes I can,
+                    t.c
+                </div>
+            </div>
+            <div class="Area">
+                <textarea placeholder="Participate in coversation"></textarea>
+                <br /><br />
+                <input type="button" onclick="clickX()" value="SEND" />
+                <div class="validation">You Are Not Registered</div>
+                <br />
+                <p class="note">* for any help return to adminstrator..</p>
+            </div>*@
+
+    }
+</div>

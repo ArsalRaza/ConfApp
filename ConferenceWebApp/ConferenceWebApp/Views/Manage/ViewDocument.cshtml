@@ -1,0 +1,21 @@
+﻿@model List<ConferenceWebApp.Models.File>
+@{
+    ViewBag.Title = "Files and Reports";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<h2> Reports & Presentations </h2>
+
+@Html.ActionLink("Add Document", "AddDocument","Manage") <br /><br />
+
+@foreach (ConferenceWebApp.Models.File File in Model)
+{
+    <a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@ConferenceWebApp.BL.Constants.Constants.FilePaths.DocumentPath/@File.FileName">@File.Title</a> <br />
+    
+    @File.Description   <br />
+    
+    @Html.ActionLink("Delete", "DeleteDocument", new { DocumentId = @File.ID }, new { onClick = "return ConfirmDelete('Document');" })
+    
+    <hr />
+}
+

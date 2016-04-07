@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ViewUsers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewUsers</h2>
+
+<b>@Html.ActionLink("Add New User", "RegisterUserFromAdmin", "Membership")</b><br />
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 100, defaultSort: "ID");
+    grid.Pager(WebGridPagerModes.All);
+    @grid.GetHtml(tableStyle: "table striped bordered hovered", headerStyle: "text-left", htmlAttributes: new { id = "UsersList" }, columns: grid.Columns(
+            grid.Column("Name"),
+            grid.Column("Username"),
+            grid.Column("Organization"),
+                    grid.Column("Designation"),
+                            grid.Column("Role"),
+            grid.Column(header: "Edit", format: @<text>@Html.ActionLink("Edit", "EditUserDetails", "Manage", new { UserId = item.ID }, new { target = "_self" })</text>),
+            grid.Column(header: "Delete", format: @<text>@Html.ActionLink("Delete", "DeleteUser", "Manage", new { UserId = item.ID }, new { target = "_self", onClick = "return ConfirmDelete('User');" })</text>)));
+
+}

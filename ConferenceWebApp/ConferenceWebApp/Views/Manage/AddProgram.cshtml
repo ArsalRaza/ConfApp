@@ -1,0 +1,30 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.AddProgramModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AddProgram</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table>
+
+        <tr><td>@ViewBag.Error</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.ProgramName):</td><td>@Html.TextBoxFor(m => m.ProgramName)</td><td>@Html.ValidationMessageFor(m => m.ProgramName)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.ProgramDescription):</td><td>@Html.TextAreaFor(m => m.ProgramDescription)</td><td>@Html.ValidationMessageFor(m => m.ProgramDescription)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.ProgramDay):</td><td>@Html.DropDownListFor(m => m.ProgramDay, (SelectList)ViewBag.Days, "Select Day")</td><td>@Html.ValidationMessageFor(m => m.ProgramDay)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.StartTime):</td><td>@Html.TextBoxFor(m => m.StartTime, new { type = "time" })</td><td>@Html.ValidationMessageFor(m => m.StartTime)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.EndTime):</td><td>@Html.TextBoxFor(m => m.EndTime, new { type = "time" })</td><td>@Html.ValidationMessageFor(m => m.EndTime)</td></tr>
+
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add Program" /></td></tr>
+
+    </table>
+
+
+}

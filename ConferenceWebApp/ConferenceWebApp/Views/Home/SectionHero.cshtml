@@ -1,0 +1,32 @@
+﻿@model ConferenceWebApp.Models.FormModels.AppModel.IndexListModel
+
+<section id="hero" class="hero-section bg-cover light-text window-height" style=" background-image: url(../master/wp-content/uploads/2015/11/header-bg.jpg); ">
+
+    <ul class="socials-nav">
+        <li class="socials-nav-item"><a href="http://facebook.com/" target="_blank"><span class="fa fa-facebook"></span></a></li>
+        <li class="socials-nav-item"><a href="http://twitter.com/" target="_blank"><span class="fa fa-twitter"></span></a></li>
+        <li class="socials-nav-item"><a href="http://google.com/" target="_blank"><span class="fa fa-google"></span></a></li>
+        <li class="socials-nav-item"><a href="http://instagram.com/" target="_blank"><span class="fa fa-instagram"></span></a></li>
+    </ul>
+
+    <div class="heading-block align-center centered-block">
+        <div class="container">
+
+            <span class="hero-heading-top">
+                <span class="fa fa-calendar-o base-clr-txt"></span>@Model.ConferenceDetail.ConferenceDate.Value.ToString("dd MMM")
+                <span class="fa fa-map-marker base-clr-txt" style="margin-left: 14px;"></span>@Html.ActionLink(@Model.ConferenceDetail.City, "CityInfo", "Home")
+            </span>
+
+            <h1 class="hero-heading-main">
+                @Model.ConferenceDetail.ConferenceName
+            </h1>
+
+            <span class="hero-heading-bottom" style="font-weight:bold;">@Model.ConferenceDetail.ConferenceDescription</span>
+
+            @*<div class="btns-container">
+                <a href="#" class="btn btn-md">Watch trailer</a>
+                <a href="#" class="btn btn-md btn-alt">Get tickets</a>
+            </div>*@
+        </div>
+    </div>
+</section>

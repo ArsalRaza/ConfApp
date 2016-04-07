@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/Custom.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Manage", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Manage", "Index", "Manage")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" href="http://jqueryui.com/autocomplete/resources/demos/style.css">
+    <script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery('#txtUserName').autocomplete({
+            source: '@Url.Action("GetMatchingUser", "Home")',
+            minLength: 1,
+            select: function (event, ui) {
+                @*window.location.href =
+                  '@Url.Action("ProfilePage", "UserProfile")' + '?who=' + ui.item.id;*@
+
+                jQuery('#ToUserId').val(ui.item.id);
+
+            },
+        }).data("ui-autocomplete")._renderItem = function (ul, item) {
+            var inner_html =
+                 '<a><div class="list_item_container"><div class="image"><img style="width: 60px; height: 50px;" src="' +
+                 item.image + '"></div><div class="label">' + item.label +
+                 '</div><div class="description">' +
+                 item.description + '</div></div></a>';
+            return jQuery("<li></li>")
+                .data("item.autocomplete", item)
+                .append(inner_html)
+                .appendTo(ul);
+
+            };
+    });
+    </script>
+    
+</body>
+</html>

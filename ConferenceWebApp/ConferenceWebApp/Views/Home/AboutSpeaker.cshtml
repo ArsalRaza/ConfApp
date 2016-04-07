@@ -1,0 +1,142 @@
+﻿@model ConferenceWebApp.Models.UserProfile
+
+@{
+    ViewBag.Title = "AboutSpeaker";
+     Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<br />
+
+    <div class="container">
+        <div class="content col-md-9 col-sm-12">
+            <main role="main">
+                <article id="post-233" class="post-233 post type-post status-publish format-standard has-post-thumbnail hentry category-development-2 tag-creativity tag-design tag-development tag-studio tag-technology">
+
+                    @*<header class="entry-header">
+                        <h4 class="entry-title"></h4>		<div class="entry-meta">
+                            <span class="posted-on"> <time class="entry-date published updated" datetime="2015-02-18T11:28:02+00:00">February 18, 2015</time></span> | <span class="post-cats"> Design, Development, Technology </span> | <span class="post-comments"> <a class="url fn n" href="index.html#comments">1</a> Comments</span>
+                        </div>
+                    </header>*@
+
+                    <div class="speakers speakers-full speakers-3-columns photo-round-shape photo-md hide-socials" style="text-align:center">
+                        <div class='speaker-col'>
+                            <div class='speaker'>
+                                <div class='photo-wrapper' style="background-image: url('../Files/Profileimages/@Model.Photo');">
+                                </div><h3 class='name'>@Model.Name</h3><p class='text-alt'>
+                                    <small>@Model.Designation - @Model.Organization</small>
+                                </p>
+                                </p>
+                                <ul class='speaker-socials'>
+                                    <li><a target='_blank' href='#'><span class='fa fa-facebook'></span></a></li>
+                                    <li><a target='_blank' href='#'><span class='fa fa-twitter'></span></a></li>
+                                    <li>
+                                        <a target='_blank' href='#'><span class='fa fa-linkedin'></span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="thumb-wrapper post-thumbnail">
+                        <img src="../Master/wp-content/uploads/2015/11/stat-bg-860x340.jpg" alt="" />
+                    </div>*@
+                    <!--end post-thumbnail-->
+
+                    <div class="entry-content">
+                        <p>@Model.Profile</p>
+
+                      </div>
+
+                    <footer class="entry-footer"></footer>
+
+                </article>
+
+                <div class="entry-navigation aligncenter">
+                    <div class="prev-post"><i class="icon icon-arrows-03"></i><strong><a href="../revolutionary-apps/index.html" rel="prev">Revolutionary event apps</a></strong></div>
+                </div><!--end navigation-->
+
+
+                
+
+            </main>
+        </div>
+
+        @*<div class="col-md-3 col-sm-12 sidebar-right">
+
+            <aside id="secondary" class="widget-area" role="complementary">
+                <div class="widget widget_recent_entries">
+                    <h5 class="widget-head">Recent Posts</h5>		<ul class='recent-posts-list'>
+                        <li class='recent-post'>
+                            <div class='recent-post-image'>
+                                <img src="../wp-content/uploads/2015/11/stat-bg.jpg" alt="" height="50" width="60" />
+                            </div>
+                            <div class="recent-post-meta">
+                                <div class='recent-post-cell-wrapper'>
+
+                                    <a href="index.html">
+                                        5 Secrets of organizing...
+                                    </a>
+                                    <small class="post-date">February 18, 2015</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class='recent-post'>
+                            <div class='recent-post-image'>
+                                <img src="../wp-content/uploads/2014/09/fire_texture1435.jpg" alt="" height="50" width="60" />
+                            </div>
+                            <div class="recent-post-meta">
+                                <div class='recent-post-cell-wrapper'>
+
+                                    <a href="../revolutionary-apps/index.html">
+                                        Revolutionary event apps
+                                    </a>
+                                    <small class="post-date">September 29, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class='recent-post'>
+                            <div class='recent-post-image'>
+                                <img src="../wp-content/uploads/2014/09/fire_texture1422.jpg" alt="" height="50" width="60" />
+                            </div>
+                            <div class="recent-post-meta">
+                                <div class='recent-post-cell-wrapper'>
+
+                                    <a href="../creative-retouching/index.html">
+                                        Creative retouching
+                                    </a>
+                                    <small class="post-date">September 29, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class='recent-post'>
+                            <div class='recent-post-image'>
+                                <img src="../wp-content/uploads/2011/07/100_5540.jpg" alt="" height="50" width="60" />
+                            </div>
+                            <div class="recent-post-meta">
+                                <div class='recent-post-cell-wrapper'>
+
+                                    <a href="../work-with-comfort/index.html">
+                                        Work with comfort
+                                    </a>
+                                    <small class="post-date">September 29, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+                        <li class='recent-post'>
+                            <div class='recent-post-image'>
+                                <img src="../wp-content/uploads/2015/11/bg4-2000x693.jpg" alt="" height="50" width="60" />
+                            </div>
+                            <div class="recent-post-meta">
+                                <div class='recent-post-cell-wrapper'>
+
+                                    <a href="../illegal-downloads/index.html">
+                                        Hot to create great...
+                                    </a>
+                                    <small class="post-date">September 23, 2014</small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>		</aside>
+        </div>*@
+
+    </div>

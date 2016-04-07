@@ -1,0 +1,25 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.AddMemberToProgramModel
+@{
+    ViewBag.Title = "Add Member To Program";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Member To Program</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <table>
+        <tr><td>@ViewBag.Error</td></tr>
+        @Html.HiddenFor(m => m.ProgramId, Request.QueryString["ProgramId"])
+        <tr><td>@Html.DisplayNameFor(m => m.MemberId):</td><td>@Html.DropDownListFor(m => m.MemberId, new SelectList(ViewBag.UserProfiles, "ID", "Name"), "Select User")</td><td>@Html.ValidationMessageFor(m => m.MemberId)</td></tr>
+        
+        <tr><td>@Html.DisplayNameFor(m => m.CategoryId):</td><td>@Html.DropDownListFor(m => m.CategoryId, new SelectList(ViewBag.Categories, "ID", "CategoryName"),"Select Role")</td><td>@Html.ValidationMessageFor(m => m.CategoryId)</td></tr>
+        
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add" /></td></tr>
+
+    </table>
+
+
+}

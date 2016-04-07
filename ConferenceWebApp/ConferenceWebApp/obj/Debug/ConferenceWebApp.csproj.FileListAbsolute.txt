@@ -1,0 +1,104 @@
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll.config
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.pdb
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\Microsoft.Web.Infrastructure.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\WebGrease.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.pdb
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.xml
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.csprojResolveAssemblyReference.cache
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.dll
+E:\Users\Administrator\Desktop\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.pdb
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll.config
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.pdb
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.SqlServer.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\Microsoft.Web.Infrastructure.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\WebGrease.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.SqlServer.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.pdb
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.xml
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.dll
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.pdb
+F:\Live Projects\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.csprojResolveAssemblyReference.cache
+G:\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll.config
+G:\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\ConferenceWebApp.pdb
+G:\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.SqlServer.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\Microsoft.Web.Infrastructure.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\WebGrease.dll
+G:\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\EntityFramework.SqlServer.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Helpers.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Mvc.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Optimization.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Razor.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Deployment.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.WebPages.Razor.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\Newtonsoft.Json.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\Antlr3.Runtime.pdb
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Net.Http.Formatting.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.xml
+G:\ConferenceWebApp\ConferenceWebApp\bin\System.Web.Http.WebHost.xml
+G:\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.csprojResolveAssemblyReference.cache
+G:\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.dll
+G:\ConferenceWebApp\ConferenceWebApp\obj\Debug\ConferenceWebApp.pdb

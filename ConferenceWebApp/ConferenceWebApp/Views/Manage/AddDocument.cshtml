@@ -1,0 +1,24 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.DocumentModel
+@{
+    ViewBag.Title = "AddDocument";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add Files and Presentation</h2>
+
+@using (Html.BeginForm("AddDocument", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <table>
+
+        <tr><td>@ViewBag.Error</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.Title):</td><td>@Html.TextBoxFor(m => m.Title)</td><td>@Html.ValidationMessageFor(m => m.Title)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.Description):</td><td>@Html.TextAreaFor(m => m.Description)</td><td>@Html.ValidationMessageFor(m => m.Description)</td></tr>
+
+
+        <tr><td>@Html.DisplayNameFor(m => m.UploadFile):</td><td><input type="file" data-val="true" data-val-required="please select a file" name="UploadFile" id="UploadFile" /></td><td>@Html.ValidationMessage("UploadFile")</td></tr>
+
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add File" /></td></tr>
+    </table>
+}

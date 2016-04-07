@@ -1,0 +1,31 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ConferenceModel
+@{
+    ViewBag.Title = "EditConferenceDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Conference Details</h2>
+
+@using (Html.BeginForm())
+{
+    
+    <table>
+
+        <tr><td>@ViewBag.Error</td></tr>
+        @Html.HiddenFor(m => m.ID)
+        <tr><td>@Html.DisplayNameFor(m => m.ConferenceName):</td><td>@Html.TextBoxFor(m => m.ConferenceName)</td><td>@Html.ValidationMessageFor(m => m.ConferenceName)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.ConferenceDescription):</td><td>@Html.TextAreaFor(m => m.ConferenceDescription)</td><td>@Html.ValidationMessageFor(m => m.ConferenceDescription)</td></tr>
+
+
+        <tr><td>@Html.DisplayNameFor(m => m.ConferenceDate):</td><td>@Html.TextBoxFor(m => m.ConferenceDate, new { @type = "Date", @Value = Model.ConferenceDate.ToString("yyyy-MM-dd") })</td><td>@Html.ValidationMessageFor(m => m.ConferenceDate)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.EndDate):</td><td>@Html.TextBoxFor(m => m.EndDate, new { @type = "Date", @Value = Model.EndDate.ToString("yyyy-MM-dd") })</td><td>@Html.ValidationMessageFor(m => m.EndDate)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.City):</td><td>@Html.TextBoxFor(m => m.City)</td><td>@Html.ValidationMessageFor(m => m.City)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.Address):</td><td>@Html.TextBoxFor(m => m.Address)</td><td>@Html.ValidationMessageFor(m => m.Address)</td></tr>
+        @*<tr><td>@Html.DisplayNameFor(m => m.CityInformation):</td><td>@Html.TextAreaFor(m => m.CityInformation)</td><td>@Html.ValidationMessageFor(m => m.CityInformation)</td></tr>
+<tr><td>@Html.DisplayNameFor(m => m.FeeStructure):</td><td>@Html.TextAreaFor(m => m.FeeStructure)</td><td>@Html.ValidationMessageFor(m => m.FeeStructure)</td></tr>*@
+        <tr><td>@Html.DisplayNameFor(m => m.Organizer):</td><td>@Html.TextAreaFor(m => m.Organizer)</td><td>@Html.ValidationMessageFor(m => m.Organizer)</td></tr>
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Save Conference Details" /></td></tr>
+    </table>
+}

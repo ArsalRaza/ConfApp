@@ -1,0 +1,24 @@
+﻿@model List<ConferenceWebApp.Models.File>
+@{
+    ViewBag.Title = "Videos";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Videos</h2>
+
+@Html.ActionLink("Add Videos", "AddVideo") <br /><br />
+
+@foreach (var Video in Model)
+{
+    @Video.Description  <br /> @Html.ActionLink("Delete", "DeleteVideo", new { VideoId = @Video.ID }, new { onClick = "return ConfirmDelete('Video');" })
+
+
+    <iframe width="560"
+            height="315"
+            src="@Video.FileUrl"
+            frameborder="0"
+            allowfullscreen></iframe>
+
+
+    <hr />
+}

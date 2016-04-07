@@ -1,0 +1,71 @@
+﻿@model ConferenceWebApp.Models.FormModels.AppModel.IndexListModel
+@{
+    ViewBag.Title = "Speakers";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+
+<div id="speakers" class="vc_row vc_inner vc_row-fluid container" style="" data-token="3VkRW">
+    <div class="vc_col-sm-12 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-faces-users-04"></span></div>
+            </div>
+            <h3 style="text-align: center" class="vc_custom_heading">Keynote speakers</h3>
+            <div class="wpb_text_column wpb_content_element ">
+                <div class="wpb_wrapper">
+                    <p style="text-align: center;"><span style="color: #8d93a0;">Meet our most valued <mark>speakes</mark></span></p>
+
+                </div>
+            </div>
+            <div class="vc_empty_space" style="height: 32px"><span class="vc_empty_space_inner"></span></div>
+
+            <div class="speakers speakers-full speakers-3-columns photo-round-shape photo-md hide-socials">
+
+                @foreach (var UserProfile in Model.UserProfiles)
+                {
+                    <div class='speaker-col'>
+                        <div class='speaker'>
+                            <div class='photo-wrapper' style="background-image: url('../Files/Profileimages/@if (!string.IsNullOrEmpty(UserProfile.Photo)){@UserProfile.Photo}else{@Html.Raw("NoImage.png")}');">
+                            </div><h3 class='name'>@UserProfile.Name</h3><p class='text-alt'>
+                                <small>@UserProfile.Designation - @UserProfile.Organization</small>
+                            </p>
+                            <p class='about' data-toggle="tooltip" title="@UserProfile.Profile">
+                                @ConferenceWebApp.BL.Helper.Helper.TruncateAtWord(UserProfile.Profile)
+
+                            </p>
+                            <ul class='speaker-socials'>
+                                <li><a target='_blank' href='#'><span class='fa fa-facebook'></span></a></li>
+                                <li><a target='_blank' href='#'><span class='fa fa-twitter'></span></a></li>
+                                <li>
+                                    <a target='_blank' href='#'><span class='fa fa-linkedin'></span></a>
+                                </li>
+                                <li><a target='_blank' href='#'><span class='fa fa-skype'></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div id="vsc_row_owjjlkfhks" class="vc_row vc_inner vc_row-fluid container" style="" data-token="pHCGs">
+                <div class="vc_col-sm-4 wpb_column column_container  ">
+                    <div class="wpb_wrapper">
+
+                    </div>
+                </div>
+
+                @*<div class="vc_col-sm-4 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                            <div class="btns-block btns-center"><a class='ventcamp_button btn btn-md btn-alt ' href='http://dev.ventcampwp.com/shortcodes/speakers/'>MORE STYLES<i class='fa fa-long-arrow-right right'></i></a></div>
+                        </div>
+                    </div>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    jQuery(document).ready(function () {
+        jQuery('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

@@ -1,0 +1,22 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.FeeStructureModel
+@{
+    ViewBag.Title = "EditFeeStructure";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditFeeStructure</h2>
+
+@using (@Html.BeginForm())
+{
+    <form role="form">
+        <div class="form-group">
+            <label for="email">@Html.DisplayNameFor(m => m.FeeStructure):</label>&nbsp;&nbsp;<label>@Html.ValidationMessageFor(m => m.FeeStructure)</label>
+
+            @Html.TextAreaFor(m => m.FeeStructure, new { @class = "form-control", @cols = "80", @rows = "20" })
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Save</button>
+
+        </div>
+    </form>
+}

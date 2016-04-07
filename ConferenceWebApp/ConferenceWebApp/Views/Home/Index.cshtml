@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "test";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+@section SectionAboveHeaderMenu {
+    @Html.Partial("SectionHero")
+}
+
+
+<div class="container-fluid">
+    <div class="content">
+        <main role='main'>
+            <article id="page-1825" class="post-1825 page type-page status-publish hentry">
+                <div class="entry-content">
+                    @Html.Partial("SectionAbout")
+                    @Html.Partial("SectionCounts")
+                    @Html.Partial("SectionSpeakers")
+                    @Html.Partial("SectionSchedule")
+                    @*@Html.Partial("SectionNewsLetter")*@
+                    @*@Html.Partial("SectionPrices")
+                    @Html.Partial("SectionTestimonials")
+                    @Html.Partial("SectionRegisterRow")*@
+                    @*@Html.Partial("SectionGallery")*@
+                    @*@Html.Partial("SectionSponsors")*@
+                    @*@Html.Partial("SectionContacts")*@
+                </div>
+
+                <footer class="entry-footer"></footer>
+            </article>
+        </main>
+    </div>
+</div>

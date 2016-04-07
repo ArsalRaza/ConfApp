@@ -1,0 +1,28 @@
+﻿@model ConferenceWebApp.Models.FormModels.AppModel.IndexListModel
+@{
+    ViewBag.Title = "CityInfo";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<div class="container-fluid">
+    <div class="content">
+        <main role='main'>
+            <article id="page-2005" class="post-2005 page type-page status-publish hentry">
+                <div class="entry-content">
+                    <div id="vsc_row_aisjjhtsld" class="vc_row vc_inner vc_row-fluid container" style="" data-token="kFLwv">
+                        <div class="vc_col-sm-12 wpb_column column_container  ">
+                            <div class="wpb_wrapper">
+                                <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                                    <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-office-21"></span></div>
+                                </div>
+                                <h3 style="text-align: center" class="vc_custom_heading">City Information</h3><p style="color: #8d93a0;text-align: left" class="vc_custom_heading">
+                                    @Model.ConferenceDetail.CityInformation
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+    </div>
+</div>
+

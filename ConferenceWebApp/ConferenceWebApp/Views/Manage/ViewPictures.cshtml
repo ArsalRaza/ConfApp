@@ -1,0 +1,27 @@
+﻿@model List<ConferenceWebApp.Models.File>
+@{
+    ViewBag.Title = "ViewPictures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@Html.ActionLink("Add Pictures", "AddPictures", "Manage") <br /><br />
+
+
+<div class="row">
+
+    <div class="col-lg-12">
+        <h1 class="page-header">Thumbnail Gallery Pictures</h1>
+    </div>
+
+
+    @foreach (var Picture in Model)
+    {
+        <div class="col-lg-3 col-md-4 col-xs-6 thumb">
+            <a class="thumbnail" href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath/@Picture.FileName">
+                <img class="img-responsive" src="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath/@Picture.FileName" alt="">
+            </a>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ConferenceAppNewModelStoreContainer" CdmEntityContainer="ConferenceAppEntities">
+    <EntitySetMapping Name="MyAgenda">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.MyAgenda">
+        <MappingFragment StoreEntitySet="MyAgenda">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Agenda" ColumnName="Agenda" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Program">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Program">
+        <MappingFragment StoreEntitySet="Program">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProgrameName" ColumnName="ProgrameName" />
+          <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+          <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="ConferenceID" ColumnName="ConferenceID" />
+          <ScalarProperty Name="ProgramDescription" ColumnName="ProgramDescription" />
+          <ScalarProperty Name="ProgramDate" ColumnName="ProgramDate" />
+          <ScalarProperty Name="ProgramDay" ColumnName="ProgramDay" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramMemberCategories">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.ProgramMemberCategories">
+        <MappingFragment StoreEntitySet="ProgramMemberCategories">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserProfile">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.UserProfile">
+        <MappingFragment StoreEntitySet="UserProfile">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Profile" ColumnName="Profile" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Organization" ColumnName="Organization" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="File">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.File">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramPeople">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.ProgramPeople">
+        <MappingFragment StoreEntitySet="ProgramPeople">
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversation">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Conversation">
+        <MappingFragment StoreEntitySet="Conversation">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="UserIdTwo" ColumnName="UserIdTwo" />
+          <ScalarProperty Name="UserIdOne" ColumnName="UserIdOne" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conference">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Conference">
+        <MappingFragment StoreEntitySet="Conference">
+          <ScalarProperty Name="CityInformation" ColumnName="CityInformation" />
+          <ScalarProperty Name="FeeStructure" ColumnName="FeeStructure" />
+          <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="ConferenceDescription" ColumnName="ConferenceDescription" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="Organizer" ColumnName="Organizer" />
+          <ScalarProperty Name="ConferenceDate" ColumnName="ConferenceDate" />
+          <ScalarProperty Name="ConferenceName" ColumnName="ConferenceName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Conversation_reply">
+      <EntityTypeMapping TypeName="ConferenceAppNewModel.Conversation_reply">
+        <MappingFragment StoreEntitySet="Conversation_reply">
+          <ScalarProperty Name="ConversationID" ColumnName="ConversationID" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Reply" ColumnName="Reply" />
+          <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

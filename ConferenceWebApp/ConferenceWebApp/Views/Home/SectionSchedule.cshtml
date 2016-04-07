@@ -1,0 +1,92 @@
+﻿@model ConferenceWebApp.Models.FormModels.AppModel.IndexListModel
+<div id="schedule" class="vc_row vc_inner vc_row-fluid container" style="" data-token="QncPs">
+    <div class="vc_col-sm-12 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-office-21"></span></div>
+            </div>
+            <h3 style="text-align: center" class="vc_custom_heading">Schedule</h3>
+            <div class="wpb_text_column wpb_content_element ">
+                <div class="wpb_wrapper">
+                    <p style="text-align: center;"><span style="color: #8d93a0;">Highly <mark>configurable</mark> block with optional auditoriums and threads</span></p>
+
+                </div>
+            </div>
+            <div class="vc_empty_space" style="height: 32px"><span class="vc_empty_space_inner"></span></div>
+            <div class="schedule">
+                <ul class="nav nav-schedule">
+
+                    @for (int i = 0; i <= Model.ProgramDatesAndDays.Count - 1; i++)
+                    {
+                        if (i == 0)
+                        {
+                            <li class="active"><a href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()" data-toggle="tab"><h4 class="highlight">@Model.ProgramDatesAndDays[i].Day</h4><p class="text-alt">@Model.ProgramDatesAndDays[i].Date.ToShortDateString()</p></a></li>
+                        }
+                        else
+                        {
+                            <li><a href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()" data-toggle="tab"><h4 class="highlight">@Model.ProgramDatesAndDays[i].Day</h4><p class="text-alt">@Model.ProgramDatesAndDays[i].Date.ToShortDateString()</p></a></li>
+                        }
+                    }
+
+                </ul><div class="tab-content">
+                    @*@foreach (var Model.ProgramDatesAndDays[i] in @Model.ProgramDatesAndDays)*@
+                    @for (int i = 0; i <= Model.ProgramDatesAndDays.Count - 1; i++)
+                    {
+                        int y = 0;
+
+                        Model.ProgramDatesAndDays[i].Date.ToShortDateString();
+                        var Programs = Model.Programs.Where(x => x.ProgramDate == Model.ProgramDatesAndDays[i].Date);
+
+                        <div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()" class="tab-pane @if (i == 0) { WriteLiteral("active"); }  in">
+                            <ul class="nav nav-schedule"><li class=""><a href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname" data-toggle="tab"></a></li></ul>
+                            <div class="tab-content tab-content-schedule">
+                                <div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname" class="tab-pane fade active in">
+                                    <div class="panel-group" id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline">
+
+                                        @foreach (var Program in Programs)
+                                        {
+                                            y++;
+
+                                            <div class="panel schedule-item">
+                                                <div class="lecture-icon-wrapper" style="background-image: url('/Files/ProfileImages/@if (Model.ProgramPeople.Where(x => x.ProgramId == Program.ID).Count() > 0 && Model.ProgramPeople.Where(x => x.ProgramId == Program.ID).Count() == 1 ){  @Model.UserProfiles.FirstOrDefault(z => z.ID ==  Model.ProgramPeople.FirstOrDefault(x => x.ProgramId == Program.ID).UserId).Photo}else{ @Html.Raw("Multiplespeakers.png") }')"></div>
+                                                <a data-toggle="collapse" data-parent="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_@y" href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="schedule-item-toggle collapsed">
+                                                    <strong class="time highlight"><span class="icon icon-office-24"></span>@Convert.ToDateTime(Program.StartTime.Value.ToString()).ToShortTimeString() &nbsp; - &nbsp; @Convert.ToDateTime(Program.EndTime.Value.ToString()).ToShortTimeString()</strong><h6 class="title">@Program.ProgrameName<i class="icon icon-arrows-06"></i></h6>
+                                                </a><div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="panel-collapse collapse schedule-item-body">
+                                                    <article>
+                                                        <p class="description">
+                                                            @Program.ProgramDescription
+                                                        </p><strong class="highlight speaker-name">
+
+                                                            @if (Model.ProgramPeople.Exists(x => x.ProgramId == Program.ID))
+                                                            {
+                                                                var ProgramSpeakers = Model.UserProfiles.Where(z => Model.ProgramPeople.Where(x => x.ProgramId == Program.ID).Select(u => u.UserId).Contains(z.ID));
+                                                                string SpeakerNames = string.Empty;
+                                                                for (int index = 0; index < ProgramSpeakers.Count(); index++)
+                                                                {
+                                                                    if (index == 0)
+                                                                    {
+                                                                        SpeakerNames = @ProgramSpeakers.ElementAt(index).Name;
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        SpeakerNames += ", " + @ProgramSpeakers.ElementAt(index).Name;
+                                                                    }
+                                                                }
+                                                                @SpeakerNames
+                                                            }
+
+                                                        </strong>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

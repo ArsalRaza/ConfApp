@@ -1,0 +1,92 @@
+﻿
+
+<header class="header header-black fixed" style="min-height: 100px;">
+    <div class="header-wrapper">
+        <div class="container">
+            <div class="col-sm-2 col-xs-12 navigation-header">
+                <div class="table-container">
+                    <div class="cell-container">
+                        <a href="/Home/index" class="logo">
+
+
+                            <img src="/master/wp-content/themes/ventcamp/img/ventcamp_logo.png" width="119" height="17" alt="ventcamp" class="retina-hide">
+                            <img src="/master/wp-content/themes/ventcamp/img/ventcamp_logo%402x.png" width="119" height="17" alt="ventcamp" class="retina-show">
+                        </a>
+
+                        <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-controls="navigation">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-10 col-xs-12 navigation-container">
+                <div class="table-container">
+                    <div class="cell-container">
+                        <div id="navigation" class="navbar-collapse collapse">
+
+                            <ul id="menu-theme-main" class="navigation-list pull-left">
+                                <li id="menu-item-2647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2647">@Html.ActionLink("Speakers", "Speakers", "Home")</li>
+                                <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Schedule", "Schedule", "Home")</li>
+                                <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Sponsors", "Sponsors", "Home")</li>
+                                <li id="menu-item-2650" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2650">@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                @*<li id="menu-item-2653" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2653">
+                                        <a href="shortcodes/index.html">Shortcodes</a>
+                                        <ul class="sub-menu">
+                                            <li id="menu-item-2656" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2656"><a href="shortcodes/countdown/index.html">Countdown</a></li>
+                                            <li id="menu-item-2657" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2657"><a href="shortcodes/counters/index.html">Counters</a></li>
+                                            <li id="menu-item-2664" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2664"><a href="shortcodes/row/index.html">Row (Section)</a></li>
+                                            <li id="menu-item-2665" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2665"><a href="shortcodes/testimonials/index.html">Testimonials</a></li>
+                                            <li id="menu-item-2663" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2663"><a href="shortcodes/speakers/index.html">Speakers Tiled</a></li>
+                                            <li id="menu-item-2674" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2674"><a href="shortcodes/speakers-masonry/index.html">Speakers Masonry</a></li>
+                                            <li id="menu-item-2661" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2661"><a href="shortcodes/tabs/index.html">Tabs</a></li>
+                                            <li id="menu-item-2654" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2654"><a href="shortcodes/accordion/index.html">Accordion</a></li>
+                                            <li id="menu-item-2673" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2673"><a href="shortcodes/typography/index.html">Typography</a></li>
+                                            <li id="menu-item-2662" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2662"><a href="shortcodes/faq/index.html">FAQ</a></li>
+                                            <li id="menu-item-2659" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2659"><a href="shortcodes/prices/index.html">Prices</a></li>
+                                            <li id="menu-item-2675" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2675"><a href="shortcodes/advanced-google-maps/index.html">Advanced Maps</a></li>
+                                            <li id="menu-item-2668" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2668"><a href="shortcodes/forms/index.html">Forms</a></li>
+                                            <li id="menu-item-2660" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2660"><a href="shortcodes/schedule/index.html">Schedule</a></li>
+                                            <li id="menu-item-2655" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2655"><a href="shortcodes/buttons/index.html">Buttons</a></li>
+                                            <li id="menu-item-2666" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2666"><a href="shortcodes/pie-chart/index.html">Pie chart</a></li>
+                                            <li id="menu-item-2670" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2670"><a href="shortcodes/icons/index.html">Icons</a></li>
+                                            <li id="menu-item-2672" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2672"><a href="shortcodes/text-with-icon/index.html">Text with Icon</a></li>
+                                            <li id="menu-item-2667" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2667"><a href="shortcodes/progress-bar/index.html">Progress bar</a></li>
+                                            <li id="menu-item-2658" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2658"><a href="shortcodes/masonry-media-grid/index.html">Gallery</a></li>
+                                            <li id="menu-item-2671" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2671"><a href="shortcodes/sponsors/index.html">Sponsors</a></li>
+                                            <li id="menu-item-2669" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2669"><a href="shortcodes/separator/index.html">Separator</a></li>
+                                        </ul>
+                                    </li>*@
+                                <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("My Agenda", "MyAgenda", "App", new { From = "MyAgenda" }, null)</li>
+                                @{
+                                    if (!ConferenceWebApp.BL.Helper.AuthenticationHelper.IsUserLogin)
+                                    {
+                                        <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("Register", "UserRegistration", "Membership")</li>
+
+                                    }
+                                    else
+                                    {
+                                        <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("Logout", "Logout", "Login")</li>
+                                        <li id="menu-item-2653" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2653">
+                                            <a href="shortcodes/index.html">Gallery</a>
+                                            <ul class="sub-menu">
+                                                <li id="menu-item-2656" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2656">@Html.ActionLink("Image Gallery", "ImageGallery", "Home")</li>
+                                                <li id="menu-item-2656" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2656">@Html.ActionLink("Video Gallery", "Videos", "Home")</li>
+                                                <li id="menu-item-2656" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2656">@Html.ActionLink("Reports and Presentations", "Files", "Home")</li>
+                                            </ul>
+                                        </li>
+                                    <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Messages", "Message", "Home")</li>
+                                    }
+                                }
+                            </ul>
+                            @*<a href="#" class="pull-right btn-alt btn-sm buy-btn">Buy Tickets</a>*@
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

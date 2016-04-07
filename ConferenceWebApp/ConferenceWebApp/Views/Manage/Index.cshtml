@@ -1,0 +1,28 @@
+﻿
+@{
+    
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@Html.ActionLink("Edit Conference Details", "EditConferenceDetails") <br /><br />
+
+@Html.ActionLink("Edit City Information", "EditCityInfo") <br /><br />
+
+@Html.ActionLink("Fee Structure Information", "EditFeeStructure") <br /><br />
+<hr />
+@Html.ActionLink("Manage Programs", "ViewPrograms") <br /><br />
+
+@*@Html.ActionLink("Add Program", "AddProgram") <br /><br />*@
+
+@Html.ActionLink("Users", "ViewUsers", "Manage") <br /><br />
+
+@Html.ActionLink("Reports and Presentations", "viewDocument", "Manage") <br /><br />
+
+@Html.ActionLink("Videos", "Videos", "Manage") <br /><br />
+
+@Html.ActionLink("ImageGallery", "ViewPictures", "Manage") <br /><br />
+
+@Html.ActionLink("Log Out", "Logout", "Login") <br /><br />

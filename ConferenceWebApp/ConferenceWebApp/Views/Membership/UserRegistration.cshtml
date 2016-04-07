@@ -1,0 +1,116 @@
+﻿@model ConferenceWebApp.Models.FormModels.MembershipModel.RegistrationModel
+@{
+    ViewBag.Title = "User Registration";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+
+@using (@Html.BeginForm("UserRegistration", "Membership", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{<br />
+
+    <div class="vc_col-sm-12 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-office-21"></span></div>
+            </div>
+            <h3 style="text-align: center" class="vc_custom_heading">Registration</h3><p style="color: #8d93a0;text-align: center" class="vc_custom_heading">
+
+            </p>
+        </div>
+    </div>
+    @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
+    <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
+        <div class="vc_col-sm-12 wpb_column column_container  ">
+            <div class="wpb_wrapper">
+                <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
+                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+
+                        </div>
+                    </div>
+                    <div class="vc_col-sm-6 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                            <div class="contact-form-7-data" data-token="vFpQY">
+                                <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
+                                    <div class="screen-reader-response"></div>
+                                    <div class="form leadform leadform-3 align-left">
+
+                                        @Html.HiddenFor(m => m.Role, new { Value = "User" })
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger field-validation-error" })
+                                                <span class="wpcf7-form-control-wrap FNAME">
+                                                    @Html.TextBoxFor(m => m.Name, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @placeholder = @Html.DisplayNameFor(m => m.Name) })
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger field-validation-error" })
+                                                <span class="wpcf7-form-control-wrap LNAME">
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-email", @placeholder = @Html.DisplayNameFor(m => m.Email) })
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <span class="wpcf7-form-control-wrap Password">@Html.PasswordFor(m => m.Password, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-email", @placeholder = "Password" })</span>
+                                                @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger field-validation-error" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <span class="wpcf7-form-control-wrap your-message">
+                                                    @Html.TextAreaFor(m => m.Profile, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-email", @placeholder = @Html.DisplayNameFor(m => m.Profile), @cols = "40", @rows = "10" })
+                                                </span>
+                                                @Html.ValidationMessageFor(m => m.Profile, null, new { @class = "text-danger field-validation-error" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <span class="wpcf7-form-control-wrap your-message">
+                                                    @Html.TextBoxFor(m => m.Organization, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-email", @placeholder = @Html.DisplayNameFor(m => m.Organization) })
+                                                </span>
+                                                @Html.ValidationMessageFor(m => m.Organization, null, new { @class = "text-danger field-validation-error" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <span class="wpcf7-form-control-wrap your-message">
+                                                    @Html.TextBoxFor(m => m.Designation, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-email", @placeholder = @Html.DisplayNameFor(m => m.Designation) })
+                                                </span>
+                                                @Html.ValidationMessageFor(m => m.Designation, null, new { @class = "text-danger field-validation-error" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                Profile Image
+                                                <span class="wpcf7-form-control-wrap your-message">
+                                                    <input type="file" name="ProfileImage" id="ProfileImage" placeholder="@Html.DisplayNameFor(m => m.ProfileImage)" />
+                                                </span>
+                                                @Html.ValidationMessageFor(m => m.ProfileImage, null, new { @class = "text-danger field-validation-error" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form leadform leadform-3 align-center">
+                                        <div class="form-group">
+                                            <div class="col-sm-12 col-xs-12">
+                                                <input type="submit" value="Register" class="wpcf7-form-control wpcf7-submit btn btn-lg" />
+                                            </div>
+                                        </div>
+
+                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

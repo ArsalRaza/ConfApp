@@ -1,0 +1,44 @@
+﻿@model ConferenceWebApp.Models.FormModels.MembershipModel.RegistrationModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Register New User</h2>
+
+@using (Html.BeginForm("RegisterUserFromAdmin", "Membership", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    if (ViewBag.Status != null)
+    {
+          <div class="alert">
+               <strong>@ViewBag.Status</strong> 
+          </div>
+    }
+    
+    <table>
+        <tr><td>@ViewBag.Error</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.Name):</td><td>@Html.TextBoxFor(m => m.Name)</td><td>@Html.ValidationMessageFor(m => m.Name)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.Email):</td><td>@Html.TextBoxFor(m => m.Email)</td><td>@Html.ValidationMessageFor(m => m.Email)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.Password):</td><td>@Html.PasswordFor(m => m.Password)</td><td>@Html.ValidationMessageFor(m => m.Password)</td></tr>
+
+
+        <tr><td>@Html.DisplayNameFor(m => m.Profile):</td><td>@Html.TextAreaFor(m => m.Profile)</td><td>@Html.ValidationMessageFor(m => m.Profile)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.Role):</td><td>@Html.DropDownListFor(m => m.Role, new List<SelectListItem>
+                 {
+                    new SelectListItem{ Text="Speaker", Value = "Speaker" },
+                    new SelectListItem{ Text="User", Value = "User" }
+                 }, "Select Role", null) </td><td>@Html.ValidationMessageFor(m => m.Role)</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.ProfileImage):</td><td><input type="file" name="ProfileImage" id="ProfileImage" /></td><td></td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.Organization):</td><td>@Html.TextBoxFor(m => m.Organization)</td><td>@Html.ValidationMessageFor(m => m.Organization)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.Designation):</td><td>@Html.TextBoxFor(m => m.Designation)</td><td>@Html.ValidationMessageFor(m => m.Designation)</td></tr>
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add User" /></td></tr>
+
+    </table>
+
+
+}

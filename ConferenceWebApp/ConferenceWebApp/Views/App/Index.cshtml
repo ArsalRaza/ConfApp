@@ -1,0 +1,31 @@
+﻿@model ConferenceWebApp.Models.Conference
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+
+@Html.ActionLink("MyAgenda", "MyAgenda", "App") <br />
+
+@Model.ConferenceName <br /><br />
+
+@Model.ConferenceDescription <br /><br />
+
+Conference Details: <br />
+
+City: @Model.City <br />
+
+Address:  @Model.Address
+
+Fee Structure: @Model.FeeStructure
+
+
+
+
+
+
+
+
+

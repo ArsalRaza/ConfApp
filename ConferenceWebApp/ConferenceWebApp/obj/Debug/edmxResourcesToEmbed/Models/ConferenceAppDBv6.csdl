@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ConferenceAppNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Conference">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConferenceName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ConferenceDate" Type="DateTime" Precision="3" />
+    <Property Name="Organizer" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="EndDate" Type="DateTime" Precision="3" />
+    <Property Name="ConferenceDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="IsEnabled" Type="Boolean" />
+    <NavigationProperty Name="Program" Relationship="Self.FK_Conference_Program" FromRole="Conference" ToRole="Program" />
+  </EntityType>
+  <EntityType Name="MyAgenda">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Day" Type="Int32" />
+    <Property Name="Agenda" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="MyAgenda" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Program">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgrameName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="StartTime" Type="Time" Precision="7" />
+    <Property Name="EndTime" Type="Time" Precision="7" />
+    <Property Name="ConferenceID" Type="Int32" />
+    <Property Name="ProgramDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ProgramDate" Type="DateTime" Precision="3" />
+    <Property Name="ProgramDay" Type="Int32" />
+    <NavigationProperty Name="Conference" Relationship="Self.FK_Conference_Program" FromRole="Program" ToRole="Conference" />
+    <NavigationProperty Name="ProgramPeople" Relationship="Self.FK_Program_ProgramPeople" FromRole="Program" ToRole="ProgramPeople" />
+  </EntityType>
+  <EntityType Name="ProgramMemberCategories">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="ProgramPeople" Relationship="Self.FK_ProgramMemberCategories_ProgramPeople" FromRole="ProgramMemberCategories" ToRole="ProgramPeople" />
+  </EntityType>
+  <EntityType Name="ProgramPeople">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProgramId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CategoryId" Type="Int32" />
+    <NavigationProperty Name="Program" Relationship="Self.FK_Program_ProgramPeople" FromRole="ProgramPeople" ToRole="Program" />
+    <NavigationProperty Name="ProgramMemberCategories" Relationship="Self.FK_ProgramMemberCategories_ProgramPeople" FromRole="ProgramPeople" ToRole="ProgramMemberCategories" />
+    <NavigationProperty Name="UserProfile" Relationship="Self.FK_User_ProgramPeople" FromRole="ProgramPeople" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MyAgenda" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
+    <NavigationProperty Name="ProgramPeople" Relationship="Self.FK_User_ProgramPeople" FromRole="UserProfile" ToRole="ProgramPeople" />
+  </EntityType>
+  <Association Name="FK_Conference_Program">
+    <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
+    <End Role="Program" Type="Self.Program" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Program">
+        <PropertyRef Name="ConferenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyAgenda_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyAgenda">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Program_ProgramPeople">
+    <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+    <End Role="ProgramPeople" Type="Self.ProgramPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProgramPeople">
+        <PropertyRef Name="ProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProgramMemberCategories_ProgramPeople">
+    <End Role="ProgramMemberCategories" Type="Self.ProgramMemberCategories" Multiplicity="0..1" />
+    <End Role="ProgramPeople" Type="Self.ProgramPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProgramMemberCategories">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProgramPeople">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_ProgramPeople">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="ProgramPeople" Type="Self.ProgramPeople" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProgramPeople">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ConferenceAppNewEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Conference" EntityType="Self.Conference" />
+    <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" />
+    <EntitySet Name="Program" EntityType="Self.Program" />
+    <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" />
+    <EntitySet Name="ProgramPeople" EntityType="Self.ProgramPeople" />
+    <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
+    <AssociationSet Name="FK_Conference_Program" Association="Self.FK_Conference_Program">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="Program" EntitySet="Program" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyAgenda_UserProfile" Association="Self.FK_MyAgenda_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="MyAgenda" EntitySet="MyAgenda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Program_ProgramPeople" Association="Self.FK_Program_ProgramPeople">
+      <End Role="Program" EntitySet="Program" />
+      <End Role="ProgramPeople" EntitySet="ProgramPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProgramMemberCategories_ProgramPeople" Association="Self.FK_ProgramMemberCategories_ProgramPeople">
+      <End Role="ProgramMemberCategories" EntitySet="ProgramMemberCategories" />
+      <End Role="ProgramPeople" EntitySet="ProgramPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_ProgramPeople" Association="Self.FK_User_ProgramPeople">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="ProgramPeople" EntitySet="ProgramPeople" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

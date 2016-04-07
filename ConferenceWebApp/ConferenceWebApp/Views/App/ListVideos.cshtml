@@ -1,0 +1,15 @@
+﻿@model System.IO.DirectoryInfo
+@{
+    ViewBag.Title = "ListVideos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ListVideos</h2>
+
+@foreach (var item in Model.GetFiles())
+{
+    @item.FullName <br />
+    @item.Name  <br />
+    
+    
+}

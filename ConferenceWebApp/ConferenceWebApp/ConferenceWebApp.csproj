@@ -1,0 +1,693 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2B8721F8-9A8D-4B53-9FD6-303472FA58EF}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ConferenceWebApp</RootNamespace>
+    <AssemblyName>ConferenceWebApp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BL\Constants\PageTitles.cs" />
+    <Compile Include="BL\Helper\AuthenticationHelper.cs" />
+    <Compile Include="BL\Helper\EncryptionHelper.cs" />
+    <Compile Include="BL\Helper\Helper.cs" />
+    <Compile Include="BL\Helper\SessionHelper.cs" />
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="BL\Constants\Constants.cs" />
+    <Compile Include="Models\Conference.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConferenceAppEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConferenceAppEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConferenceAppEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ConferenceAppEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ConferenceAppEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Conversation.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Conversation_reply.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\File.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FormModels\AppModel\IndexListModel.cs" />
+    <Compile Include="Models\FormModels\AppModel\MyAgendaModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\AddMemberToProgramModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\AddProgramModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\ConferenceModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\DocumentModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\UploadPictureModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\AddVideoModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\ViewModel\ManageListsModel.cs" />
+    <Compile Include="Models\FormModels\MembershipModel\AddSiteModel.cs" />
+    <Compile Include="Models\FormModels\MembershipModel\LoginModel.cs" />
+    <Compile Include="Models\FormModels\MembershipModel\RegistrationModel.cs" />
+    <Compile Include="Models\MyAgenda.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Program.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramMemberCategories.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ProgramPeople.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserProfile.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Files\ProfileImages\NoImage.png" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Master\chat\css\normalize.css" />
+    <Content Include="Master\chat\css\style.css" />
+    <Content Include="Master\chat\js\index.js" />
+    <Content Include="Master\chat\js\modernizr.js" />
+    <Content Include="Master\chat\js\prefixfree.min.js" />
+    <Content Include="Master\CKEditor\adapters\jquery.js" />
+    <Content Include="Master\CKEditor\ckeditor.js" />
+    <Content Include="Master\CKEditor\skins\moono\dialog.css" />
+    <Content Include="Master\CKEditor\skins\moono\dialog_ie.css" />
+    <Content Include="Master\CKEditor\skins\moono\dialog_ie7.css" />
+    <Content Include="Master\CKEditor\skins\moono\dialog_ie8.css" />
+    <Content Include="Master\CKEditor\skins\moono\dialog_iequirks.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor_gecko.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor_ie.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor_ie7.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor_ie8.css" />
+    <Content Include="Master\CKEditor\skins\moono\editor_iequirks.css" />
+    <Content Include="Master\CKEditor\skins\moono\icons.png" />
+    <Content Include="Master\CKEditor\skins\moono\icons_hidpi.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\arrow.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\close.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\hidpi\close.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\hidpi\lock-open.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\hidpi\lock.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\hidpi\refresh.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\lock-open.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\lock.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\refresh.png" />
+    <Content Include="Master\CKEditor\skins\moono\images\spinner.gif" />
+    <Content Include="Master\wp-content\plugins\contact-form-7\includes\css\styles5b31.css" />
+    <Content Include="Master\wp-content\plugins\contact-form-7\includes\js\jquery.form.mind03d.js" />
+    <Content Include="Master\wp-content\plugins\contact-form-7\includes\js\scripts5b31.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\js_composer.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typicons.html" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typicons.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typicons.svg" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\vc-linecons\fonts\vc_linecons4906.html" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\vc-linecons\fonts\vc_linecons4906.svg" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\vc-linecons\vc_linecons_icons.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\fonts\vc_grid\vc_grid_v157a1.html" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\fonts\vc_grid\vc_grid_v157a1.svg" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\flickr.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\address-book.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\alarm-clock.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\anchor.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\application-image.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\arrow.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\asterisk.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\auction-hammer.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\balloon-buzz.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\balloon-facebook.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\balloon-twitter.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\balloon.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\battery-full.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\binocular.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-excel.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-image.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-music.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-office.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-pdf.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-powerpoint.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\blue-document-word.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\bookmark.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\camcorder.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\camera.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\chart-pie.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\chart.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\clock.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\control.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\fire.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\heart.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\mail.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\plus-shield.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\icons\video.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\toggle_close.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\images\toggle_open.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\js\dist\js_composer_front.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\js\dist\vc_grid.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\js\vendors\woocommerce-add-to-cart20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\animate-css\animate.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\css\font-awesome.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\fonts\fontawesome-webfont78ce.html" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\fonts\fontawesome-webfont78ce.svg" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\imagesloaded\imagesloaded.pkgd.minc1f9.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\masonry\dist\masonry.pkgd.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\progress-circle\ProgressCircle.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\owl-carousel2-dist\assets\owl.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\owl-carousel2-dist\assets\owl.video.play.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\owl-carousel2-dist\owl.carousel.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\css\prettyPhoto.min20fd.css" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\loader.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\prettyphoto\js\jquery.prettyPhoto.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\vc-tta-autoplay\vc-tta-autoplay.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\vc_accordion\vc-accordion.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\vc_chart\jquery.vc_chart.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\vc_tabs\vc-tabs.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\waypoints\waypoints.min20fd.js" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\vc\alert.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\vc\exclamation.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\vc\info.png" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\vc\tick.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce-events\js\events-frontend8a54.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\css\prettyPhoto16b9.css" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\css\woocommerce-layout16b9.css" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\css\woocommerce-smallscreen16b9.css" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\css\woocommerce16b9.css" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\star.html" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\star.svg" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\WooCommerce.html" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\WooCommerce.svg" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\amex.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\diners.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\discover.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\jcb.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\laser.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\maestro.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\mastercard.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\credit-cards\visa.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\icons\loader.svg" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\images\placeholder.png" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\add-to-cart.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\address-i18n.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\cart-fragments.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\cart.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\country-select.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\single-product.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\frontend\woocommerce.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\jquery-blockui\jquery.blockUI.min44fd.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\jquery-cookie\jquery.cookie.min330a.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\prettyPhoto\jquery.prettyPhoto.init.min16b9.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\js\prettyPhoto\jquery.prettyPhoto.min005e.js" />
+    <Content Include="Master\wp-content\plugins\woocommerce_events\images\pin.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\cache\theme-style.css" />
+    <Content Include="Master\wp-content\themes\ventcamp\cache\theme-style2.css" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\fonts\glyphicons-halflings-regular-2.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\fonts\glyphicons-halflings-regular-3.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\fonts\glyphicons-halflings-regular-4.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\fonts\glyphicons-halflings-regular.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\fonts\glyphicons-halflings-regulard41d.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\lib\bootstrap.minc1f9.css" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\lib\font-lineiconsc1f9.css" />
+    <Content Include="Master\wp-content\themes\ventcamp\css\lib\toastr.minc1f9.css" />
+    <Content Include="Master\wp-content\themes\ventcamp\fonts\line-icons.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\fonts\line-icons.svg" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\arrow-select-24x11.png" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\background\low_poly_background.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\call-to-action-bg-1918x1283.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\favicon.ico" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\stat-bg-1919x1000.html" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\ventcamp_logo%402x.png" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\ventcamp_logo.png" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\yt_controls_40x40.png" />
+    <Content Include="Master\wp-content\themes\ventcamp\img\yt_play_big_56x82.png" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\bootstrap.minc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery-ui-slider.minc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery.appearc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery.countdown.minc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery.countToc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery.mb.YTPlayer.minc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\lib\jquery.plugin.minc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\ventcamp-custom-contact-form7c1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\js\ventcampc1f9.js" />
+    <Content Include="Master\wp-content\themes\ventcamp\stylec1f9.css" />
+    <Content Include="Master\wp-content\uploads\2011\07\100_5540-860x340.jpg" />
+    <Content Include="Master\wp-content\uploads\2011\07\100_5540.jpg" />
+    <Content Include="Master\wp-content\uploads\2014\09\fire_texture1422-860x340.jpg" />
+    <Content Include="Master\wp-content\uploads\2014\09\fire_texture1422.jpg" />
+    <Content Include="Master\wp-content\uploads\2014\09\fire_texture1435-860x340.jpg" />
+    <Content Include="Master\wp-content\uploads\2014\09\fire_texture1435.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\about-placeholder-iphone.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\about-placeholder-mbp.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Alec12-150x150.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Alec12.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Amy12-150x150.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Amy12.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Artdesigncat12.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\bg4-2000x693-860x340.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\bg4-2000x693.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\DLC12.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\Ellen12-150x150.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\Ellen12.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\FlavourSeo12.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\header-bg.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\imac-371x412.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\logo-112.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\logo-212.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\logo-312.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\logo-412.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\logo-512.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\March12.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\MetroPyrominds12.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\Mike12.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\speaker-1.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\speaker-2.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\speaker-3.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\speaker-4.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\sponsor-big-1.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\sponsor-big-2.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\sponsor-big-3.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\sponsor-big-4.png" />
+    <Content Include="Master\wp-content\uploads\2015\11\stat-bg-860x340.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\11\stat-bg.jpg" />
+    <Content Include="Master\wp-content\uploads\2015\12\autograph-143x105.png" />
+    <Content Include="Master\wp-includes\js\comment-reply.minc1f9.js" />
+    <Content Include="Master\wp-includes\js\jquery\jquery-migrate.min1576.js" />
+    <Content Include="Master\wp-includes\js\jquery\jqueryc1d8.js" />
+    <Content Include="Master\wp-includes\js\masonry.min0226.js" />
+    <Content Include="Master\wp-includes\js\underscore.minaff7.js" />
+    <Content Include="Master\wp-includes\js\wp-embed.minc1f9.js" />
+    <Content Include="Master\wp-includes\wlwmanifest.xml" />
+    <Content Include="Master\wp-json\index.html" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\ConferenceAppEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ConferenceAppEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ConferenceAppEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConferenceAppEntities.edmx</DependentUpon>
+      <LastGenOutput>ConferenceAppEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ConferenceAppEntities.edmx.diagram">
+      <DependentUpon>ConferenceAppEntities.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\ConferenceAppEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ConferenceAppEntities.edmx</DependentUpon>
+      <LastGenOutput>ConferenceAppEntities.cs</LastGenOutput>
+    </Content>
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typicons.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typicons.woff" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\typicons\src\font\typiconsd41d.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\vc-linecons\fonts\vc_linecons4906.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\css\lib\vc-linecons\fonts\vc_linecons4906.woff" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\fonts\vc_grid\vc_grid_v157a1.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\fonts\vc_grid\vc_grid_v157a1.woff" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\fonts\vc_grid\vc_grid_v1d41d.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\fonts\fontawesome-webfont78ce.eot" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\fonts\fontawesome-webfont78ce.woff" />
+    <Content Include="Master\wp-content\plugins\js_composer\assets\lib\bower\font-awesome\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\star.eot" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\star.woff" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\stard41d.eot" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\WooCommerce.eot" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\WooCommerce.woff" />
+    <Content Include="Master\wp-content\plugins\woocommerce\assets\fonts\WooCommerced41d.eot" />
+    <Content Include="Master\wp-content\themes\ventcamp\fonts\line-icons.eot" />
+    <Content Include="Master\wp-content\themes\ventcamp\fonts\line-icons.woff" />
+    <Content Include="Master\wp-content\themes\ventcamp\fonts\line-iconsd41d.eot" />
+    <Content Include="Master\wp-json\oembed\1.0\embed0953" />
+    <Content Include="Master\wp-json\oembed\1.0\embed0afa.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed0d05.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed12d7" />
+    <Content Include="Master\wp-json\oembed\1.0\embed137e.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed1384.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed1753" />
+    <Content Include="Master\wp-json\oembed\1.0\embed197e" />
+    <Content Include="Master\wp-json\oembed\1.0\embed20e6.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed2176.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed21b1.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed21f4" />
+    <Content Include="Master\wp-json\oembed\1.0\embed224e" />
+    <Content Include="Master\wp-json\oembed\1.0\embed2281.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed261a.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed266e.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed281f.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed2ace.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed41d7.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed4336" />
+    <Content Include="Master\wp-json\oembed\1.0\embed4e54" />
+    <Content Include="Master\wp-json\oembed\1.0\embed4e7a.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed4f4d.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed5702" />
+    <Content Include="Master\wp-json\oembed\1.0\embed570b.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed57ee.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed5e8c" />
+    <Content Include="Master\wp-json\oembed\1.0\embed5e90" />
+    <Content Include="Master\wp-json\oembed\1.0\embed6860" />
+    <Content Include="Master\wp-json\oembed\1.0\embed6cbd" />
+    <Content Include="Master\wp-json\oembed\1.0\embed6f81.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed707f" />
+    <Content Include="Master\wp-json\oembed\1.0\embed7111" />
+    <Content Include="Master\wp-json\oembed\1.0\embed74ae" />
+    <Content Include="Master\wp-json\oembed\1.0\embed79f6.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed7c4b.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed7d2f.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed84f3" />
+    <Content Include="Master\wp-json\oembed\1.0\embed9850" />
+    <Content Include="Master\wp-json\oembed\1.0\embed9b3a" />
+    <Content Include="Master\wp-json\oembed\1.0\embed9b44.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embed9ddb.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embeda4e4.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embeda81d" />
+    <Content Include="Master\wp-json\oembed\1.0\embedb184" />
+    <Content Include="Master\wp-json\oembed\1.0\embedb4d0.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedb987" />
+    <Content Include="Master\wp-json\oembed\1.0\embedbcf1.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedc56b" />
+    <Content Include="Master\wp-json\oembed\1.0\embedc57e.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedcd70" />
+    <Content Include="Master\wp-json\oembed\1.0\embedd09f.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedd3ad.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedd73d" />
+    <Content Include="Master\wp-json\oembed\1.0\embeddd25.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embeddd70" />
+    <Content Include="Master\wp-json\oembed\1.0\embedde84" />
+    <Content Include="Master\wp-json\oembed\1.0\embede3bb.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embede6af" />
+    <Content Include="Master\wp-json\oembed\1.0\embedf18f" />
+    <Content Include="Master\wp-json\oembed\1.0\embedf446.json" />
+    <Content Include="Master\wp-json\oembed\1.0\embedf5d2" />
+    <Content Include="Master\wp-json\oembed\1.0\embedf9e3" />
+    <Content Include="Master\wp-json\oembed\1.0\embedfc4e" />
+    <Content Include="Master\CKEditor\skins\moono\readme.md" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Custom.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\App\Index.cshtml" />
+    <Content Include="Views\App\ViewConferences.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Manage\AddProgram.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\ViewPrograms.cshtml" />
+    <Content Include="Views\Manage\ProgramDetails.cshtml" />
+    <Content Include="Views\Membership\RegisterUserFromAdmin.cshtml" />
+    <Content Include="Views\Manage\AddMemberToProgram.cshtml" />
+    <Content Include="Views\Manage\RemoveMemberFromProgram.cshtml" />
+    <Content Include="Views\Manage\EditProgram.cshtml" />
+    <Content Include="Views\App\AddMyAgenda.cshtml" />
+    <Content Include="Views\App\MyAgenda.cshtml" />
+    <Content Include="Views\App\EditAgenda.cshtml" />
+    <Content Include="Views\App\ListVideos.cshtml" />
+    <Content Include="Views\Manage\ViewDocument.cshtml" />
+    <Content Include="Views\Shared\Master.cshtml" />
+    <Content Include="Views\Home\SectionHero.cshtml" />
+    <Content Include="Views\Home\SectionAbout.cshtml" />
+    <Content Include="Views\Home\SectionCounts.cshtml" />
+    <Content Include="Views\Home\SectionSpeakers.cshtml" />
+    <Content Include="Views\Home\SectionSchedule.cshtml" />
+    <Content Include="Views\Home\SectionNewsletter.cshtml" />
+    <Content Include="Views\Home\SectionPrices.cshtml" />
+    <Content Include="Views\Home\SectionTestimonials.cshtml" />
+    <Content Include="Views\Home\SectionRegisterRow.cshtml" />
+    <Content Include="Views\Home\SectionGallery.cshtml" />
+    <Content Include="Views\Home\SectionSponsors.cshtml" />
+    <Content Include="Views\Home\SectionContacts.cshtml" />
+    <Content Include="Views\Membership\UserRegistration.cshtml" />
+    <Content Include="Views\Home\HeaderMenu.cshtml" />
+    <Content Include="Views\Shared\Menu.cshtml" />
+    <Content Include="Views\Home\CityInfo.cshtml" />
+    <Content Include="Views\Manage\AddPictures.cshtml" />
+    <Content Include="Views\Manage\AddVideo.cshtml" />
+    <Content Include="Views\Manage\Videos.cshtml" />
+    <Content Include="Views\Manage\AddDocument.cshtml" />
+    <Content Include="Views\Manage\ViewPictures.cshtml" />
+    <Content Include="Views\Home\Files.cshtml" />
+    <Content Include="Views\Home\Videos.cshtml" />
+    <Content Include="Views\Home\ImageGallery.cshtml" />
+    <Content Include="Views\Manage\EditConferenceDetails.cshtml" />
+    <Content Include="Views\Manage\EditCityInfo.cshtml" />
+    <Content Include="Views\Manage\EditFeeStructure.cshtml" />
+    <Content Include="Views\Home\Message.cshtml" />
+    <Content Include="Views\Home\ConversationReplies.cshtml" />
+    <Content Include="Views\Home\ReplyToConversation.cshtml" />
+    <Content Include="Views\Manage\ViewUsers.cshtml" />
+    <Content Include="Views\Manage\AddHighlights.cshtml" />
+    <Content Include="Views\Home\AboutSpeaker.cshtml" />
+    <Content Include="Views\Home\Speakers.cshtml" />
+    <Content Include="Views\Home\Schedule.cshtml" />
+    <Content Include="Views\Home\Sponsors.cshtml" />
+    <Content Include="Views\Manage\EditUserDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Files\Audios\" />
+    <Folder Include="Files\Pictures\" />
+    <Folder Include="Files\Presentations\" />
+    <Folder Include="Files\Videos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="packages.config" />
+    <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>1300</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1300/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

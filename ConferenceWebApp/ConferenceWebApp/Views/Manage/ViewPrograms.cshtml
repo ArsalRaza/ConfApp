@@ -1,0 +1,27 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ViewModel.ManageListsModel
+
+@{
+    ViewBag.Title = "ViewProgram";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewProgram</h2>
+
+@Html.ActionLink("Add Program", "AddProgram")<br /><br />
+
+@foreach (var item in Model.ProgramDates)
+{
+    @item.Value.ToShortDateString()
+
+    var Programs = Model.Programs.Where(x => x.ProgramDate == item);
+    foreach (var item1 in Programs)
+    {
+        <p>@Convert.ToDateTime(item1.StartTime.Value.ToString()).ToShortTimeString() &nbsp; &nbsp; @Convert.ToDateTime(item1.EndTime.Value.ToString()).ToShortTimeString() </p>
+        @Html.ActionLink(@item1.ProgrameName, "ProgramDetails", "Manage", new { ProgramId = @item1.ID }, null) <br />
+        @Html.ActionLink("Delete", "DeleteProgram", new { ProgramId = @item1.ID }, new { onClick = "return ConfirmDelete('Program');" }) <br /><hr /><br />
+    }
+
+
+}
+
+

@@ -17,6 +17,7 @@ namespace ConferenceWebApp.Models
         public Program()
         {
             this.ProgramPeople = new HashSet<ProgramPeople>();
+            this.MyAgenda = new HashSet<MyAgenda>();
         }
     
         public int ID { get; set; }
@@ -30,5 +31,6 @@ namespace ConferenceWebApp.Models
     
         public virtual ICollection<ProgramPeople> ProgramPeople { get; set; }
         public virtual Conference Conference { get; set; }
+        public virtual ICollection<MyAgenda> MyAgenda { get; set; }
     }
 }

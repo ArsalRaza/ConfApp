@@ -15,7 +15,6 @@
             <div class="vc_empty_space" style="height: 32px"><span class="vc_empty_space_inner"></span></div>
             <div class="schedule">
                 <ul class="nav nav-schedule">
-
                     @for (int i = 0; i <= Model.ProgramDatesAndDays.Count - 1; i++)
                     {
                         if (i == 0)
@@ -46,11 +45,29 @@
                                         @foreach (var Program in Programs)
                                         {
                                             y++;
-
                                             <div class="panel schedule-item">
-                                                <div class="lecture-icon-wrapper" style="background-image: url('/Files/ProfileImages/@if (Model.ProgramPeople.Where(x => x.ProgramId == Program.ID).Count() > 0 && Model.ProgramPeople.Where(x => x.ProgramId == Program.ID).Count() == 1 ){  @Model.UserProfiles.FirstOrDefault(z => z.ID ==  Model.ProgramPeople.FirstOrDefault(x => x.ProgramId == Program.ID).UserId).Photo}else{ @Html.Raw("Multiplespeakers.png") }')"></div>
+                                                <div class="lecture-icon-wrapper" style="background-image: url('/Files/ProfileImages/')"></div>
+                                                <a data-toggle="collapse" data-parent="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_@y" @*href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y"*@ class="schedule-item-toggle collapsed">
+                                                    <strong class="time highlight"><span class="icon icon-office-24"></span>@Convert.ToDateTime(Program.StartTime.Value.ToString()).ToShortTimeString() &nbsp; - &nbsp; @Convert.ToDateTime(Program.EndTime.Value.ToString()).ToShortTimeString() </strong>
+                                                   
+                                                    @if (ConferenceWebApp.BL.Helper.AuthenticationHelper.IsUserLogin)
+                                                    {
+                                                        if (!Model.MyAgendas.Exists(x => x.ProgramId == Program.ID))
+                                                        {
+                                                            <span style="float: right; cursor:pointer;" onclick="AddToMyAgenda(this, @Program.ID);"><strong class="time highlight">Add to my agenda</strong></span>
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        <span style="float: right; cursor:pointer;" onclick="alert('You need to login to add it as your agenda')"><strong class="time highlight">Add to my agenda</strong></span>
+                                                    }
+
+                                                </a>
                                                 <a data-toggle="collapse" data-parent="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_@y" href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="schedule-item-toggle collapsed">
-                                                    <strong class="time highlight"><span class="icon icon-office-24"></span>@Convert.ToDateTime(Program.StartTime.Value.ToString()).ToShortTimeString() &nbsp; - &nbsp; @Convert.ToDateTime(Program.EndTime.Value.ToString()).ToShortTimeString()</strong><h6 class="title">@Program.ProgrameName<i class="icon icon-arrows-06"></i></h6>
+                                                    <h6 class="title">
+                                                        @Program.ProgrameName<i class="icon icon-arrows-06"></i>
+                                                    </h6>
+
                                                 </a><div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="panel-collapse collapse schedule-item-body">
                                                     <article>
                                                         <p class="description">
@@ -74,7 +91,6 @@
                                                                 }
                                                                 @SpeakerNames
                                                             }
-
                                                         </strong>
                                                     </article>
                                                 </div>

@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using ConferenceWebApp.BL.Constants;
+using ConferenceWebApp.Models.FormModels.HomeModels;
 
 namespace ConferenceWebApp.Controllers
 {
@@ -34,6 +35,14 @@ namespace ConferenceWebApp.Controllers
 
                 IndexListModel.Pictures = await DBContext.File.Where(x => x.FileType == Constants.FileTypes.Picture).ToListAsync();
 
+                if (AuthenticationHelper.IsUserLogin)
+                {
+                    int CurrentUserId = AuthenticationHelper.GetUserId();
+                    IndexListModel.MyAgendas = await DBContext.MyAgenda.Where(x => x.UserId == CurrentUserId).ToListAsync();
+                }
+
+
+                ViewBag.MemberCategory = "Keynote Speakers";
             }
 
             return View(IndexListModel);
@@ -194,21 +203,26 @@ namespace ConferenceWebApp.Controllers
             return Json(lst.ToArray(), JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> AboutSpeaker( int SpeakerId )
+        public async Task<ActionResult> AboutSpeaker(int SpeakerId)
         {
-            //if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker))
-            //    return RedirectToAction("Index", "Login");
+            
 
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
+                SpeakerDetailsModel SDM = new SpeakerDetailsModel();
 
-                UserProfile SpeakerProfile = await DBContext.UserProfile.Include(y => y.ProgramPeople).FirstOrDefaultAsync(x => x.ID == SpeakerId);
+                SDM.UserProfile = await DBContext.UserProfile.Include(y => y.ProgramPeople).FirstOrDefaultAsync(x => x.ID == SpeakerId);
 
-                //List<Program> Programs = await DBContext.Program.Include(x => x.ProgramPeople).Where(y => SpeakerProfile.ProgramPeople.Select(z => z.ProgramId).Contains(y.ID)).ToListAsync();
+                SDM.ProgramPeoples = SDM.UserProfile.ProgramPeople.ToList();
 
-                return View(SpeakerProfile);
+                var ProgramIds = SDM.ProgramPeoples.Select(x => x.ProgramId);
+
+                SDM.Programs = await DBContext.Program.Where(x => ProgramIds.Contains(x.ID)).ToListAsync();
+
+                SDM.ProgramMemberCategories = await DBContext.ProgramMemberCategories.ToListAsync();
+
+                return View(SDM);
             }
-
         }
 
         public async Task<ActionResult> Speakers()
@@ -219,13 +233,11 @@ namespace ConferenceWebApp.Controllers
             IndexListModel IndexListModel = new IndexListModel();
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                
                 IndexListModel.ProgramPeople = await DBContext.ProgramPeople.Where(x => x.ProgramMemberCategories.CategoryName == "Keynote Speakers").ToListAsync();
 
                 var ProgramPeopleIds = IndexListModel.ProgramPeople.Where(x => x.ProgramMemberCategories.CategoryName == "Keynote Speakers").Select(x => x.UserId).ToList();
 
                 IndexListModel.UserProfiles = await DBContext.UserProfile.Where(x => ProgramPeopleIds.Contains(x.ID)).ToListAsync();
-
             }
 
             return View(IndexListModel);
@@ -247,6 +259,12 @@ namespace ConferenceWebApp.Controllers
                 var ProgramPeopleIds = IndexListModel.ProgramPeople.Where(x => x.ProgramMemberCategories.CategoryName == "Keynote Speakers").Select(x => x.UserId).ToList();
 
                 IndexListModel.UserProfiles = await DBContext.UserProfile.Where(x => ProgramPeopleIds.Contains(x.ID)).ToListAsync();
+
+                if (AuthenticationHelper.IsUserLogin)
+                {
+                    int CurrentUserId = AuthenticationHelper.GetUserId();
+                    IndexListModel.MyAgendas = await DBContext.MyAgenda.Where(x => x.UserId == CurrentUserId).ToListAsync();
+                }
             }
 
             return View(IndexListModel);
@@ -258,13 +276,105 @@ namespace ConferenceWebApp.Controllers
             //if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker))
             //    return RedirectToAction("Index", "Login");
 
-            
-
             return View();
         }
 
+        [HttpPost]
+        public async Task<JsonResult> AddToMyAgenda(int ProgramId)
+        {
+            bool IsAdded = false;
+            if (AuthenticationHelper.IsUserLogin && (AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || AuthenticationHelper.GetRole().Equals(Constants.Roles.User)))
+            {
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    int CurrentUserId = AuthenticationHelper.GetUserId();
+                    if (!DBContext.MyAgenda.Any(x => x.UserId == CurrentUserId && x.ProgramId == ProgramId))
+                    {
+                        MyAgenda NewMyAgenda = new MyAgenda();
+                        NewMyAgenda.UserId = CurrentUserId;
+                        NewMyAgenda.ProgramId = ProgramId;
+                        DBContext.MyAgenda.Add(NewMyAgenda);
+                        await DBContext.SaveChangesAsync();
+                        IsAdded = true;
+                    }
+                }
+            }
+            return Json(IsAdded, JsonRequestBehavior.AllowGet);
+        }
 
-        
+        [HttpPost]
+        public async Task<JsonResult> RemoveFromMyAgenda(int ProgramId)
+        {
+            bool IsRemoved = false;
+            if (AuthenticationHelper.IsUserLogin && (AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || AuthenticationHelper.GetRole().Equals(Constants.Roles.User)))
+            {
+
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    int CurrentUserId = AuthenticationHelper.GetUserId();
+
+                    MyAgenda NewMyAgenda = await DBContext.MyAgenda.FirstOrDefaultAsync(x => x.UserId == CurrentUserId && x.ProgramId == ProgramId);
+
+                    DBContext.MyAgenda.Remove(NewMyAgenda);
+                    await DBContext.SaveChangesAsync();
+                    IsRemoved = true;
+                }
+            }
+            return Json(IsRemoved, JsonRequestBehavior.AllowGet);
+        }
+
+        public async Task<ActionResult> MyAgenda(string From)
+        {
+            if (!AuthenticationHelper.IsUserLogin && (!AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User)))
+                return RedirectToAction("Index", "Login", new { From = From });
+
+            IndexListModel IndexListModel = new IndexListModel();
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                int CurrentUserId = AuthenticationHelper.GetUserId();
+
+                var ProgramIds = DBContext.MyAgenda.Where(x => x.UserId == CurrentUserId).Select(x => x.ProgramId);
+
+                IndexListModel.Programs = await DBContext.Program.Where(y => ProgramIds.Contains(y.ID)).OrderBy(x => x.ProgramDate).ThenBy(i => i.StartTime).ToListAsync();
+                IndexListModel.ProgramDatesAndDays = await Helper.GetProgramDaysWithDate();
+                IndexListModel.ProgramPeople = await DBContext.ProgramPeople.Where(x => x.ProgramMemberCategories.CategoryName == "Keynote Speakers").ToListAsync();
+
+                var ProgramPeopleIds = IndexListModel.ProgramPeople.Where(x => x.ProgramMemberCategories.CategoryName == "Keynote Speakers").Select(x => x.UserId).ToList();
+
+                IndexListModel.UserProfiles = await DBContext.UserProfile.Where(x => ProgramPeopleIds.Contains(x.ID)).ToListAsync();
+
+            }
+
+            return View(IndexListModel);
+        }
+
+        public async Task<ActionResult> KeynoteMemberByCategoryId(int ProgramMemberCatId)
+        {
+            //if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker))
+            //    return RedirectToAction("Index", "Login");
+
+            IndexListModel IndexListModel = new IndexListModel();
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                ProgramMemberCategories PMC = await DBContext.ProgramMemberCategories.FirstOrDefaultAsync(x => x.ID == ProgramMemberCatId);
+                ViewBag.MemberCategory = PMC.CategoryName;
+                IndexListModel.ProgramPeople = await DBContext.ProgramPeople.Where(x => x.ProgramMemberCategories.ID == ProgramMemberCatId).ToListAsync();
+
+                var ProgramPeopleIds = IndexListModel.ProgramPeople.Where(x => x.ProgramMemberCategories.ID == ProgramMemberCatId).Select(x => x.UserId).ToList();
+
+                IndexListModel.UserProfiles = await DBContext.UserProfile.Where(x => ProgramPeopleIds.Contains(x.ID)).ToListAsync();
+
+            }
+
+            return View(IndexListModel);
+        }
+
+
+
+
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
@@ -274,7 +384,7 @@ namespace ConferenceWebApp.Controllers
 
         public ActionResult Contact()
         {
-            
+
 
             return View();
         }

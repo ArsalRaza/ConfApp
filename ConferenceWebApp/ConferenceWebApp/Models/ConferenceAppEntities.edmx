@@ -58,11 +58,8 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Date" Type="datetime" />
-          <Property Name="Day" Type="int" />
-          <Property Name="Agenda" Type="varchar" MaxLength="500" />
           <Property Name="UserId" Type="int" />
-          <Property Name="Title" Type="varchar" MaxLength="100" />
+          <Property Name="ProgramId" Type="int" />
         </EntityType>
         <EntityType Name="Program">
           <Key>
@@ -92,6 +89,23 @@
           <Property Name="ProgramId" Type="int" />
           <Property Name="UserId" Type="int" />
           <Property Name="CategoryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SponsorPartnerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryName" Type="varchar" MaxLength="200" />
+          <Property Name="CategoryType" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="SponsorsAndPartners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SponsorName" Type="varchar" MaxLength="100" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="Photo" Type="varchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="UserProfile">
           <Key>
@@ -168,6 +182,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MyAgenda_Program">
+          <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+          <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyAgenda">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MyAgenda_UserProfile">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
@@ -204,6 +230,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Sponsors_Sponsors">
+          <End Role="SponsorPartnerCategory" Type="Self.SponsorPartnerCategory" Multiplicity="0..1" />
+          <End Role="SponsorsAndPartners" Type="Self.SponsorsAndPartners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SponsorPartnerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SponsorsAndPartners">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_ProgramPeople">
           <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
           <End Role="ProgramPeople" Type="Self.ProgramPeople" Multiplicity="*" />
@@ -225,6 +263,8 @@
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramPeople" EntityType="Self.ProgramPeople" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SponsorPartnerCategory" EntityType="Self.SponsorPartnerCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SponsorsAndPartners" EntityType="Self.SponsorsAndPartners" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Conference_Program" Association="Self.FK_Conference_Program">
             <End Role="Conference" EntitySet="Conference" />
@@ -246,6 +286,10 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Conversation" EntitySet="Conversation" />
           </AssociationSet>
+          <AssociationSet Name="FK_MyAgenda_Program" Association="Self.FK_MyAgenda_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="MyAgenda" EntitySet="MyAgenda" />
+          </AssociationSet>
           <AssociationSet Name="FK_MyAgenda_UserProfile" Association="Self.FK_MyAgenda_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="MyAgenda" EntitySet="MyAgenda" />
@@ -258,6 +302,10 @@
             <End Role="ProgramMemberCategories" EntitySet="ProgramMemberCategories" />
             <End Role="ProgramPeople" EntitySet="ProgramPeople" />
           </AssociationSet>
+          <AssociationSet Name="FK_Sponsors_Sponsors" Association="Self.FK_Sponsors_Sponsors">
+            <End Role="SponsorPartnerCategory" EntitySet="SponsorPartnerCategory" />
+            <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
+          </AssociationSet>
           <AssociationSet Name="FK_User_ProgramPeople" Association="Self.FK_User_ProgramPeople">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="ProgramPeople" EntitySet="ProgramPeople" />
@@ -267,18 +315,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ConferenceAppNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="MyAgenda">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Day" Type="Int32" />
-          <Property Name="Agenda" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserProfile" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="MyAgenda" ToRole="UserProfile" />
-        </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="ID" />
@@ -293,6 +329,7 @@
           <Property Name="ProgramDay" Type="Int32" />
           <NavigationProperty Name="ProgramPeople" Relationship="ConferenceAppNewModel.FK_Program_ProgramPeople" FromRole="Program" ToRole="ProgramPeople" />
           <NavigationProperty Name="Conference" Relationship="ConferenceAppNewModel.FK_Conference_Program" FromRole="Program" ToRole="Conference" />
+          <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_Program" FromRole="Program" ToRole="MyAgenda" />
         </EntityType>
         <EntityType Name="ProgramMemberCategories">
           <Key>
@@ -316,33 +353,16 @@
           <Property Name="Profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="MyAgenda" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
           <NavigationProperty Name="ProgramPeople" Relationship="ConferenceAppNewModel.FK_User_ProgramPeople" FromRole="UserProfile" ToRole="ProgramPeople" />
           <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="UserProfile" ToRole="Conversation_reply" />
+          <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
         </EntityType>
-        <Association Name="FK_MyAgenda_UserProfile">
-          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-          <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="MyAgenda">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ConferenceAppEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" />
           <EntitySet Name="Program" EntityType="Self.Program" />
           <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" />
           <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
-          <AssociationSet Name="FK_MyAgenda_UserProfile" Association="Self.FK_MyAgenda_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="MyAgenda" EntitySet="MyAgenda" />
-          </AssociationSet>
           <EntitySet Name="File" EntityType="ConferenceAppNewModel.File" />
           <EntitySet Name="ProgramPeople" EntityType="ConferenceAppNewModel.ProgramPeople" />
           <AssociationSet Name="FK_Program_ProgramPeople" Association="ConferenceAppNewModel.FK_Program_ProgramPeople">
@@ -379,6 +399,21 @@
           <AssociationSet Name="FK_Conversation_reply_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_reply_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Conversation_reply" EntitySet="Conversation_reply" />
+          </AssociationSet>
+          <EntitySet Name="MyAgenda" EntityType="ConferenceAppNewModel.MyAgenda" />
+          <AssociationSet Name="FK_MyAgenda_Program" Association="ConferenceAppNewModel.FK_MyAgenda_Program">
+            <End Role="Program" EntitySet="Program" />
+            <End Role="MyAgenda" EntitySet="MyAgenda" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MyAgenda_UserProfile" Association="ConferenceAppNewModel.FK_MyAgenda_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="MyAgenda" EntitySet="MyAgenda" />
+          </AssociationSet>
+          <EntitySet Name="SponsorPartnerCategory" EntityType="ConferenceAppNewModel.SponsorPartnerCategory" />
+          <EntitySet Name="SponsorsAndPartners" EntityType="ConferenceAppNewModel.SponsorsAndPartners" />
+          <AssociationSet Name="FK_Sponsors_Sponsors" Association="ConferenceAppNewModel.FK_Sponsors_Sponsors">
+            <End Role="SponsorPartnerCategory" EntitySet="SponsorPartnerCategory" />
+            <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="File">
@@ -543,24 +578,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MyAgenda">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ProgramId" Type="Int32" />
+          <NavigationProperty Name="Program" Relationship="ConferenceAppNewModel.FK_MyAgenda_Program" FromRole="MyAgenda" ToRole="Program" />
+          <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="MyAgenda" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_MyAgenda_Program">
+          <End Type="ConferenceAppNewModel.Program" Role="Program" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.MyAgenda" Role="MyAgenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyAgenda">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MyAgenda_UserProfile">
+          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.MyAgenda" Role="MyAgenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="MyAgenda">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SponsorPartnerCategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SponsorsAndPartners" Relationship="ConferenceAppNewModel.FK_Sponsors_Sponsors" FromRole="SponsorPartnerCategory" ToRole="SponsorsAndPartners" />
+        </EntityType>
+        <EntityType Name="SponsorsAndPartners">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SponsorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SponsorPartnerCategory" Relationship="ConferenceAppNewModel.FK_Sponsors_Sponsors" FromRole="SponsorsAndPartners" ToRole="SponsorPartnerCategory" />
+        </EntityType>
+        <Association Name="FK_Sponsors_Sponsors">
+          <End Type="ConferenceAppNewModel.SponsorPartnerCategory" Role="SponsorPartnerCategory" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.SponsorsAndPartners" Role="SponsorsAndPartners" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SponsorPartnerCategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SponsorsAndPartners">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ConferenceAppNewModelStoreContainer" CdmEntityContainer="ConferenceAppEntities">
-          <EntitySetMapping Name="MyAgenda">
-            <EntityTypeMapping TypeName="ConferenceAppNewModel.MyAgenda">
-              <MappingFragment StoreEntitySet="MyAgenda">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Day" ColumnName="Day" />
-                <ScalarProperty Name="Agenda" ColumnName="Agenda" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Program">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.Program">
               <MappingFragment StoreEntitySet="Program">
@@ -658,6 +746,34 @@
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Reply" ColumnName="Reply" />
                 <ScalarProperty Name="CR_ID" ColumnName="CR_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyAgenda">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.MyAgenda">
+              <MappingFragment StoreEntitySet="MyAgenda">
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SponsorPartnerCategory">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.SponsorPartnerCategory">
+              <MappingFragment StoreEntitySet="SponsorPartnerCategory">
+                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SponsorsAndPartners">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.SponsorsAndPartners">
+              <MappingFragment StoreEntitySet="SponsorsAndPartners">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

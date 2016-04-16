@@ -25,7 +25,6 @@ namespace ConferenceWebApp.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<MyAgenda> MyAgenda { get; set; }
         public virtual DbSet<Program> Program { get; set; }
         public virtual DbSet<ProgramMemberCategories> ProgramMemberCategories { get; set; }
         public virtual DbSet<UserProfile> UserProfile { get; set; }
@@ -34,5 +33,8 @@ namespace ConferenceWebApp.Models
         public virtual DbSet<Conversation> Conversation { get; set; }
         public virtual DbSet<Conference> Conference { get; set; }
         public virtual DbSet<Conversation_reply> Conversation_reply { get; set; }
+        public virtual DbSet<MyAgenda> MyAgenda { get; set; }
+        public virtual DbSet<SponsorPartnerCategory> SponsorPartnerCategory { get; set; }
+        public virtual DbSet<SponsorsAndPartners> SponsorsAndPartners { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "test";
+    ViewBag.Title = "Home";
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
@@ -31,3 +31,11 @@
         </main>
     </div>
 </div>
+
+<script>
+    jQuery(document).ready(function ()
+    {
+        var json;
+        getMenu(json);
+    });
+</script>

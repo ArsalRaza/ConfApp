@@ -15,12 +15,10 @@ namespace ConferenceWebApp.Models
     public partial class MyAgenda
     {
         public int ID { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-        public Nullable<int> Day { get; set; }
-        public string Agenda { get; set; }
         public Nullable<int> UserId { get; set; }
-        public string Title { get; set; }
+        public Nullable<int> ProgramId { get; set; }
     
+        public virtual Program Program { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
 }

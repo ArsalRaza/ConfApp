@@ -15,7 +15,7 @@ namespace ConferenceWebApp.Controllers
     {
         //
         // GET: /Login/
-        public ActionResult Index()
+        public ActionResult Index(string From)
         {
             ViewBag.Title = PageTitles.LoginPage + PageTitles.AppTitle;
             if (AuthenticationHelper.IsUserLogin)
@@ -26,9 +26,19 @@ namespace ConferenceWebApp.Controllers
                 {
                     return RedirectToAction("Index", "Manage");
                 }
-                else if (Role.Equals(Constants.Roles.Speaker) || Role.Equals(Constants.Roles.User))
+                else if (Role.Equals(Constants.Roles.User) || Role.Equals(Constants.Roles.Speaker))
                 {
-                    return RedirectToAction("Index", "Home");
+                    if (!string.IsNullOrEmpty(From))
+                    {
+                        if (From.Equals("MyAgenda"))
+                        {
+                            return RedirectToAction("MyAgenda", "Home");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
 
                 else
@@ -67,7 +77,7 @@ namespace ConferenceWebApp.Controllers
                     {
                         if (From.Equals("MyAgenda"))
                         {
-                            return RedirectToAction("MyAgenda", "App");
+                            return RedirectToAction("MyAgenda", "Home");
                         }
                     }
                     else

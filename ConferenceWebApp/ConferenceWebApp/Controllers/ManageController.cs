@@ -115,8 +115,6 @@ namespace ConferenceWebApp.Controllers
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
                 return RedirectToAction("Index", "Login");
 
-
-
             ViewBag.Days = Helper.GetProgramDays();
 
             return View();
@@ -728,7 +726,7 @@ namespace ConferenceWebApp.Controllers
                     UserProfile.Role = model.Role;
                     UserProfile.Designation = model.Designation;
                     UserProfile.Email = model.Email;
-                    
+
 
                     if (model.ProfileImage != null && model.ProfileImage.ContentLength > 0)
                     {
@@ -745,11 +743,11 @@ namespace ConferenceWebApp.Controllers
                                        Path.GetFileName(UserProfile.ID.ToString() + Path.GetExtension(model.ProfileImage.FileName)));
                         model.ProfileImage.SaveAs(path);
                         UserProfile.Photo = UserProfile.ID.ToString() + Path.GetExtension(model.ProfileImage.FileName);
-                        
+
                     }
 
                     await DBContext.SaveChangesAsync();
-                    
+
                     return RedirectToAction("ViewUsers", "Manage");
                 }
                 else
@@ -757,6 +755,136 @@ namespace ConferenceWebApp.Controllers
                     return View(model);
                 }
             }
+            return View();
+        }
+
+        public async Task<ActionResult> AddSponsorCategory()
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddSponsorCategory(SponsorAndPartnerCategoryModel model)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            if (ModelState.IsValid)
+            {
+
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    SponsorPartnerCategory newSPC = new SponsorPartnerCategory();
+                    newSPC.CategoryName = model.CategoryName;
+                    newSPC.CategoryType = Constants.SponsorAndPartnerCategoryTypes.Sponsor;
+
+                    DBContext.SponsorPartnerCategory.Add(newSPC);
+                    await DBContext.SaveChangesAsync();
+
+                    return RedirectToAction("AddSponsor", "Manage");
+                }
+            }
+            return View();
+        }
+
+        public async Task<ActionResult> AddPartnerCategory()
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> AddPartnerCategory(SponsorAndPartnerCategoryModel model)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            if (ModelState.IsValid)
+            {
+
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    SponsorPartnerCategory newSPC = new SponsorPartnerCategory();
+                    newSPC.CategoryName = model.CategoryName;
+                    newSPC.CategoryType = Constants.SponsorAndPartnerCategoryTypes.Partner;
+
+                    DBContext.SponsorPartnerCategory.Add(newSPC);
+                    await DBContext.SaveChangesAsync();
+
+                    return RedirectToAction("AddPartner", "Manage");
+                }
+            }
+            return View();
+        }
+
+
+
+        public async Task<ActionResult> AddSponsor()
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                ViewBag.SponsorCategories = await DBContext.SponsorPartnerCategory.Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
+            }
+
+
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddSponsor(SponsorAndPartnerModel model)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    SponsorsAndPartners Sponsors = new SponsorsAndPartners();
+                    Sponsors.CategoryID = model.CategoryId;
+                    Sponsors.SponsorName = model.SponsorName;
+
+                    DBContext.SponsorsAndPartners.Add(Sponsors);
+                    await DBContext.SaveChangesAsync();
+
+                    if (model.Image != null && model.Image.ContentLength > 0)
+                    {
+                        string path = Path.Combine(Server.MapPath(Constants.FilePaths.SponsorAndPartnerImagesServerRelativePath),
+                                       Path.GetFileName(Sponsors.ID.ToString() + Path.GetExtension(model.Image.FileName)));
+                        model.Image.SaveAs(path);
+                        Sponsors.Photo = Sponsors.ID.ToString() + Path.GetExtension(model.Image.FileName);
+                        await DBContext.SaveChangesAsync();
+                    }
+                }
+
+                ViewBag.SponsorCategories = await DBContext.SponsorPartnerCategory.Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
+            }
+
+
+
+            return View();
+        }
+
+        public async Task<ActionResult> AddPartner(SponsorAndPartnerCategoryModel model)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            if (ModelState.IsValid)
+            {
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    ViewBag.SponsorCategories = await DBContext.SponsorPartnerCategory.Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
+
+                }
+            }
+
             return View();
         }
 

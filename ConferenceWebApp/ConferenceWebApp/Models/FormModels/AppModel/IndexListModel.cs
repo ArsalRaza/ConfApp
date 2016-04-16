@@ -17,6 +17,7 @@ namespace ConferenceWebApp.Models.FormModels.AppModel
         public List<ProgramPeople> ProgramPeople { get; set; }
         public Conference ConferenceDetail { get; set; }
 
+        public List<MyAgenda> MyAgendas { get; set; }
         public List<File> Pictures { get; set; }
     }
 

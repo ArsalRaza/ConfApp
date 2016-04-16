@@ -16,11 +16,11 @@ namespace ConferenceWebApp.Models
     {
         public UserProfile()
         {
-            this.MyAgenda = new HashSet<MyAgenda>();
             this.ProgramPeople = new HashSet<ProgramPeople>();
             this.Conversation = new HashSet<Conversation>();
             this.Conversation1 = new HashSet<Conversation>();
             this.Conversation_reply = new HashSet<Conversation_reply>();
+            this.MyAgenda = new HashSet<MyAgenda>();
         }
     
         public int ID { get; set; }
@@ -34,10 +34,10 @@ namespace ConferenceWebApp.Models
         public string Designation { get; set; }
         public string Organization { get; set; }
     
-        public virtual ICollection<MyAgenda> MyAgenda { get; set; }
         public virtual ICollection<ProgramPeople> ProgramPeople { get; set; }
         public virtual ICollection<Conversation> Conversation { get; set; }
         public virtual ICollection<Conversation> Conversation1 { get; set; }
         public virtual ICollection<Conversation_reply> Conversation_reply { get; set; }
+        public virtual ICollection<MyAgenda> MyAgenda { get; set; }
     }
 }

@@ -176,11 +176,12 @@
       <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\FormModels\AppModel\IndexListModel.cs" />
-    <Compile Include="Models\FormModels\AppModel\MyAgendaModel.cs" />
+    <Compile Include="Models\FormModels\HomeModels\SpeakerDetailsModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\AddMemberToProgramModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\AddProgramModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\ConferenceModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\DocumentModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\SponsorAndPartnerModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\UploadPictureModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\AddVideoModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\ViewModel\ManageListsModel.cs" />
@@ -199,6 +200,12 @@
     <Compile Include="Models\ProgramPeople.cs">
       <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SponsorPartnerCategory.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SponsorsAndPartners.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\UserProfile.cs">
       <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
     </Compile>
@@ -209,6 +216,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Files\ProfileImages\NoImage.png" />
+    <Content Include="Files\Temp\endorsedby\1.jpg" />
+    <Content Include="Files\Temp\endorsedby\2.jpg" />
+    <Content Include="Files\Temp\endorsedby\3.png" />
+    <Content Include="Files\Temp\mediapartner\1.png" />
+    <Content Include="Files\Temp\sponsors\1.jpg" />
+    <Content Include="Files\Temp\sponsors\2.gif" />
+    <Content Include="Files\Temp\strategicpartners\1.jpg" />
+    <Content Include="Files\Temp\supportedby\1.png" />
+    <Content Include="Files\Temp\supportedby\2.jpg" />
+    <Content Include="Files\Temp\supportedby\4.png" />
+    <Content Include="Files\Temp\supportedby\3.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -595,9 +613,6 @@
     <Content Include="Views\Manage\AddMemberToProgram.cshtml" />
     <Content Include="Views\Manage\RemoveMemberFromProgram.cshtml" />
     <Content Include="Views\Manage\EditProgram.cshtml" />
-    <Content Include="Views\App\AddMyAgenda.cshtml" />
-    <Content Include="Views\App\MyAgenda.cshtml" />
-    <Content Include="Views\App\EditAgenda.cshtml" />
     <Content Include="Views\App\ListVideos.cshtml" />
     <Content Include="Views\Manage\ViewDocument.cshtml" />
     <Content Include="Views\Shared\Master.cshtml" />
@@ -638,12 +653,20 @@
     <Content Include="Views\Home\Schedule.cshtml" />
     <Content Include="Views\Home\Sponsors.cshtml" />
     <Content Include="Views\Manage\EditUserDetails.cshtml" />
+    <Content Include="Views\Home\MyAgenda.cshtml" />
+    <Content Include="Views\App\SpeakerCategories.cshtml" />
+    <Content Include="Views\Home\KeynoteMemberByCategoryId.cshtml" />
+    <Content Include="Views\Manage\AddSponsorCategory.cshtml" />
+    <Content Include="Views\Manage\AddSponsor.cshtml" />
+    <Content Include="Views\Manage\AddPartner.cshtml" />
+    <Content Include="Views\Manage\AddPartnerCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\Audios\" />
     <Folder Include="Files\Pictures\" />
     <Folder Include="Files\Presentations\" />
+    <Folder Include="Files\SponsorAndPartnerImages\" />
     <Folder Include="Files\Videos\" />
   </ItemGroup>
   <ItemGroup>

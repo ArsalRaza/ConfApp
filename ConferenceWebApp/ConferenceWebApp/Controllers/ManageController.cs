@@ -922,11 +922,21 @@ namespace ConferenceWebApp.Controllers
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
                 return RedirectToAction("Index", "Login");
 
+            //using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            //{
+            //    List<SponsorPartnerCategory> SponsorCategory = await DBContext.SponsorPartnerCategory.Include(y => y.SponsorsAndPartners).Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
+
+            //    return View(SponsorCategory);
+            //}
+
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                List<SponsorPartnerCategory> SponsorCategory = await DBContext.SponsorPartnerCategory.Include(y => y.SponsorsAndPartners).Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
+                List<SponsorsAndPartners> Sponsors = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
 
-                return View(SponsorCategory);
+                var PartnerCategoryIds = Sponsors.Select(x => x.CategoryID).ToList();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+
+                return View(Sponsors);
             }
 
         }
@@ -936,11 +946,21 @@ namespace ConferenceWebApp.Controllers
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
                 return RedirectToAction("Index", "Login");
 
+            //using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            //{
+            //    List<SponsorPartnerCategory> PartnerCategory = await DBContext.SponsorPartnerCategory.Include(y => y.SponsorsAndPartners).Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
+
+            //    return View(PartnerCategory);
+            //}
+
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                List<SponsorPartnerCategory> PartnerCategory = await DBContext.SponsorPartnerCategory.Include(y => y.SponsorsAndPartners).Where(x => x.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
+                List<SponsorsAndPartners> Partners = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
 
-                return View(PartnerCategory);
+                var PartnerCategoryIds = Partners.Select(x => x.CategoryID).ToList();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+
+                return View(Partners);
             }
 
         }

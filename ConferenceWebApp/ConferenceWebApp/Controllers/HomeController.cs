@@ -273,10 +273,28 @@ namespace ConferenceWebApp.Controllers
 
         public async Task<ActionResult> Sponsors()
         {
-            //if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker))
-            //    return RedirectToAction("Index", "Login");
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                List<SponsorsAndPartners> Sponsors = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
 
-            return View();
+                var PartnerCategoryIds = Sponsors.Select(x => x.CategoryID).ToList();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+
+                return View(Sponsors);
+            }
+        }
+
+        public async Task<ActionResult> Partners()
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                List<SponsorsAndPartners> Partners =  await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
+                
+                var PartnerCategoryIds = Partners.Select(x => x.CategoryID).ToList();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+                
+                return View(Partners);
+            }
         }
 
         [HttpPost]
@@ -344,7 +362,6 @@ namespace ConferenceWebApp.Controllers
                 IndexListModel.UserProfiles = await DBContext.UserProfile.Where(x => ProgramPeopleIds.Contains(x.ID)).ToListAsync();
 
             }
-
             return View(IndexListModel);
         }
 
@@ -368,13 +385,6 @@ namespace ConferenceWebApp.Controllers
 
             return View(IndexListModel);
         }
-
-
-
-
-
-
-
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

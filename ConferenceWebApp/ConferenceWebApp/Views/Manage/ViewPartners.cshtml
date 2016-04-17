@@ -1,4 +1,4 @@
-﻿@model List<ConferenceWebApp.Models.SponsorPartnerCategory>
+﻿@model List<ConferenceWebApp.Models.SponsorsAndPartners>
 @{
     ViewBag.Title = "View Partners";
     Layout = "~/Views/Shared/_layout.cshtml";
@@ -8,29 +8,32 @@
 
 @Html.ActionLink("Add New Partner", "AddPartner")<br /><br />
 
+@if (ViewBag.PartnerCategory.Count == 0)
+{
+    @Html.Raw(" No Partner Found ");
+}
 
 <table class="table">
-
-    @foreach (var SponsorPartnerCategory in Model)
+    @foreach (var SponsorPartnerCategory in ViewBag.PartnerCategory)
     {
         <tr>
-            <td colspan="2"><h3>@SponsorPartnerCategory.CategoryName</h3></td>
+            <td colspan="3"><h3>@SponsorPartnerCategory.CategoryName</h3></td>
         </tr>
 
-        foreach (var SponsorsAndPartners in SponsorPartnerCategory.SponsorsAndPartners)
+        foreach (var Partner in Model.Where(x => x.CategoryID == SponsorPartnerCategory.ID).ToList())
         {
             <tr>
                 <td>
-                    <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.SponsorAndPartnerImagesPath/@SponsorsAndPartners.Photo" style="height:125px; width: 125px;" />
+                    <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.SponsorAndPartnerImagesPath/@Partner.Photo" style="height:125px; width: 125px;" />
                 </td>
                 <td>
-                    @SponsorsAndPartners.SponsorName
+                    @Partner.SponsorName
                 </td>
                 <td>
-                    @Html.ActionLink("Remove", "DeletePartner", new { PartnerId = @SponsorsAndPartners.ID }, null)
+                    @Html.ActionLink("Remove", "DeleteSponsor", new { SponsorId = @Partner.ID }, null)
                 </td>
             </tr>
         }
     }
-
 </table>
+

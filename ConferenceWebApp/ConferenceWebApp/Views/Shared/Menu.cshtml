@@ -94,42 +94,16 @@
     <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Program", "Schedule", "Home")</li>
     <li id="menu-item-2647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2647">@Html.ActionLink("Speakers", "SpeakerCategories", "App")</li>
     <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("My Agenda", "MyAgenda", "Home", new { From = "MyAgenda" }, null)
+    <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("Exhibition", "Exhitbition", "Home")
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Partners", "Partners", "Home")</li>
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Sponsors", "Sponsors", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Abstract", "Abstract", "Home")</li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Abstract", "Files", "Home")</li>
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Networking", "Networking", "Home")</li>
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Gallery", "Gallery", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Twitter", "Twitter", "Home")</li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="http://twitter.com" >Twitter</a></li>
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Survey and Polls", "Survey", "Home")</li>
     <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Conference Organizers", "Organizers", "Home")</li>
 
 </ul>
 
-<script>
-jQuery(document).ready(function(){
 
-    getMenu();
-});
-
-function getMenu(){
-
-    var menujson = '{"result":{"array":['
-
-    jQuery('#MobileMenu li').each(function(index){
-        
-        
-        if(index == 0)
-        {
-            menujson += '{"name": "'+ jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl('+ jQuery(this).find('a').attr('href') + ');"}';
-        }
-        else{
-            menujson += ',{"name": "'+ jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl('+ jQuery(this).find('a').attr('href') + ');"}';
-        }
-    });
-
-    menujson += ']}}';
-    
-
-    return menujson;
-}
-    </script>

@@ -662,6 +662,7 @@
     <Content Include="Views\Manage\AddPartnerCategory.cshtml" />
     <Content Include="Views\Manage\ViewSponsors.cshtml" />
     <Content Include="Views\Manage\ViewPartners.cshtml" />
+    <Content Include="Views\Home\Partners.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,36 @@
+﻿@model List<ConferenceWebApp.Models.SponsorPartnerCategory>
+@{
+    ViewBag.Title = "View Partners";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>ViewPartners</h2>
+
+@Html.ActionLink("Add New Partner", "AddPartner")<br /><br />
+
+
+<table class="table">
+
+    @foreach (var SponsorPartnerCategory in Model)
+    {
+        <tr>
+            <td colspan="2"><h3>@SponsorPartnerCategory.CategoryName</h3></td>
+        </tr>
+
+        foreach (var SponsorsAndPartners in SponsorPartnerCategory.SponsorsAndPartners)
+        {
+            <tr>
+                <td>
+                    <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.SponsorAndPartnerImagesPath/@SponsorsAndPartners.Photo" style="height:125px; width: 125px;" />
+                </td>
+                <td>
+                    @SponsorsAndPartners.SponsorName
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "DeletePartner", new { PartnerId = @SponsorsAndPartners.ID }, null)
+                </td>
+            </tr>
+        }
+    }
+
+</table>

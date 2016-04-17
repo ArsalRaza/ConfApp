@@ -18,11 +18,11 @@ namespace ConferenceWebApp.BL.Constants
         public static class FilePaths
         {
             public static string ProfileImagesServerRelativePath = "~/Files/ProfileImages/";
-            public static string VideoServerRelativePath = "~/Files/Videos";
-            public static string AudioServerRelativePath = "~/Files/Audios";
-            public static string DocumentServerRelativePath = "~/Files/Presentations";
-            public static string PictureServerRelativePath = "~/Files/Pictures";
-            public static string SponsorAndPartnerImagesServerRelativePath = "~/Files/SponsorAndPartnerImages";
+            public static string VideoServerRelativePath = "~/Files/Videos/";
+            public static string AudioServerRelativePath = "~/Files/Audios/";
+            public static string DocumentServerRelativePath = "~/Files/Presentations/";
+            public static string PictureServerRelativePath = "~/Files/Pictures/";
+            public static string SponsorAndPartnerImagesServerRelativePath = "~/Files/SponsorAndPartnerImages/";
 
             public static string ProfileImagesPath = "/Files/ProfileImages";
             public static string VideoPath = "/Files/Videos";
@@ -38,21 +38,13 @@ namespace ConferenceWebApp.BL.Constants
             public static string Partner = "Partner";
         }
 
-
         public static class FileTypes
         {
             public static string Video = "Video";
             public static string Picture = "Picture";
             public static string Document = "Document";
-
         }
 
-        //public static class Controllers
-        //{
-        //    public static string Administration = "Administration";
-        //    public static string App = "App";
-        //    public static string Name = "Home";
 
-        //}
     }
 }

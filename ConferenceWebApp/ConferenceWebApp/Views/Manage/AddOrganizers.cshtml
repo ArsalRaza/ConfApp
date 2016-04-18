@@ -1,0 +1,25 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.OrganizersModel
+@{
+    ViewBag.Title = "Add a New Organizer";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Add a New Organizer</h2>
+
+
+
+@using (Html.BeginForm("AddOrganizers", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <table>
+        <tr><td>@ViewBag.Error</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.OrganizerName):</td><td>@Html.TextBoxFor(m => m.OrganizerName)</td><td>@Html.ValidationMessageFor(m => m.OrganizerName)</td></tr>
+
+        <tr><td>Image: </td><td><input type="file" name="Image" id="Image" placeholder="@Html.DisplayNameFor(m => m.Image)" /></td><td>@Html.ValidationMessageFor(m => m.Image)</td></tr>
+
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add" /></td></tr>
+    </table>
+
+
+}

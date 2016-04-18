@@ -27,6 +27,7 @@
         <EntityTypeShape EntityType="ConferenceAppNewModel.SponsorPartnerCategory" Width="1.5" PointX="8.375" PointY="0.875" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.SponsorsAndPartners" Width="1.5" PointX="10.625" PointY="0.75" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Sponsors_Sponsors" />
+        <EntityTypeShape EntityType="ConferenceAppNewModel.Organizers" Width="1.5" PointX="3.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

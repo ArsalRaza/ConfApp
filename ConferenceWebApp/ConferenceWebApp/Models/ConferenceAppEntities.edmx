@@ -61,6 +61,14 @@
           <Property Name="UserId" Type="int" />
           <Property Name="ProgramId" Type="int" />
         </EntityType>
+        <EntityType Name="Organizers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrganizerName" Type="varchar" MaxLength="100" />
+          <Property Name="Photo" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Program">
           <Key>
             <PropertyRef Name="ID" />
@@ -260,6 +268,7 @@
           <EntitySet Name="Conversation_reply" EntityType="Self.Conversation_reply" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Organizers" EntityType="Self.Organizers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramPeople" EntityType="Self.ProgramPeople" Schema="dbo" store:Type="Tables" />
@@ -415,6 +424,7 @@
             <End Role="SponsorPartnerCategory" EntitySet="SponsorPartnerCategory" />
             <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
           </AssociationSet>
+          <EntitySet Name="Organizers" EntityType="ConferenceAppNewModel.Organizers" />
         </EntityContainer>
         <EntityType Name="File">
           <Key>
@@ -643,6 +653,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Organizers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrganizerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -773,6 +791,15 @@
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Organizers">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.Organizers">
+              <MappingFragment StoreEntitySet="Organizers">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="OrganizerName" ColumnName="OrganizerName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

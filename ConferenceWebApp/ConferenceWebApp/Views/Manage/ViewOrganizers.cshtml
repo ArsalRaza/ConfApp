@@ -1,0 +1,21 @@
+﻿@model List<ConferenceWebApp.Models.Organizers>
+
+@{
+    ViewBag.Title = "View Organizers";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2> Organizers</h2>
+
+
+@Html.ActionLink("Add New Organizer", "AddOrganizers")
+<br /><br />
+
+@foreach (var Organizer in Model)
+{
+
+    <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.OrganizersImagePath@Organizer.Photo" /> <br />
+    @Organizer.OrganizerName    <br />@Html.ActionLink("Delete", "DeleteOrganizer", new { OrganizerId = Organizer.ID}) <br />
+
+
+}

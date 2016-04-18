@@ -36,5 +36,6 @@ namespace ConferenceWebApp.Models
         public virtual DbSet<MyAgenda> MyAgenda { get; set; }
         public virtual DbSet<SponsorPartnerCategory> SponsorPartnerCategory { get; set; }
         public virtual DbSet<SponsorsAndPartners> SponsorsAndPartners { get; set; }
+        public virtual DbSet<Organizers> Organizers { get; set; }
     }
 }

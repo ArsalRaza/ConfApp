@@ -385,6 +385,16 @@ namespace ConferenceWebApp.Controllers
 
             return View(IndexListModel);
         }
+
+
+        public async Task<ActionResult> Organizers()
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                List<Organizers> Organizers = await DBContext.Organizers.ToListAsync();
+                return View(Organizers);
+            }
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

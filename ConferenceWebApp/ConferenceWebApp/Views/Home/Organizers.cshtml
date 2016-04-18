@@ -1,0 +1,27 @@
+﻿@model List<ConferenceWebApp.Models.Organizers>
+@{
+    ViewBag.Title = "Organizers";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<div id="vsc_row_catztzvurl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="fwc8b">
+    <div class="vc_col-sm-12 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <h5 style="text-align: center" class="vc_custom_heading heading-alt">Organizers</h5>
+            <div class="vc_empty_space" style="height: 32px"><span class="vc_empty_space_inner"></span></div>
+
+
+            @foreach (var Organizer in Model)
+            {
+                <div class="speakers speakers-full speakers-3-columns photo-rounded-square-shape photo-md ">
+                    <div class='speaker-col'>
+                        <div class='speaker'>
+                            <div class='photo-wrapper' style="background-image: url('../Files/Organizers/@Organizer.Photo');"></div>
+                            <h3 class='name'>@Organizer.OrganizerName</h3><p class='text-alt'><small>CTO -  Finterest</small></p><p class='about'></p>
+                </div>
+            </div>
+        </div>
+            }
+        </div>
+    </div>
+</div>

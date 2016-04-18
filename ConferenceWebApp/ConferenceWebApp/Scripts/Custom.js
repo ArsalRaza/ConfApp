@@ -44,8 +44,6 @@ function AddToMyAgenda(element, ProgramId) {
             if (data == true) {
                 jQuery(element).remove();
             }
-            //LoadConversationReplies(data);
-            //jQuery('.Hide').hide();
 
         },
         error: function (xhr, error) {
@@ -64,14 +62,14 @@ function getMenu(Parameter) {
 
         if (index != 5 && index != 9 && index != 10 && index != 12 && index != 13) {
             if (index == 0) {
-                menujson += '{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl("' + jQuery(this).find('a').attr('href') + '");"}';
+                menujson += '{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl(\'' + jQuery(this).find('a').attr('href') + '\');"}';
             }
             else {
-                menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl("' + jQuery(this).find('a').attr('href') + '");"}';
+                menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl(\'' + jQuery(this).find('a').attr('href') + '\');"}';
             }
         }
         else {
-            menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:alert("Feature Not Available");"}';
+            menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:alert(\'Feature Not Available\');"}';
         }
 
     });

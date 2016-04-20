@@ -3,9 +3,24 @@
     ViewBag.Title = "Videos";
     Layout = "~/Views/Shared/Master.cshtml";
 }
+<style>
+    .videoWrapper {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 */
+        padding-top: 25px;
+        height: 0;
+    }
 
+        .videoWrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+</style>
 
-
+<br />
 <div class="vc_col-sm-12 wpb_column column_container  ">
     <div class="wpb_wrapper">
         <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
@@ -17,74 +32,106 @@
         </p>
     </div>
 </div>
-@*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
-<div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
-    <div class="vc_col-sm-12 wpb_column column_container  ">
-        <div class="wpb_wrapper">
-            <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
-                <div class="vc_col-sm-3 wpb_column column_container  ">
-                    <div class="wpb_wrapper">
 
-                    </div>
-                </div>
-                <div class="vc_col-sm-6 wpb_column column_container  ">
-                    <div class="wpb_wrapper">
-                        <div class="contact-form-7-data" data-token="vFpQY">
-                            <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
-                                <div class="screen-reader-response"></div>
-                                <div class="form leadform leadform-3 align-left">
+<div style="text-align: center;">
+    @foreach (var Video in Model)
+  {
+        <div class="form-group">
+            <div class="col-sm-12">
+                <span class="wpcf7-form-control-wrap FNAME">
+                    <strong>@Video.Description</strong>
 
-                                    @foreach (var Video in Model)
-                                    {
-                                        
-                                    
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <span class="wpcf7-form-control-wrap FNAME">
-                                                <strong>@Video.Description</strong>
-                                                
-                                                @*@Html.TextBoxFor(m => m.Name, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @placeholder = @Html.DisplayNameFor(m => m.Name) })*@
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                           
-                                            <span class="wpcf7-form-control-wrap LNAME">
-                                                <iframe width="560"
-                                                        height="315"
-                                                        src="@Video.FileUrl"
-                                                        frameborder="0"
-                                                        allowfullscreen></iframe>
-                                            </span>
-                                        </div>
-                                    </div>
-                                        <hr />
-                                        <br />
-                                        }
-                                    
-                                </div>
-                                <div class="form leadform leadform-3 align-center">
-                                    <div class="form-group">
-                                        <div class="col-sm-12 col-xs-12">
-                                           
-                                        </div>
-                                    </div>
-
-                                    <div class="wpcf7-response-output wpcf7-display-none"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="vc_col-sm-3 wpb_column column_container  ">
-                    <div class="wpb_wrapper">
-                    </div>
-                </div>
+                    @*@Html.TextBoxFor(m => m.Name, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @placeholder = @Html.DisplayNameFor(m => m.Name) })*@
+                </span>
             </div>
         </div>
+    <div class ="videowrapper">
+        <iframe width="70%" height="349"
+                src="@Video.FileUrl"
+                frameborder="0"
+                allowfullscreen></iframe>
     </div>
+
+
+        <br /> <br />
+  }
 </div>
+
+
+
+@*@Html.ValidationSummary(false, "", new { @class = "text-danger"
+
+
+
+
+
+    <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
+        <div class="vc_col-sm-12 wpb_column column_container  ">
+            <div class="wpb_wrapper">
+                <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
+                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+
+                        </div>
+                    </div>
+                    <div class="vc_col-sm-6 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                            <div class="contact-form-7-data" data-token="vFpQY">
+                                <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
+                                    <div class="screen-reader-response"></div>
+                                    <div class="form leadform leadform-3 align-left">
+
+                                        @foreach (var Video in Model)
+                                        {
+
+
+                                        <div class="form-group">
+                                            <div class="col-sm-12">
+                                                <span class="wpcf7-form-control-wrap FNAME">
+                                                    <strong>@Video.Description</strong>
+
+                                                @Html.TextBoxFor(m => m.Name, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @placeholder = @Html.DisplayNameFor(m => m.Name) })
+                                                    </span>
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="col-sm-12">
+
+                                                            <span class="wpcf7-form-control-wrap LNAME">
+                                                                <iframe width="560"
+                                                                        height="315"
+                                                                        src="@Video.FileUrl"
+                                                                        frameborder="0"
+                                                                        allowfullscreen></iframe>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <br />
+                                                    }
+
+                                                    </div>
+                                                    <div class="form leadform leadform-3 align-center">
+                                                        <div class="form-group">
+                                                            <div class="col-sm-12 col-xs-12">
+
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                                                        <div class="wpb_wrapper">
+                                                        </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>
+                                                    </div>*@
 
 
 

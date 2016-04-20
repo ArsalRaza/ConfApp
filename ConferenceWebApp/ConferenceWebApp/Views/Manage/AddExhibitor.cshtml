@@ -1,0 +1,24 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ExhibitionModel
+
+@{
+    ViewBag.Title = "Add New Exhibitor";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Add New Exhibitor</h2>
+
+@using (Html.BeginForm("AddExhibitor", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <table>
+
+        <tr><td>@ViewBag.Error</td></tr>
+
+        <tr><td>@Html.DisplayNameFor(m => m.ExhibitorName):</td><td>@Html.TextBoxFor(m => m.ExhibitorName)</td><td>@Html.ValidationMessageFor(m => m.ExhibitorName)</td></tr>
+
+        <tr><td>Image: </td><td><input type="file" name="Image" id="Image" placeholder="@Html.DisplayNameFor(m => m.Image)" /></td><td>@Html.ValidationMessageFor(m => m.Image)</td></tr>
+
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add Exhibitor" /></td></tr>
+
+    </table>
+}

@@ -172,6 +172,9 @@
     <Compile Include="Models\Conversation_reply.cs">
       <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Exhibition.cs">
+      <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\File.cs">
       <DependentUpon>ConferenceAppEntities.tt</DependentUpon>
     </Compile>
@@ -181,6 +184,7 @@
     <Compile Include="Models\FormModels\ManageModel\AddProgramModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\ConferenceModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\DocumentModel.cs" />
+    <Compile Include="Models\FormModels\ManageModel\ExhibitionModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\OrganizersModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\SponsorAndPartnerModel.cs" />
     <Compile Include="Models\FormModels\ManageModel\UploadPictureModel.cs" />
@@ -659,10 +663,14 @@
     <Content Include="Views\Manage\AddOrganizers.cshtml" />
     <Content Include="Views\Manage\ViewOrganizers.cshtml" />
     <Content Include="Views\Home\Organizers.cshtml" />
+    <Content Include="Views\Manage\AddExhibitor.cshtml" />
+    <Content Include="Views\Manage\ViewExhibitors.cshtml" />
+    <Content Include="Views\Home\Exhibition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Files\Audios\" />
+    <Folder Include="Files\ExhibitorImages\" />
     <Folder Include="Files\Organizers\" />
     <Folder Include="Files\Pictures\" />
     <Folder Include="Files\Presentations\" />

@@ -12,16 +12,10 @@ namespace ConferenceWebApp.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Conversation_reply
+    public partial class Exhibition
     {
-        public int CR_ID { get; set; }
-        public string Reply { get; set; }
-        public Nullable<int> UserId { get; set; }
-        public Nullable<System.DateTime> Time { get; set; }
-        public string Status { get; set; }
-        public Nullable<int> ConversationID { get; set; }
-    
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual Conversation Conversation { get; set; }
+        public int ID { get; set; }
+        public string ExhibitorName { get; set; }
+        public string Photo { get; set; }
     }
 }

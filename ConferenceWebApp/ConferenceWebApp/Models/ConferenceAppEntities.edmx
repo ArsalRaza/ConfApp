@@ -42,6 +42,14 @@
           <Property Name="Status" Type="varchar" MaxLength="10" />
           <Property Name="ConversationID" Type="int" />
         </EntityType>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExhibitorName" Type="varchar" MaxLength="300" />
+          <Property Name="Photo" Type="varchar" MaxLength="100" />
+        </EntityType>
         <EntityType Name="File">
           <Key>
             <PropertyRef Name="ID" />
@@ -266,6 +274,7 @@
           <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conversation" EntityType="Self.Conversation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Conversation_reply" EntityType="Self.Conversation_reply" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exhibition" EntityType="Self.Exhibition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Organizers" EntityType="Self.Organizers" Schema="dbo" store:Type="Tables" />
@@ -363,10 +372,10 @@
           <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProgramPeople" Relationship="ConferenceAppNewModel.FK_User_ProgramPeople" FromRole="UserProfile" ToRole="ProgramPeople" />
-          <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
-          <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="UserProfile" ToRole="Conversation_reply" />
           <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
+          <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
+          <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
         </EntityType>
         <EntityContainer Name="ConferenceAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Program" EntityType="Self.Program" />
@@ -386,25 +395,12 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="ProgramPeople" EntitySet="ProgramPeople" />
           </AssociationSet>
-          <EntitySet Name="Conversation" EntityType="ConferenceAppNewModel.Conversation" />
-          <AssociationSet Name="FK_Conversation_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_UserProfile">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Conversation" EntitySet="Conversation" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Conversation_UserProfile1" Association="ConferenceAppNewModel.FK_Conversation_UserProfile1">
-            <End Role="UserProfile" EntitySet="UserProfile" />
-            <End Role="Conversation" EntitySet="Conversation" />
-          </AssociationSet>
           <EntitySet Name="Conference" EntityType="ConferenceAppNewModel.Conference" />
           <AssociationSet Name="FK_Conference_Program" Association="ConferenceAppNewModel.FK_Conference_Program">
             <End Role="Conference" EntitySet="Conference" />
             <End Role="Program" EntitySet="Program" />
           </AssociationSet>
           <EntitySet Name="Conversation_reply" EntityType="ConferenceAppNewModel.Conversation_reply" />
-          <AssociationSet Name="FK_Conversation_reply_Conversation" Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation">
-            <End Role="Conversation" EntitySet="Conversation" />
-            <End Role="Conversation_reply" EntitySet="Conversation_reply" />
-          </AssociationSet>
           <AssociationSet Name="FK_Conversation_reply_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_reply_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Conversation_reply" EntitySet="Conversation_reply" />
@@ -425,6 +421,20 @@
             <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
           </AssociationSet>
           <EntitySet Name="Organizers" EntityType="ConferenceAppNewModel.Organizers" />
+          <EntitySet Name="Conversation" EntityType="ConferenceAppNewModel.Conversation" />
+          <AssociationSet Name="FK_Conversation_reply_Conversation" Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation">
+            <End Role="Conversation" EntitySet="Conversation" />
+            <End Role="Conversation_reply" EntitySet="Conversation_reply" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversation_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Conversation_UserProfile1" Association="ConferenceAppNewModel.FK_Conversation_UserProfile1">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Conversation" EntitySet="Conversation" />
+          </AssociationSet>
+          <EntitySet Name="Exhibition" EntityType="ConferenceAppNewModel.Exhibition" />
         </EntityContainer>
         <EntityType Name="File">
           <Key>
@@ -485,43 +495,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Conversation">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserIdOne" Type="Int32" />
-          <Property Name="UserIdTwo" Type="Int32" />
-          <Property Name="Time" Type="Time" Precision="7" />
-          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="Conversation" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="Conversation" ToRole="UserProfile" />
-          <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation" ToRole="Conversation_reply" />
-        </EntityType>
-        <Association Name="FK_Conversation_UserProfile">
-          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Conversation">
-              <PropertyRef Name="UserIdOne" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Conversation_UserProfile1">
-          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Conversation">
-              <PropertyRef Name="UserIdTwo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Conference">
           <Key>
             <PropertyRef Name="ID" />
@@ -561,21 +534,9 @@
           <Property Name="Time" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ConversationID" Type="Int32" />
-          <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation_reply" ToRole="Conversation" />
           <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="Conversation_reply" ToRole="UserProfile" />
+          <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation_reply" ToRole="Conversation" />
         </EntityType>
-        <Association Name="FK_Conversation_reply_Conversation">
-          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="0..1" />
-          <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Conversation">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="Conversation_reply">
-              <PropertyRef Name="ConversationID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Conversation_reply_UserProfile">
           <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
           <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
@@ -661,6 +622,63 @@
           <Property Name="OrganizerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Conversation">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserIdOne" Type="Int32" />
+          <Property Name="UserIdTwo" Type="Int32" />
+          <Property Name="Time" Type="Time" Precision="7" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation" ToRole="Conversation_reply" />
+          <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="Conversation" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="Conversation" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Conversation_reply_Conversation">
+          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Conversation">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Conversation_reply">
+              <PropertyRef Name="ConversationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversation_UserProfile">
+          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="UserIdOne" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Conversation_UserProfile1">
+          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Conversation">
+              <PropertyRef Name="UserIdTwo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Exhibition">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExhibitorName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -727,17 +745,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Conversation">
-            <EntityTypeMapping TypeName="ConferenceAppNewModel.Conversation">
-              <MappingFragment StoreEntitySet="Conversation">
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Time" ColumnName="Time" />
-                <ScalarProperty Name="UserIdTwo" ColumnName="UserIdTwo" />
-                <ScalarProperty Name="UserIdOne" ColumnName="UserIdOne" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Conference">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
@@ -800,6 +807,26 @@
               <MappingFragment StoreEntitySet="Organizers">
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="OrganizerName" ColumnName="OrganizerName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Conversation">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.Conversation">
+              <MappingFragment StoreEntitySet="Conversation">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="UserIdTwo" ColumnName="UserIdTwo" />
+                <ScalarProperty Name="UserIdOne" ColumnName="UserIdOne" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exhibition">
+            <EntityTypeMapping TypeName="ConferenceAppNewModel.Exhibition">
+              <MappingFragment StoreEntitySet="Exhibition">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="ExhibitorName" ColumnName="ExhibitorName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

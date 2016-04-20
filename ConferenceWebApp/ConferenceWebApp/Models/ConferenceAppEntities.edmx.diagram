@@ -13,13 +13,9 @@
         <AssociationConnector Association="ConferenceAppNewModel.FK_Program_ProgramPeople" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_ProgramMemberCategories_ProgramPeople" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_User_ProgramPeople" />
-        <EntityTypeShape EntityType="ConferenceAppNewModel.Conversation" Width="1.5" PointX="3" PointY="12.625" />
-        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile" />
-        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile1" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.Conference" Width="1.5" PointX="1.5" PointY="7.75" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Conference_Program" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.Conversation_reply" Width="1.5" PointX="6.375" PointY="7.875" />
-        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.MyAgenda" Width="1.5" PointX="8.125" PointY="5.625" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_MyAgenda_Program" />
@@ -28,6 +24,11 @@
         <EntityTypeShape EntityType="ConferenceAppNewModel.SponsorsAndPartners" Width="1.5" PointX="10.625" PointY="0.75" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Sponsors_Sponsors" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.Organizers" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="ConferenceAppNewModel.Conversation" Width="1.5" PointX="3" PointY="12.625" />
+        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation" />
+        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile" />
+        <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile1" />
+        <EntityTypeShape EntityType="ConferenceAppNewModel.Exhibition" Width="1.5" PointX="8.375" PointY="8.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

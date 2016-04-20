@@ -386,7 +386,6 @@ namespace ConferenceWebApp.Controllers
             return View(IndexListModel);
         }
 
-
         public async Task<ActionResult> Organizers()
         {
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
@@ -395,6 +394,19 @@ namespace ConferenceWebApp.Controllers
                 return View(Organizers);
             }
         }
+
+        public async Task<ActionResult> Exhibition()
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
+                return View(Exhibitors);
+            }
+        }
+
+
+
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

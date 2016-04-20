@@ -1,0 +1,34 @@
+﻿@model List<ConferenceWebApp.Models.Exhibition>
+
+@{
+    ViewBag.Title = "ViewExhibitors";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>View Exhibitors</h2>
+
+@Html.ActionLink("Add New Exhibitor", "AddExhibitor")<br /><br />
+
+@if (Model.Count == 0)
+{
+    @Html.Raw(" No Exhibitor Found ");
+}
+<table class="table">
+
+    @foreach (var Exhibitor in Model)
+    {
+        <tr>
+                <td>
+                    <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ExhibitorImagesPath/@Exhibitor.Photo" style="height:125px; width: 125px;" />
+                </td>
+                <td>
+                    @Exhibitor.ExhibitorName
+                </td>
+                <td>
+                    @Html.ActionLink("Remove", "DeleteExhibitor", new { ExhibitorId = @Exhibitor.ID }, null)
+                </td>
+            </tr>
+    }
+
+</table>
+

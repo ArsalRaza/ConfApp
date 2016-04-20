@@ -1034,7 +1034,7 @@ namespace ConferenceWebApp.Controllers
         }
         #endregion
 
-        #region Partner
+        #region Organizers
         public async Task<ActionResult> AddOrganizers()
         {
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
@@ -1098,7 +1098,7 @@ namespace ConferenceWebApp.Controllers
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
                 Organizers Organizer = await DBContext.Organizers.FirstOrDefaultAsync(x => x.ID == OrganizerId);
-                
+
 
                 if (!string.IsNullOrEmpty(Organizer.Photo))
                 {
@@ -1119,6 +1119,83 @@ namespace ConferenceWebApp.Controllers
 
 
         #endregion
+
+        public async Task<ActionResult> AddExhibitor()
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> AddExhibitor(ExhibitionModel model)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                if (ModelState.IsValid)
+                {
+                    Exhibition NewExhibitor = new Exhibition();
+                    NewExhibitor.ExhibitorName = model.ExhibitorName;
+
+                    DBContext.Exhibition.Add(NewExhibitor);
+                    await DBContext.SaveChangesAsync();
+
+                    if (model.Image != null && model.Image.ContentLength > 0)
+                    {
+                        string path = Path.Combine(Server.MapPath(Constants.FilePaths.ExhibitorImagesServerRelativePath),
+                                       Path.GetFileName(NewExhibitor.ID.ToString() + Path.GetExtension(model.Image.FileName)));
+                        model.Image.SaveAs(path);
+                        NewExhibitor.Photo = NewExhibitor.ID.ToString() + Path.GetExtension(model.Image.FileName);
+                        await DBContext.SaveChangesAsync();
+                    }
+                    return RedirectToAction("ViewExhibitors", "Manage");
+                }
+            }
+
+            return View();
+        }
+
+        public async Task<ActionResult> ViewExhibitors()
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
+                return View(Exhibitors);
+            }
+
+        }
+
+        public async Task<ActionResult> DeleteExhibitor(int ExhibitorId)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                Exhibition Exhibitor = DBContext.Exhibition.Find(ExhibitorId);
+
+                DBContext.Exhibition.Remove(Exhibitor);
+
+                if (!string.IsNullOrEmpty(Exhibitor.Photo))
+                {
+                    string ProfileImageFullPath = Request.MapPath(Constants.FilePaths.ExhibitorImagesServerRelativePath + Exhibitor.Photo);
+                    if (System.IO.File.Exists(ProfileImageFullPath))
+                    {
+                        System.IO.File.Delete(ProfileImageFullPath);
+                    }
+                }
+
+                await DBContext.SaveChangesAsync();
+
+                return RedirectToAction("ViewExhibitors", "Manage");
+            }
+
+        }
+
         public async Task<ActionResult> AddHighlights()
         {
             //    if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
@@ -1130,7 +1207,6 @@ namespace ConferenceWebApp.Controllers
 
                 return View();
             }
-            return View();
         }
 
     }

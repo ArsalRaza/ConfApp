@@ -17,6 +17,7 @@ namespace ConferenceWebApp.BL.Constants
 
         public static class FilePaths
         {
+            public static string ExhibitorImagesServerRelativePath = "~/Files/ExhibitorImages/";
             public static string ProfileImagesServerRelativePath = "~/Files/ProfileImages/";
             public static string VideoServerRelativePath = "~/Files/Videos/";
             public static string AudioServerRelativePath = "~/Files/Audios/";
@@ -25,6 +26,7 @@ namespace ConferenceWebApp.BL.Constants
             public static string SponsorAndPartnerImagesServerRelativePath = "~/Files/SponsorAndPartnerImages/";
             public static string OrganizersImageServerRelativePath = "~/Files/Organizers/";
 
+            public static string ExhibitorImagesPath = "/Files/ExhibitorImages/";
             public static string ProfileImagesPath = "/Files/ProfileImages";
             public static string VideoPath = "/Files/Videos";
             public static string AudioPath = "/Files/Audios";

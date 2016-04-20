@@ -30,12 +30,13 @@ namespace ConferenceWebApp.Models
         public virtual DbSet<UserProfile> UserProfile { get; set; }
         public virtual DbSet<File> File { get; set; }
         public virtual DbSet<ProgramPeople> ProgramPeople { get; set; }
-        public virtual DbSet<Conversation> Conversation { get; set; }
         public virtual DbSet<Conference> Conference { get; set; }
         public virtual DbSet<Conversation_reply> Conversation_reply { get; set; }
         public virtual DbSet<MyAgenda> MyAgenda { get; set; }
         public virtual DbSet<SponsorPartnerCategory> SponsorPartnerCategory { get; set; }
         public virtual DbSet<SponsorsAndPartners> SponsorsAndPartners { get; set; }
         public virtual DbSet<Organizers> Organizers { get; set; }
+        public virtual DbSet<Conversation> Conversation { get; set; }
+        public virtual DbSet<Exhibition> Exhibition { get; set; }
     }
 }

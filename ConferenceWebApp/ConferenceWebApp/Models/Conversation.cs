@@ -25,8 +25,8 @@ namespace ConferenceWebApp.Models
         public Nullable<System.TimeSpan> Time { get; set; }
         public string Status { get; set; }
     
+        public virtual ICollection<Conversation_reply> Conversation_reply { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual UserProfile UserProfile1 { get; set; }
-        public virtual ICollection<Conversation_reply> Conversation_reply { get; set; }
     }
 }

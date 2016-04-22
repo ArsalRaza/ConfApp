@@ -30,6 +30,8 @@ namespace ConferenceWebApp.Models
         public Nullable<bool> IsEnabled { get; set; }
         public string FeeStructure { get; set; }
         public string CityInformation { get; set; }
+        public string FloorPlanText { get; set; }
+        public string FloorPlanImage { get; set; }
     
         public virtual ICollection<Program> Program { get; set; }
     }

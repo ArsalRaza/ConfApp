@@ -20,6 +20,8 @@
           <Property Name="IsEnabled" Type="bit" />
           <Property Name="FeeStructure" Type="varchar" MaxLength="300" />
           <Property Name="CityInformation" Type="varchar" MaxLength="500" />
+          <Property Name="FloorPlanText" Type="varchar(max)" />
+          <Property Name="FloorPlanImage" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Conversation">
           <Key>
@@ -511,6 +513,8 @@
           <Property Name="FeeStructure" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="CityInformation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Program" Relationship="ConferenceAppNewModel.FK_Conference_Program" FromRole="Conference" ToRole="Program" />
+          <Property Name="FloorPlanText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FloorPlanImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Conference_Program">
           <End Type="ConferenceAppNewModel.Conference" Role="Conference" Multiplicity="0..1" />
@@ -748,6 +752,8 @@
           <EntitySetMapping Name="Conference">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.Conference">
               <MappingFragment StoreEntitySet="Conference">
+                <ScalarProperty Name="FloorPlanImage" ColumnName="FloorPlanImage" />
+                <ScalarProperty Name="FloorPlanText" ColumnName="FloorPlanText" />
                 <ScalarProperty Name="CityInformation" ColumnName="CityInformation" />
                 <ScalarProperty Name="FeeStructure" ColumnName="FeeStructure" />
                 <ScalarProperty Name="IsEnabled" ColumnName="IsEnabled" />

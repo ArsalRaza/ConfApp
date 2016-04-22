@@ -1,0 +1,30 @@
+﻿@model ConferenceWebApp.Models.Conference
+
+@{
+    ViewBag.Title = "AddFloorPlan";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2> Add / Edit Floor Plan </h2>
+
+
+@using (Html.BeginForm("AddFloorPlan", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <table>
+
+        <tr><td>   ViewBag.Error </td></tr>
+
+        @if (!string.IsNullOrEmpty(@Model.FloorPlanImage))
+        {
+            <tr><td colspan="3"><img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ExhibitorImagesPath@Model.FloorPlanImage" /></td></tr>
+        }
+
+        <tr><td>Image: </td><td><input type="file" name="FloorPlanImage" id="Image" placeholder="" /></td><td></td></tr>
+
+        <tr><td> Floor Plan (Text):</td><td><textarea name="FloorPlanText" id="FloorplanText" rows="2" cols="20"></textarea> </td><td></td></tr>
+
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add Floor Plan" /></td></tr>
+
+    </table>
+}

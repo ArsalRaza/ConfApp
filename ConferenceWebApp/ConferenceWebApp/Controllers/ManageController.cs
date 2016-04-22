@@ -900,7 +900,6 @@ namespace ConferenceWebApp.Controllers
         }
         #endregion
 
-
         #region Partner
         public async Task<ActionResult> AddPartnerCategory()
         {
@@ -1120,6 +1119,7 @@ namespace ConferenceWebApp.Controllers
 
         #endregion
 
+        #region Exhibition
         public async Task<ActionResult> AddExhibitor()
         {
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
@@ -1195,6 +1195,88 @@ namespace ConferenceWebApp.Controllers
             }
 
         }
+        #endregion
+
+
+        public async Task<ActionResult> AddFloorPlan()
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+
+            @ViewBag.Error = string.Empty;
+
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                Conference Conference = await DBContext.Conference.FirstOrDefaultAsync();
+                return View(Conference);
+            }
+            
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddFloorPlan(string FloorPlanText, HttpPostedFileBase FloorPlanImage)
+        {
+            if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
+                return RedirectToAction("Index", "Login");
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                Conference ConferenceDetails = DBContext.Conference.FirstOrDefault();
+
+                if (FloorPlanImage.ContentLength < 0 || string.IsNullOrEmpty(FloorPlanText))
+                {
+                    ViewBag.Error = "Add atleast one of the following";
+                }
+                if (!string.IsNullOrEmpty(FloorPlanText))
+                {
+                    ConferenceDetails.FloorPlanText = FloorPlanText;
+                }
+                if (FloorPlanImage != null && FloorPlanImage.ContentLength > 0)
+                {
+
+                    string path = Path.Combine(Server.MapPath(Constants.FilePaths.ExhibitorImagesServerRelativePath),
+                                   Path.GetFileName("FloorPlanImage" + Path.GetExtension(FloorPlanImage.FileName)));
+
+                    FloorPlanImage.SaveAs(path);
+
+                    ConferenceDetails.FloorPlanImage = "FloorPlanImage" + Path.GetExtension(FloorPlanImage.FileName);
+
+                    ConferenceDetails.FloorPlanText = FloorPlanText;
+
+                    await DBContext.SaveChangesAsync();
+
+                    return RedirectToAction("Index", "Manage");
+                }
+            }
+
+
+            return View();
+        }
+
+        //public string getMimeFromFile(HttpPostedFile file)
+        //{
+        //    IntPtr mimeout;
+
+        //    int MaxContent = (int)file.ContentLength;
+        //    if (MaxContent > 256) MaxContent = 256;
+
+        //    byte[] buf = new byte[MaxContent];
+        //    file.InputStream.Read(buf, 0, MaxContent);
+        //    int result = FindMimeFromData(IntPtr.Zero, file.FileName, buf, MaxContent, null, 0, out mimeout, 0);
+
+        //    if (result != 0)
+        //    {
+        //        Marshal.FreeCoTaskMem(mimeout);
+        //        return "";
+        //    }
+
+        //    string mime = Marshal.PtrToStringUni(mimeout);
+        //    Marshal.FreeCoTaskMem(mimeout);
+
+        //    return mime.ToLower();
+        //}
+
+
+
 
         public async Task<ActionResult> AddHighlights()
         {

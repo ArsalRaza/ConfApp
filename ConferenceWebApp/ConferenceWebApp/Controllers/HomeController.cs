@@ -99,6 +99,12 @@ namespace ConferenceWebApp.Controllers
             {
                 int CurrentUserId = AuthenticationHelper.GetUserId();
                 List<Conversation> Conversations = await DBContext.Conversation.Include(x => x.UserProfile).Include(x => x.UserProfile1).Include(x => x.Conversation_reply).Where(x => x.UserIdOne == CurrentUserId || x.UserIdTwo == CurrentUserId).OrderBy(x => x.Time).ToListAsync();
+                //
+
+                ViewBag.speakersUserProfiles = await DBContext.UserProfile.Where(x => x.Role == Constants.Roles.Speaker).ToListAsync();
+
+                ViewBag.ParticipantsUserProfiles = await DBContext.UserProfile.Where(x => x.Role == Constants.Roles.User).ToListAsync(); 
+
                 return View(Conversations);
             }
         }
@@ -397,11 +403,32 @@ namespace ConferenceWebApp.Controllers
 
         public async Task<ActionResult> Exhibition()
         {
+            
+            return View();
+        }
+
+        public async Task<ActionResult> ExhibitorsList()
+        {
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
                 List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
                 return View(Exhibitors);
             }
+        }
+
+        public async Task<ActionResult> FloorPlan()
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+            //    List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
+                return View();
+            }
+        }
+
+        public async Task<ActionResult> Gallery()
+        {
+
+            return View();
         }
 
 
@@ -427,8 +454,5 @@ namespace ConferenceWebApp.Controllers
 
             return View();
         }
-
-
-
     }
 }

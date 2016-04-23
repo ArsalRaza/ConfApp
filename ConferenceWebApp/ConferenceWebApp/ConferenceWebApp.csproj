@@ -667,6 +667,9 @@
     <Content Include="Views\Manage\ViewExhibitors.cshtml" />
     <Content Include="Views\Home\Exhibition.cshtml" />
     <Content Include="Views\Manage\AddFloorPlan.cshtml" />
+    <Content Include="Views\Home\ExhibitorsList.cshtml" />
+    <Content Include="Views\Home\FloorPlan.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

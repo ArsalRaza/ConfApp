@@ -1,0 +1,41 @@
+﻿@model List<ConferenceWebApp.Models.Exhibition>
+@{
+    ViewBag.Title = "Exhibitors List";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+
+<div id="sponsors" class="vc_row vc_inner vc_row-fluid container" style="" data-token="vmkSv">
+    <div class="vc_col-sm-12 wpb_column column_container  ">
+        <div class="wpb_wrapper">
+            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-documents-bookmarks-12"></span></div>
+            </div>
+            <h3 style="text-align: center" class="vc_custom_heading">Exhibitors List</h3>
+
+            @if (Model.Count == 0)
+            {
+                @Html.Raw(" No Exhibition Detail Available");
+            }
+
+            <div id="vsc_row_yrgwfzld" class="vc_row vc_inner vc_row-fluid vc_custom_1453802453645 container" style="" data-token="Kcm3f">
+                @foreach (var Exhibitor in Model)
+                {
+                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                                <figure class="wpb_wrapper vc_figure">
+                                    <a href="#" class="vc_single_image-wrapper all  vc_box_border_grey">
+                                        <img width="175" height="175" src="" class="vc_single_image-img attachment-full" alt="@Exhibitor.ExhibitorName"
+                                             srcset="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ExhibitorImagesPath/@Exhibitor.Photo" sizes="(max-width: 175px) 100vw, 175px" />
+                                        <br /><strong>@Exhibitor.ExhibitorName</strong>
+                                    </a>
+                                </figure>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

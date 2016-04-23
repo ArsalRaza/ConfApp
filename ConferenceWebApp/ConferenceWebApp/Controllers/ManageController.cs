@@ -1232,7 +1232,6 @@ namespace ConferenceWebApp.Controllers
                 }
                 if (FloorPlanImage != null && FloorPlanImage.ContentLength > 0)
                 {
-
                     string path = Path.Combine(Server.MapPath(Constants.FilePaths.ExhibitorImagesServerRelativePath),
                                    Path.GetFileName("FloorPlanImage" + Path.GetExtension(FloorPlanImage.FileName)));
 
@@ -1241,11 +1240,11 @@ namespace ConferenceWebApp.Controllers
                     ConferenceDetails.FloorPlanImage = "FloorPlanImage" + Path.GetExtension(FloorPlanImage.FileName);
 
                     ConferenceDetails.FloorPlanText = FloorPlanText;
-
-                    await DBContext.SaveChangesAsync();
-
-                    return RedirectToAction("Index", "Manage");
                 }
+
+                await DBContext.SaveChangesAsync();
+
+                return RedirectToAction("Index", "Manage");
             }
 
 

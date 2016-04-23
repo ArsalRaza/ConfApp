@@ -60,7 +60,7 @@ function getMenu(Parameter) {
 
     jQuery('#MobileMenu li').each(function (index) {
 
-        if (index != 5 && index != 9 && index != 10 && index != 12 && index != 13) {
+        if (  index != 12) {
             if (index == 0) {
                 menujson += '{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl(\'' + jQuery(this).find('a').attr('href') + '\');"}';
             }

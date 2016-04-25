@@ -97,7 +97,7 @@
 
     .bold {
         font-weight: bold;
-    }
+        color: rgb(254, 73, 24); }
 </style>
 
 @*<script src="~/Scripts/jquery-1.10.2.js"></script>*@
@@ -117,10 +117,6 @@
 
             jQuery('#users-container').show();
         });
-
-
-        
-
 
         jQuery('#SendMessage').click(function () {
 
@@ -190,12 +186,13 @@
         jQuery('.userlist').hide();
 
         jQuery('#' + showdivid).show();
-        
+
     }
 
-    function SendNewMessage(ToUserId)
-    {
+    function SendNewMessage(ToUserId, ToUserName) {
         jQuery('#ToUserId').val(ToUserId);
+        jQuery('#txtUserName').val(ToUserName);
+        
 
         jQuery('.Hide').hide();
         jQuery('#users-container').hide();
@@ -205,11 +202,7 @@
 </script>
 
 
-<link href="~/Master/chat/css/normalize.css" rel="stylesheet" />
-<link href="~/Master/chat/css/style.css" rel="stylesheet" />
-<script src="~/Master/chat/js/index.js"></script>
-<script src="~/Master/chat/js/modernizr.js"></script>
-<script src="~/Master/chat/js/prefixfree.min.js"></script>
+
 
 
 
@@ -219,82 +212,82 @@
 
 
 <div>
-    <div class="container"><a id="SendNewMessage"> Send a new message </a></div>
+    
     <div style="">
         @*<a id="SendNewMessage"> Send a new message </a><a id="BackToMessageList"> < Back </a>*@
         @*<div id="NewConversation" class="Hide" style="display:none;">
-            Recipent: <input type="text" id="txtUserName" /> <br />
+                Recipent: <input type="text" id="txtUserName" /> <br />
 
-            <input type="hidden" id="ToUserId" /> <br />
-            Message: <textarea id="Message"> </textarea> <br /><br /><br />
-            <a id="SendMessage"> Send Message </a><a class="cancel"> Cancel </a>
+                <input type="hidden" id="ToUserId" /> <br />
+                Message: <textarea id="Message"> </textarea> <br /><br /><br />
+                <a id="SendMessage"> Send Message </a><a class="cancel"> Cancel </a>
 
-        </div>*@
+            </div>*@
         @*************************************************************************************************@
         <div id="NewConversation" class="Hide" style="display:none;">
+            <div class="vc_col-sm-12 wpb_column column_container  ">
+                <div class="wpb_wrapper">
+                    <h3 style="text-align: center" class="vc_custom_heading">Send new message</h3><p style="color: #8d93a0;text-align: center" class="vc_custom_heading">
+                    </p>
+                </div>
+            </div>
+            <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
                 <div class="vc_col-sm-12 wpb_column column_container  ">
                     <div class="wpb_wrapper">
-                        <h3 style="text-align: center" class="vc_custom_heading">Send new message</h3><p style="color: #8d93a0;text-align: center" class="vc_custom_heading">
-                        </p>
-                    </div>
-                </div>
-                <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
-                    <div class="vc_col-sm-12 wpb_column column_container  ">
-                        <div class="wpb_wrapper">
-                            <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
-                                <div class="vc_col-sm-3 wpb_column column_container  ">
-                                    <div class="wpb_wrapper">
+                        <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
+                            <div class="vc_col-sm-3 wpb_column column_container  ">
+                                <div class="wpb_wrapper">
 
-                                    </div>
                                 </div>
-                                <div class="vc_col-sm-6 wpb_column column_container  ">
-                                    <div class="wpb_wrapper">
-                                        <div class="contact-form-7-data" data-token="vFpQY">
-                                            <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
-                                                <div class="screen-reader-response"></div>
-                                                <div class="form leadform leadform-3 align-left">
+                            </div>
+                            <div class="vc_col-sm-6 wpb_column column_container  ">
+                                <div class="wpb_wrapper">
+                                    <div class="contact-form-7-data" data-token="vFpQY">
+                                        <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
+                                            <div class="screen-reader-response"></div>
+                                            <div class="form leadform leadform-3 align-left">
 
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <span class="wpcf7-form-control-wrap FNAME">
-                                                                <input type="text" id="txtUserName" placeholder="Recipent" /> <br />
-
-                                                                <input type="hidden" id="ToUserId" /> <br />
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="col-sm-12">
-                                                            <span class="wpcf7-form-control-wrap LNAME">
-                                                                <textarea id="Message" placeholder="Message"></textarea>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-
-                                            </div>
-                                            <div class="form leadform leadform-3 align-center">
                                                 <div class="form-group">
-                                                    <div class="col-sm-12 col-xs-12">
-                                                        <input id="SendMessage" value="Send message" class="wpcf7-form-control wpcf7-submit btn btn-lg" />
+                                                    <div class="col-sm-12">
+                                                        <span class="wpcf7-form-control-wrap FNAME">
+                                                            <input type="text" id="txtUserName" placeholder="Recipent"  disabled/> <br />
+
+                                                            <input type="hidden" id="ToUserId" /> <br />
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <span class="wpcf7-form-control-wrap LNAME">
+                                                            <textarea id="Message" placeholder="Message"></textarea>
+                                                        </span>
                                                     </div>
                                                 </div>
 
-                                                <div class="wpcf7-response-output wpcf7-display-none"></div>
                                             </div>
+
+                                        </div>
+                                        <div class="form leadform leadform-3 align-center">
+                                            <div class="form-group">
+                                                <div class="col-sm-12 col-xs-12">
+                                                    <input id="SendMessage" value="Send message" class="wpcf7-form-control wpcf7-submit btn btn-lg" />
+                                                </div>
+                                            </div>
+
+                                            <div class="wpcf7-response-output wpcf7-display-none"></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="vc_col-sm-3 wpb_column column_container  ">
-                                <div class="wpb_wrapper">
-                                </div>
+                        </div>
+                        <div class="vc_col-sm-3 wpb_column column_container  ">
+                            <div class="wpb_wrapper">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
         @*************************************************************************************************@
@@ -308,7 +301,7 @@
                 <div class="Area">
                     <textarea id="ReplyMessageText" placeholder="Type your message here"></textarea>
                     <br /><br />
-                    <input class="cancel" type="button" onclick="" value="CANCEL" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="ReplyInConversation();" value="SEND" style="float:right;" />
+                    <input class="cancel" type="button" onclick="" value="BACK" />&nbsp;&nbsp;&nbsp;<input type="button" onclick="ReplyInConversation();" value="SEND" style="float:right;" />
                     <div class="validation">You Are Not Registered</div>
                     <br />
                     <p class="note"></p>
@@ -322,22 +315,22 @@
             <h2> Message</h2>
 
             @*<div class="row">
-                <div class="pull-right">
+                    <div class="pull-right">
 
-                    <span class="text-muted"><b>1</b>–<b>50</b> of <b>160</b></span>
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
-                        </button>
-                        <button type="button" class="btn btn-default">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
-                        </button>
+                        <span class="text-muted"><b>1</b>–<b>50</b> of <b>160</b></span>
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </button>
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </button>
+                        </div>
                     </div>
-                </div>
-            </div>*@
+                </div>*@
 
             <hr>
-
+            <div class="container"><a id="SendNewMessage"> Send a new message </a></div>
             <div class="col-sm-9 col-md-10">
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs">
@@ -354,14 +347,9 @@
                         <div class="list-group">
                             @foreach (var Conversation in Model)
                             {
-                                <a href="#" class="list-group-item" onclick="LoadConversationReplies(@Conversation.ID);">
-                                    <div class="checkbox">
-                                        <label>
-                                            <input type="checkbox">
-                                        </label>
-                                    </div>
-                                    <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
-                                display: inline-block;">
+                                <a href="#" class="list-group-item" onclick="LoadConversationReplies(@Conversation.ID);" style="">
+                                    
+                                    @*<span class="glyphicon glyphicon-star-empty"></span>*@<span class="name" style="min-width: 120px; min-height: 18px; display: inline-block; padding-top: 5px; ">
                                         @if (ConferenceWebApp.BL.Helper.AuthenticationHelper.GetUserId() == @Conversation.UserIdOne)
                                         { @Conversation.UserProfile1.Name}
                                         else
@@ -370,8 +358,9 @@
                                     <span class="text-muted" style="font-size: 11px;"> - @Conversation.Conversation_reply.OrderByDescending(x => x.Time).First().Reply</span> <span class="badge">
                                         @Convert.ToDateTime(@Conversation.Time.Value.ToString()).ToShortTimeString()
                                     </span> <span class="pull-right">
-                                        <span class="glyphicon glyphicon-paperclip">
-                                        </span>
+                                        @*<span class="glyphicon glyphicon-paperclip">
+                                        </span>*@
+                                   
                                     </span>
                                 </a>
                             }
@@ -396,72 +385,6 @@
     </div>
 </div>
 
-
-@*<div id="NewConversation" class="Hide" style="display:none;">
-        <div class="vc_col-sm-12 wpb_column column_container  ">
-            <div class="wpb_wrapper">
-                <h3 style="text-align: center" class="vc_custom_heading">Registration</h3><p style="color: #8d93a0;text-align: center" class="vc_custom_heading">
-                </p>
-            </div>
-        </div>
-        Html.ValidationSummary(false, "", new { @class = "text-danger" })
-        <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
-            <div class="vc_col-sm-12 wpb_column column_container  ">
-                <div class="wpb_wrapper">
-                    <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
-                        <div class="vc_col-sm-3 wpb_column column_container  ">
-                            <div class="wpb_wrapper">
-
-                            </div>
-                        </div>
-                        <div class="vc_col-sm-6 wpb_column column_container  ">
-                            <div class="wpb_wrapper">
-                                <div class="contact-form-7-data" data-token="vFpQY">
-                                    <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
-                                        <div class="screen-reader-response"></div>
-                                        <div class="form leadform leadform-3 align-left">
-
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <span class="wpcf7-form-control-wrap FNAME">
-                                                        <input type="text" id="txtUserName" placeholder="Recipent" /> <br />
-
-                                                        <input type="hidden" id="ToUserId" /> <br />
-                                                    </span>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-12">
-                                                    <span class="wpcf7-form-control-wrap LNAME">
-                                                        <textarea id="Message" placeholder="Message"></textarea>
-                                                    </span>
-                                                </div>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                    <div class="form leadform leadform-3 align-center">
-                                        <div class="form-group">
-                                            <div class="col-sm-12 col-xs-12">
-                                                <input id="SendMessage" value="Send message" class="wpcf7-form-control wpcf7-submit btn btn-lg" />
-                                            </div>
-                                        </div>
-
-                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="vc_col-sm-3 wpb_column column_container  ">
-                        <div class="wpb_wrapper">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>*@
 <div id="users-container" class="" style="display:none;">
     <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center ">
         <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-faces-users-04"></span></div>
@@ -488,34 +411,40 @@
                                                 <span class="amount rolesheading"> Participants </span>
                                             </td>
                                         </tr>
+                                        <tr class="cart_item">
+                                            <td colspan="2" class="product-name" @*data-title="Product"*@>
+                                                <strong></strong>
+                                                <div style="display:none"> ad</div>
+                                            </td>
+                                        </tr>
                                         <tbody id="speakersList" class="userlist">
+                                            
                                             @foreach (var item in ViewBag.speakersUserProfiles)
-                                            {
-                                                <tr class="cart_item" onclick="SendNewMessage(@item.ID)">
-                                                    <td colspan="2" class="product-name" @*data-title="Product"*@>
-                                                        <strong>@item.Name</strong>
-                                                        <br />
-                                                        @item.Designation - @item.Organization
-                                                    </td>
-                                                </tr>
-                                            }
+{
+    <tr class="cart_item" onclick="SendNewMessage(@item.ID, '@item.Name')">
+        <td colspan="2" class="product-name bold" @*data-title="Product"*@>
+            <strong>@item.Name</strong>
+            <br /><br />
+            <div style="display:none"> ad</div>
+        </td>
+    </tr>
+}
 
                                         </tbody>
 
 
                                         <tbody id="participantsList" class="userlist" style="display:none;">
                                             @foreach (var item in ViewBag.ParticipantsUserProfiles)
-                                            {
-                                                <tr class=" cart_item" onclick="SendNewMessage(@item.ID)">
-                                                    <td colspan="2" class="product-name" @*  data-title="Product" *@>
-                                                        <strong>@item.Name</strong><br />
-                                                        @item.Designation - @item.Organization
-                                                    </td>
+{
+    <tr class=" cart_item" onclick="SendNewMessage(@item.ID, '@item.Name')">
+        <td colspan="2" class="product-name bold" @*  data-title="Product" *@>
+            <strong>@item.Name</strong><br /><br />
+            <div style="display:none"> ad</div>
+        </td>
 
-                                                </tr>
-                                            }
+    </tr>
+}
                                         </tbody>
-
                                     </table>
                                     <div class="cart-collaterals">
                                     </div>
@@ -523,9 +452,7 @@
                             </section>
                         </div>
                     </div>
-
                     <footer class="entry-footer"></footer>
-
                 </article>
             </main>
         </div>

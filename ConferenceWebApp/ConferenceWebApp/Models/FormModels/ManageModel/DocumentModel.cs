@@ -14,11 +14,6 @@ namespace ConferenceWebApp.Models.FormModels.ManageModel
         [Display(Name = "Title")]
         [DataType(DataType.Text)]
         public string Title { get; set; }
-        
-        //[Required(ErrorMessage = "(Required)")]
-        //[Display(Name = "File Type")]
-        //[DataType(DataType.Text)]
-        //public string FileType { get; set; }
 
         [Display(Name = "Description ")]
         [DataType(DataType.Text)]
@@ -27,6 +22,10 @@ namespace ConferenceWebApp.Models.FormModels.ManageModel
         [Display(Name = "Presentation File")]
         [Required(ErrorMessage = "(Required)")]
         public HttpPostedFileBase UploadFile { get; set; }
+
+        [Display(Name = "Speaker")]
+        [Required(ErrorMessage = "(Required)")]
+        public int SpeakerId { get; set; }
 
     }
 }

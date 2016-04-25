@@ -66,11 +66,29 @@ namespace ConferenceWebApp.Controllers
 
         public async Task<ActionResult> Files()
         {
+            if (!AuthenticationHelper.IsUserLogin && (!AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker)))
+                return RedirectToAction("Index", "Login", new { ControllerName = "Home", ActionName = "Files" });
+
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                return View(await DBContext.File.Where(x => x.FileType == Constants.FileTypes.Document).ToListAsync());
+                var Files = await DBContext.File.Where(x => x.FileType == Constants.FileTypes.Document).Select(x => x.SpeakerId).ToListAsync();
+
+                var SpeakerProfiles = await DBContext.UserProfile.Where(x => Files.Contains(x.ID)).ToListAsync();
+
+                return View(SpeakerProfiles);
             }
 
+        }
+
+        public async Task<ActionResult> FilesOfSpeaker(int SpeakerId = 0)
+        {
+            if (!AuthenticationHelper.IsUserLogin && (!AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker)) || SpeakerId == 0)
+                return RedirectToAction("Index", "Login", new { ControllerName = "Home", ActionName = "Files" });
+
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                return View(await DBContext.File.Include(x => x.UserProfile).Where(x => x.FileType == Constants.FileTypes.Document && x.SpeakerId == SpeakerId).ToListAsync());
+            }
         }
 
         public async Task<ActionResult> Videos()
@@ -347,10 +365,11 @@ namespace ConferenceWebApp.Controllers
             return Json(IsRemoved, JsonRequestBehavior.AllowGet);
         }
 
-        public async Task<ActionResult> MyAgenda(string From)
+        public async Task<ActionResult> MyAgenda()
         {
-            if (!AuthenticationHelper.IsUserLogin && (!AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.User)))
-                return RedirectToAction("Index", "Login", new { From = From });
+            if (!AuthenticationHelper.IsUserLogin && (!AuthenticationHelper.GetRole().Equals(Constants.Roles.User) || !AuthenticationHelper.GetRole().Equals(Constants.Roles.Speaker)))
+                return RedirectToAction("Index", "Login", new { ControllerName = "Home", ActionName = "MyAgenda" });
+
 
             IndexListModel IndexListModel = new IndexListModel();
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())

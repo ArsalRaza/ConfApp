@@ -4,24 +4,39 @@
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
-<div id="vsc_row_catztzvurl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="fwc8b">
+
+
+<div id="sponsors" class="vc_row vc_inner vc_row-fluid container" style="" data-token="vmkSv">
     <div class="vc_col-sm-12 wpb_column column_container  ">
         <div class="wpb_wrapper">
-            <h5 style="text-align: center" class="vc_custom_heading heading-alt">Organizers</h5>
-            <div class="vc_empty_space" style="height: 32px"><span class="vc_empty_space_inner"></span></div>
+            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-documents-bookmarks-12"></span></div>
+            </div>
+            <h3 style="text-align: center" class="vc_custom_heading">Organizers</h3>
 
-
-            @foreach (var Organizer in Model)
+            @if (Model.Count == 0)
             {
-                <div class="speakers speakers-full speakers-3-columns photo-rounded-square-shape photo-md ">
-                    <div class='speaker-col'>
-                        <div class='speaker'>
-                            <div class='photo-wrapper' style="background-image: url('../Files/Organizers/@Organizer.Photo');"></div>
-                            <h3 class='name'>@Organizer.OrganizerName</h3><p class='text-alt'><small></small></p><p class='about'></p>
+                @Html.Raw(" No Exhibition Detail Available");
+            }
+
+            <div id="vsc_row_yrgwfzld" class="vc_row vc_inner vc_row-fluid vc_custom_1453802453645 container" style="" data-token="Kcm3f">
+                @foreach (var Organizer in Model)
+                           {
+                    <div class="vc_col-sm-3 wpb_column column_container  ">
+                        <div class="wpb_wrapper">
+                            <div class="wpb_single_image wpb_content_element vc_align_center">
+                                <figure class="wpb_wrapper vc_figure">
+                                    <a href="#" class="vc_single_image-wrapper all  vc_box_border_grey">
+                                        <img width="175" height="175" src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.OrganizersImagePath/@Organizer.Photo" class="vc_single_image-img attachment-full" alt="@Organizer.OrganizerName"
+                                             srcset="@ConferenceWebApp.BL.Constants.Constants.FilePaths.OrganizersImagePath@Organizer.Photo" sizes="(max-width: 175px) 100vw, 175px" />
+                                        <br /><strong>@Organizer.OrganizerName</strong>
+                                    </a>
+                                </figure>
+                            </div>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
 </div>

@@ -363,6 +363,10 @@ namespace ConferenceWebApp.Controllers
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
                 return RedirectToAction("Index", "Login");
 
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                ViewBag.Speakers = DBContext.UserProfile.Where(x => x.Role == Constants.Roles.Speaker).ToList();
+            }
 
             return View();
         }
@@ -373,9 +377,9 @@ namespace ConferenceWebApp.Controllers
         {
             if (!AuthenticationHelper.IsUserLogin || !AuthenticationHelper.GetRole().Equals(Constants.Roles.SiteAdmin))
                 return RedirectToAction("Index", "Login");
-            if (ModelState.IsValid)
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                if (ModelState.IsValid)
                 {
                     ConferenceWebApp.Models.File NewFile = new ConferenceWebApp.Models.File();
 
@@ -383,6 +387,8 @@ namespace ConferenceWebApp.Controllers
                     NewFile.Description = model.Description;
                     NewFile.FileName = model.UploadFile.FileName;
                     NewFile.FileType = Constants.FileTypes.Document;
+                    NewFile.SpeakerId = model.SpeakerId;
+
 
                     if (model.UploadFile != null && model.UploadFile.ContentLength > 0)
                     {
@@ -396,7 +402,10 @@ namespace ConferenceWebApp.Controllers
 
                     return RedirectToAction("ViewDocument", "Manage");
                 }
+                ViewBag.Speakers = DBContext.UserProfile.Where(x => x.Role == Constants.Roles.Speaker).ToList();
+
             }
+
             return View();
         }
         public async Task<ActionResult> ViewDocument(DocumentModel model)
@@ -406,7 +415,7 @@ namespace ConferenceWebApp.Controllers
 
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                var Files = await DBContext.File.Where(x => x.FileType == Constants.FileTypes.Document).ToListAsync();
+                var Files = await DBContext.File.Include(x => x.UserProfile).Where(x => x.FileType == Constants.FileTypes.Document).ToListAsync();
 
                 ViewBag.PresentationFilesPath = Path.Combine(Server.MapPath(Constants.FilePaths.DocumentServerRelativePath));
 
@@ -1210,7 +1219,7 @@ namespace ConferenceWebApp.Controllers
                 Conference Conference = await DBContext.Conference.FirstOrDefaultAsync();
                 return View(Conference);
             }
-            
+
         }
 
         [HttpPost]

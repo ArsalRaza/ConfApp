@@ -21,6 +21,7 @@ namespace ConferenceWebApp.Models
             this.MyAgenda = new HashSet<MyAgenda>();
             this.Conversation = new HashSet<Conversation>();
             this.Conversation1 = new HashSet<Conversation>();
+            this.File = new HashSet<File>();
         }
     
         public int ID { get; set; }
@@ -39,5 +40,6 @@ namespace ConferenceWebApp.Models
         public virtual ICollection<MyAgenda> MyAgenda { get; set; }
         public virtual ICollection<Conversation> Conversation { get; set; }
         public virtual ICollection<Conversation> Conversation1 { get; set; }
+        public virtual ICollection<File> File { get; set; }
     }
 }

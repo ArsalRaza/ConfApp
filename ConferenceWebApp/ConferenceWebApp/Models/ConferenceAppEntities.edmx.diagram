@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="ConferenceAppNewModel.ProgramMemberCategories" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.UserProfile" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.File" Width="1.5" PointX="6.375" PointY="0.75" />
-        <EntityTypeShape EntityType="ConferenceAppNewModel.ProgramPeople" Width="1.5" PointX="6.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="ConferenceAppNewModel.ProgramPeople" Width="1.5" PointX="6.125" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Program_ProgramPeople" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_ProgramMemberCategories_ProgramPeople" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_User_ProgramPeople" />
@@ -29,6 +29,7 @@
         <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile" />
         <AssociationConnector Association="ConferenceAppNewModel.FK_Conversation_UserProfile1" />
         <EntityTypeShape EntityType="ConferenceAppNewModel.Exhibition" Width="1.5" PointX="8.375" PointY="8.75" />
+        <AssociationConnector Association="ConferenceAppNewModel.FK_File_UserProfile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

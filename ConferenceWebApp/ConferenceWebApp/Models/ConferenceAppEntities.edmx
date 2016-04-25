@@ -62,6 +62,7 @@
           <Property Name="FileName" Type="varchar" MaxLength="50" />
           <Property Name="FileType" Type="varchar" MaxLength="50" />
           <Property Name="FileUrl" Type="varchar" MaxLength="300" />
+          <Property Name="SpeakerId" Type="int" />
         </EntityType>
         <EntityType Name="MyAgenda">
           <Key>
@@ -200,6 +201,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_File_UserProfile">
+          <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+          <End Role="File" Type="Self.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="SpeakerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MyAgenda_Program">
           <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
           <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
@@ -306,6 +319,10 @@
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="Conversation" EntitySet="Conversation" />
           </AssociationSet>
+          <AssociationSet Name="FK_File_UserProfile" Association="Self.FK_File_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
           <AssociationSet Name="FK_MyAgenda_Program" Association="Self.FK_MyAgenda_Program">
             <End Role="Program" EntitySet="Program" />
             <End Role="MyAgenda" EntitySet="MyAgenda" />
@@ -378,6 +395,7 @@
           <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
           <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
+          <NavigationProperty Name="File" Relationship="ConferenceAppNewModel.FK_File_UserProfile" FromRole="UserProfile" ToRole="File" />
         </EntityType>
         <EntityContainer Name="ConferenceAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Program" EntityType="Self.Program" />
@@ -437,6 +455,10 @@
             <End Role="Conversation" EntitySet="Conversation" />
           </AssociationSet>
           <EntitySet Name="Exhibition" EntityType="ConferenceAppNewModel.Exhibition" />
+          <AssociationSet Name="FK_File_UserProfile" Association="ConferenceAppNewModel.FK_File_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="File" EntitySet="File" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="File">
           <Key>
@@ -448,6 +470,8 @@
           <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="FileUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="SpeakerId" Type="Int32" />
+          <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_File_UserProfile" FromRole="File" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="ProgramPeople">
           <Key>
@@ -683,6 +707,18 @@
           <Property Name="ExhibitorName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
         </EntityType>
+        <Association Name="FK_File_UserProfile">
+          <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+          <End Type="ConferenceAppNewModel.File" Role="File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="File">
+              <PropertyRef Name="SpeakerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -730,6 +766,7 @@
           <EntitySetMapping Name="File">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.File">
               <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="SpeakerId" ColumnName="SpeakerId" />
                 <ScalarProperty Name="FileUrl" ColumnName="FileUrl" />
                 <ScalarProperty Name="FileType" ColumnName="FileType" />
                 <ScalarProperty Name="FileName" ColumnName="FileName" />

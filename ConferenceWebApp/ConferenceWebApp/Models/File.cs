@@ -20,5 +20,8 @@ namespace ConferenceWebApp.Models
         public string FileName { get; set; }
         public string FileType { get; set; }
         public string FileUrl { get; set; }
+        public Nullable<int> SpeakerId { get; set; }
+    
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

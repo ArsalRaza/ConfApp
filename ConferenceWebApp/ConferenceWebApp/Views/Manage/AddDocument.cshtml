@@ -16,6 +16,7 @@
         <tr><td>@Html.DisplayNameFor(m => m.Title):</td><td>@Html.TextBoxFor(m => m.Title)</td><td>@Html.ValidationMessageFor(m => m.Title)</td></tr>
         <tr><td>@Html.DisplayNameFor(m => m.Description):</td><td>@Html.TextAreaFor(m => m.Description)</td><td>@Html.ValidationMessageFor(m => m.Description)</td></tr>
 
+        <tr><td>@Html.DisplayNameFor(m => m.SpeakerId):</td><td>@Html.DropDownListFor(m => m.SpeakerId, new SelectList(ViewBag.Speakers, "ID", "Name"), "Select Speaker")</td><td>@Html.ValidationMessageFor(m => m.SpeakerId)</td></tr>
 
         <tr><td>@Html.DisplayNameFor(m => m.UploadFile):</td><td><input type="file" data-val="true" data-val-required="please select a file" name="UploadFile" id="UploadFile" /></td><td>@Html.ValidationMessage("UploadFile")</td></tr>
 

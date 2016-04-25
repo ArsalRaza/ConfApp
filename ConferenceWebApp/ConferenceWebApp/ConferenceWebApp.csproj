@@ -228,7 +228,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Master\chat\css\normalize.css" />
-    <Content Include="Master\chat\css\style.css" />
+    <Content Include="Master\chat\css\chatStyle.css" />
     <Content Include="Master\chat\js\index.js" />
     <Content Include="Master\chat\js\modernizr.js" />
     <Content Include="Master\chat\js\prefixfree.min.js" />
@@ -670,6 +670,7 @@
     <Content Include="Views\Home\ExhibitorsList.cshtml" />
     <Content Include="Views\Home\FloorPlan.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\FilesOfSpeaker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

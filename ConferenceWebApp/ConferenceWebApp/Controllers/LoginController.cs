@@ -15,7 +15,7 @@ namespace ConferenceWebApp.Controllers
     {
         //
         // GET: /Login/
-        public ActionResult Index(string From)
+        public ActionResult Index(string ControllerName, string ActionName)
         {
             ViewBag.Title = PageTitles.LoginPage + PageTitles.AppTitle;
             if (AuthenticationHelper.IsUserLogin)
@@ -28,12 +28,11 @@ namespace ConferenceWebApp.Controllers
                 }
                 else if (Role.Equals(Constants.Roles.User) || Role.Equals(Constants.Roles.Speaker))
                 {
-                    if (!string.IsNullOrEmpty(From))
+                    if (!string.IsNullOrEmpty(ControllerName) && !string.IsNullOrEmpty(ActionName))
                     {
-                        if (From.Equals("MyAgenda"))
-                        {
-                            return RedirectToAction("MyAgenda", "Home");
-                        }
+                        
+                            return RedirectToAction(ActionName, ControllerName);
+                        
                     }
                     else
                     {
@@ -52,7 +51,7 @@ namespace ConferenceWebApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LoginModel model, string From)
+        public ActionResult Index(LoginModel model, string ControllerName, string ActionName)
         {
             ViewBag.Title = PageTitles.LoginPage + PageTitles.AppTitle;
             UserProfile user = new ConferenceAppEntities().UserProfile.FirstOrDefault(i => i.Username == model.Username && i.Password == model.Password);
@@ -73,12 +72,11 @@ namespace ConferenceWebApp.Controllers
                 }
                 else if (Role.Equals(Constants.Roles.User) || Role.Equals(Constants.Roles.Speaker))
                 {
-                    if (!string.IsNullOrEmpty( From))
+                    if (!string.IsNullOrEmpty(ControllerName) && !string.IsNullOrEmpty(ActionName))
                     {
-                        if (From.Equals("MyAgenda"))
-                        {
-                            return RedirectToAction("MyAgenda", "Home");
-                        }
+
+                        return RedirectToAction(ActionName, ControllerName);
+
                     }
                     else
                     {

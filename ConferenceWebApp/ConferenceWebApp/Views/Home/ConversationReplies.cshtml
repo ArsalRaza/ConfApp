@@ -3,107 +3,48 @@
     Layout = null;
 }
 
-@*<!DOCTYPE HTML>
+<link href="~/Master/chat/css/normalize.css" rel="stylesheet" />
 
-        <html>
-        <head>
-            <meta name="viewport" content="width=device-width" />
-            <title>ConversationReplies</title>
-        </head>
-        <body>
-            <div>
-            </div>
-        </body>
-    </html>*@
+<script src="~/Master/chat/js/index.js"></script>
+<script src="~/Master/chat/js/modernizr.js"></script>
+<script src="~/Master/chat/js/prefixfree.min.js"></script>
+<link href="~/Master/chat/css/chatStyle.css" rel="stylesheet" />
 
-    @Html.Hidden("ConversationId", (object)ViewBag.ConversationId)
+@Html.Hidden("ConversationId", (object)ViewBag.ConversationId)
 
-
-<div class="containerChat">
-
-    @foreach (var ConversationReply in Model)
-    {
-        
-         if (@ConversationReply.UserId == @ConferenceWebApp.BL.Helper.AuthenticationHelper.GetUserId())
+<div class="chatheader">Messages</div>
+<div class="container containerchat">
+    <div class="row">
+        @foreach (var ConversationReply in Model)
         {
-
-            <div class="Area">
-                <div class="L">
-                    <a href="https://twitter.com/SamiMassadeh">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
-                        <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
-                    </a>
+            if (@ConversationReply.UserId == @ConferenceWebApp.BL.Helper.AuthenticationHelper.GetUserId())
+            {
+                <div class="Area col-xs-12 col-xs-offset-0">
+                    <div class="L">
+                        <a href="">
+                            <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ProfileImagesPath/@ConversationReply.UserProfile.Photo" />
+                            <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
+                        </a>
+                    </div>
+                    <div class="text R textR">
+                        @ConversationReply.Reply
+                    </div>
                 </div>
-                <div class="text R textR">
-                    @ConversationReply.Reply
+            }
+            else
+            {
+                <div class="Area col-xs-12 col-xs-offset-0">
+                    <div class="R">
+                        <a href="">
+                            <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ProfileImagesPath/@ConversationReply.UserProfile.Photo" />
+                            <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
+                        </a>
+                    </div>
+                    <div class="text L textL">
+                        @ConversationReply.Reply
+                    </div>
                 </div>
-            </div>
+            }
         }
-        else
-        {
-            <div class="Area">
-                <div class="R">
-                    <a href="https://twitter.com/SamiMassadeh">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
-                        <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
-                    </a>
-                </div>
-                <div class="text L textL">
-                    @ConversationReply.Reply
-                </div>
-            </div>
-
-        }
-
-
-
-
-        @*<div class="Area">
-                <div class="R">
-                    <a href="https://twitter.com/MariamMassadeh">
-                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5" />
-                        <div class="tooltip">Mariam Massadeh - 23 Years<br />Computer Engineer<br />Jordan</div>
-                    </a>
-                </div>
-                <div class="text L textL">
-                    Hi Sami, Fine, Thank You, How Are You?
-                </div>
-            </div>
-            <div class="Area">
-                <div class="L">
-                    <a href="https://twitter.com/SamiMassadeh">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrEyVlaWx0_FK_sz86j-CnUC_pfEqw_Xq_xZUm5CMIyEI_-X2hRUpx1BHL" />
-                        <div class="tooltip">Sami Massadeh - 28 Years<br />Doctor <br />Jordan</div>
-                    </a>
-                </div>
-                <div class="text R textR">
-                    Fine, Can I see you tomorrow?
-                </div>
-            </div>
-            <div class="Area">
-                <div class="R">
-                    <a href="https://twitter.com/MariamMassadeh">
-                        <img src="https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcSxU35znsBhAWQd5BouLIVtH1P4WNa0JZ_XXpyViHOIARbM2igbNgC6_kp5" />
-                        <div class="tooltip">Mariam Massadeh - 23 Years<br />Computer Engineer<br />Jordan</div>
-                    </a>
-                </div>
-                <div class="text L textL">
-                    sure, Yes I can,
-                    t.c
-                </div>
-            </div>
-            <div class="Area">
-                <textarea placeholder="Participate in coversation"></textarea>
-                <br /><br />
-                <input type="button" onclick="clickX()" value="SEND" />
-                <div class="validation">You Are Not Registered</div>
-                <br />
-                <p class="note">* for any help return to adminstrator..</p>
-            </div>*@
-
-
-
-
-    }
-
+    </div>
 </div>

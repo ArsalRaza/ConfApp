@@ -34,6 +34,7 @@ namespace ConferenceWebApp.Models
         public string Profile { get; set; }
         public string Designation { get; set; }
         public string Organization { get; set; }
+        public Nullable<byte> IsReset { get; set; }
     
         public virtual ICollection<ProgramPeople> ProgramPeople { get; set; }
         public virtual ICollection<Conversation_reply> Conversation_reply { get; set; }

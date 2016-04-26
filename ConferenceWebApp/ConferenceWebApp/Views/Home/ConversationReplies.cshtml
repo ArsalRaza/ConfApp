@@ -21,8 +21,11 @@
             {
                 <div class="Area col-xs-12 col-xs-offset-0">
                     <div class="L">
-                        <a href="">
-                            <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ProfileImagesPath/@ConversationReply.UserProfile.Photo" />
+                        <a href=""> 
+                            <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ProfileImagesPath/@if (string.IsNullOrEmpty(@ConversationReply.UserProfile.Photo))
+                                      {@ConversationReply.UserProfile.Photo}
+                                      else
+                                      { @Html.Raw("NoImage.png") }" />
                             <div class="tooltip">@ConversationReply.UserProfile.Name<br />@ConversationReply.UserProfile.Designation <br /></div>
                         </a>
                     </div>

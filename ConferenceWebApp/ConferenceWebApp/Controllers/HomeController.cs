@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Data.Entity;
 using ConferenceWebApp.BL.Constants;
 using ConferenceWebApp.Models.FormModels.HomeModels;
+using ConferenceWebApp.Models.FormModels.MembershipModel;
 
 namespace ConferenceWebApp.Controllers
 {
@@ -121,7 +122,7 @@ namespace ConferenceWebApp.Controllers
 
                 ViewBag.speakersUserProfiles = await DBContext.UserProfile.Where(x => x.Role == Constants.Roles.Speaker).ToListAsync();
 
-                ViewBag.ParticipantsUserProfiles = await DBContext.UserProfile.Where(x => x.Role == Constants.Roles.User).ToListAsync(); 
+                ViewBag.ParticipantsUserProfiles = await DBContext.UserProfile.Where(x => x.Role == Constants.Roles.User).ToListAsync();
 
                 return View(Conversations);
             }
@@ -229,7 +230,7 @@ namespace ConferenceWebApp.Controllers
 
         public async Task<ActionResult> AboutSpeaker(int SpeakerId)
         {
-            
+
 
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
@@ -312,11 +313,11 @@ namespace ConferenceWebApp.Controllers
         {
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                List<SponsorsAndPartners> Partners =  await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
-                
+                List<SponsorsAndPartners> Partners = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
+
                 var PartnerCategoryIds = Partners.Select(x => x.CategoryID).ToList();
                 ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
-                
+
                 return View(Partners);
             }
         }
@@ -422,7 +423,7 @@ namespace ConferenceWebApp.Controllers
 
         public async Task<ActionResult> Exhibition()
         {
-            
+
             return View();
         }
 
@@ -439,7 +440,7 @@ namespace ConferenceWebApp.Controllers
         {
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-            //    List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
+                //    List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
                 return View();
             }
         }
@@ -448,6 +449,113 @@ namespace ConferenceWebApp.Controllers
         {
 
             return View();
+        }
+
+        public async Task<ActionResult> ForgotPassword()
+        {
+
+            //IndexListModel IndexListModel = new IndexListModel();
+            //using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            //{
+
+            //    IndexListModel.ConferenceDetail = await DBContext.Conference.FirstOrDefaultAsync();
+
+            //}
+
+            return View();
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ForgotPassword(ForgotPasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    UserProfile user = await DBContext.UserProfile.FirstOrDefaultAsync(i => i.Username == model.Username);
+
+                    if (user != null)
+                    {
+                        string Password = RandomPassword.Generate(8, 10);
+                        user.Password = Password;
+
+                        user.IsReset = 1;
+
+                        //Send Email
+
+
+                        await DBContext.SaveChangesAsync();
+                        return RedirectToAction("Index", "Login");
+                    }
+                    else
+                    {
+                        ViewBag.Error = "The Username/Email do not exist";
+                    }
+
+
+                }
+            }
+            return View();
+
+        }
+
+        public async Task<ActionResult> ChangePassword()
+        {
+
+            //IndexListModel IndexListModel = new IndexListModel();
+            //using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            //{
+
+            //    IndexListModel.ConferenceDetail = await DBContext.Conference.FirstOrDefaultAsync();
+
+            //}
+
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<ActionResult> ChangePassword(ChangePasswordModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+                {
+                    int CurrentUserId = AuthenticationHelper.GetUserId();
+                    UserProfile user = await DBContext.UserProfile.FirstOrDefaultAsync(i => i.ID == CurrentUserId);
+
+                    if (user != null)
+                    {
+                        if (user.Password.Equals(model.CurrentPassword))
+                        {
+                            user.Password = model.NewPassword;
+                            user.IsReset = 0;
+
+                            await DBContext.SaveChangesAsync();
+
+                            return RedirectToAction("Index", "Login");
+                        }
+                        else
+                        {
+                            ViewBag.Error = "Your current password is incorrect.";
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Error = "The Username/Email do not exist";
+                    }
+
+
+                }
+            }
+            return View();
+
+        }
+
+        public FileResult Download(string FileName)
+        {
+            return File(Constants.FilePaths.DocumentServerRelativePath + FileName, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
 
 

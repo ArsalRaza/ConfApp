@@ -38,6 +38,7 @@ namespace ConferenceWebApp.Controllers
                     {
                         return RedirectToAction("Index", "Home");
                     }
+
                 }
 
                 else
@@ -65,18 +66,21 @@ namespace ConferenceWebApp.Controllers
 
                 string Role = AuthenticationHelper.GetRole();
 
-
                 if (Role.Equals(Constants.Roles.SiteAdmin))
                 {
                     return RedirectToAction("Index", "Manage");
                 }
+
                 else if (Role.Equals(Constants.Roles.User) || Role.Equals(Constants.Roles.Speaker))
                 {
+                    if (user.IsReset == 1)
+                    {
+                        return RedirectToAction("ChangePassword", "Home");
+                    }
                     if (!string.IsNullOrEmpty(ControllerName) && !string.IsNullOrEmpty(ActionName))
                     {
 
                         return RedirectToAction(ActionName, ControllerName);
-
                     }
                     else
                     {

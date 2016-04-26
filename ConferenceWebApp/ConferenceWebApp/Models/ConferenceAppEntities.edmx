@@ -140,6 +140,7 @@
           <Property Name="Profile" Type="varchar(max)" />
           <Property Name="Designation" Type="varchar" MaxLength="100" />
           <Property Name="Organization" Type="varchar" MaxLength="200" />
+          <Property Name="IsReset" Type="tinyint" />
         </EntityType>
         <Association Name="FK_Conference_Program">
           <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
@@ -396,6 +397,7 @@
           <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
           <NavigationProperty Name="File" Relationship="ConferenceAppNewModel.FK_File_UserProfile" FromRole="UserProfile" ToRole="File" />
+          <Property Name="IsReset" Type="Byte" />
         </EntityType>
         <EntityContainer Name="ConferenceAppEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Program" EntityType="Self.Program" />
@@ -750,6 +752,7 @@
           <EntitySetMapping Name="UserProfile">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfile">
+                <ScalarProperty Name="IsReset" ColumnName="IsReset" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

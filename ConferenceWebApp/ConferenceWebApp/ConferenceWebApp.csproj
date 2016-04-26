@@ -138,6 +138,7 @@
     <Compile Include="BL\Helper\AuthenticationHelper.cs" />
     <Compile Include="BL\Helper\EncryptionHelper.cs" />
     <Compile Include="BL\Helper\Helper.cs" />
+    <Compile Include="BL\Helper\RandomPassword.cs" />
     <Compile Include="BL\Helper\SessionHelper.cs" />
     <Compile Include="Controllers\AppController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -671,6 +672,8 @@
     <Content Include="Views\Home\FloorPlan.cshtml" />
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Home\FilesOfSpeaker.cshtml" />
+    <Content Include="Views\Home\ForgotPassword.cshtml" />
+    <Content Include="Views\Home\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

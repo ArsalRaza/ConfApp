@@ -16,9 +16,9 @@
         <tr><td>@ViewBag.Error</td></tr>
 
         <tr><td>@Html.DisplayNameFor(m => m.ProgramName):</td><td>@Html.TextBoxFor(m => m.ProgramName)</td><td>@Html.ValidationMessageFor(m => m.ProgramName)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.ProgramDescription):</td><td>@Html.TextAreaFor(m => m.ProgramDescription)</td><td>@Html.ValidationMessageFor(m => m.ProgramDescription)</td></tr>
-
         
+        <tr><td>@Html.DisplayNameFor(m => m.ProgramDescription):</td><td>@Html.TextAreaFor(m => m.ProgramDescription, new { @class = "form-control", @cols = "80", @rows = "20" })</td><td>@Html.ValidationMessageFor(m => m.ProgramDescription)</td></tr>
+
         <tr><td>@Html.DisplayNameFor(m => m.ProgramDay):</td><td>@Html.DropDownListFor(m => m.ProgramDay, (SelectList)ViewBag.Days)</td><td>@Html.ValidationMessageFor(m => m.ProgramDay)</td></tr>
 
         <tr><td>@Html.DisplayNameFor(m => m.StartTime):</td><td>@Html.TextBoxFor(m => m.StartTime, new { type = "time" })</td><td>@Html.ValidationMessageFor(m => m.StartTime)</td></tr>

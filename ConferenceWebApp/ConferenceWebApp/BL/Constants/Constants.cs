@@ -31,7 +31,7 @@ namespace ConferenceWebApp.BL.Constants
             public static string VideoPath = "/Files/Videos";
             public static string AudioPath = "/Files/Audios";
             public static string DocumentPath = "/Files/Presentations";
-            public static string PicturePath = "/Files/Pictures";
+            public static string PicturePath = "/Files/Pictures/";
             public static string SponsorAndPartnerImagesPath = "/Files/SponsorAndPartnerImages";
             public static string OrganizersImagePath = "/Files/Organizers/";
         }

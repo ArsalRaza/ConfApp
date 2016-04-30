@@ -1,0 +1,20 @@
+﻿@model List<ConferenceWebApp.Models.SponsorPartnerCategory>
+
+@{
+    ViewBag.Title = "ViewPartnerCategory";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>Partner Categories</h2>
+
+@Html.ActionLink("Add New Partner Category", "AddPartnerCategory", "Manage") <br /><br />
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 100, defaultSort: "ID");
+    grid.Pager(WebGridPagerModes.All);
+    @grid.GetHtml(tableStyle: "table striped bordered hovered", headerStyle: "text-left", htmlAttributes: new { id = "UsersList" }, columns: grid.Columns(
+                    grid.Column("CategoryName"),
+                    grid.Column("Sequence"),
+            grid.Column(header: "Edit", format: @<text>@Html.ActionLink("Edit", "EditPartnerCategory", "Manage", new { PartnerCateogryId = item.ID }, new { target = "_self" })</text>)));
+
+}

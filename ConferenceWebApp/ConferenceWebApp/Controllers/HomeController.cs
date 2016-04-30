@@ -303,7 +303,7 @@ namespace ConferenceWebApp.Controllers
                 List<SponsorsAndPartners> Sponsors = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Sponsor).ToListAsync();
 
                 var PartnerCategoryIds = Sponsors.Select(x => x.CategoryID).ToList();
-                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).OrderBy(x => x.Sequence).ToListAsync();
 
                 return View(Sponsors);
             }
@@ -316,7 +316,7 @@ namespace ConferenceWebApp.Controllers
                 List<SponsorsAndPartners> Partners = await DBContext.SponsorsAndPartners.Include(y => y.SponsorPartnerCategory).Where(x => x.SponsorPartnerCategory.CategoryType == Constants.SponsorAndPartnerCategoryTypes.Partner).ToListAsync();
 
                 var PartnerCategoryIds = Partners.Select(x => x.CategoryID).ToList();
-                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).ToListAsync();
+                ViewBag.PartnerCategory = await DBContext.SponsorPartnerCategory.Where(x => PartnerCategoryIds.Contains(x.ID)).OrderBy(x => x.Sequence).ToListAsync();
 
                 return View(Partners);
             }
@@ -440,8 +440,8 @@ namespace ConferenceWebApp.Controllers
         {
             using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
             {
-                //    List<Exhibition> Exhibitors = await DBContext.Exhibition.ToListAsync();
-                return View();
+                
+                return View(await DBContext.Conference.FirstOrDefaultAsync());
             }
         }
 
@@ -483,7 +483,7 @@ namespace ConferenceWebApp.Controllers
                         user.IsReset = 1;
 
                         //Send Email
-
+                        Helper.SendEmail(user.Email, user.Name, Password);
 
                         await DBContext.SaveChangesAsync();
                         return RedirectToAction("Index", "Login");
@@ -545,8 +545,6 @@ namespace ConferenceWebApp.Controllers
                     {
                         ViewBag.Error = "The Username/Email do not exist";
                     }
-
-
                 }
             }
             return View();
@@ -557,9 +555,6 @@ namespace ConferenceWebApp.Controllers
         {
             return File(Constants.FilePaths.DocumentServerRelativePath + FileName, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
-
-
-
 
         public ActionResult About()
         {

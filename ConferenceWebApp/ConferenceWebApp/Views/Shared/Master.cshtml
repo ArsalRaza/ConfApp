@@ -287,5 +287,13 @@
 <script type='text/javascript' src='https://maps.googleapis.com/maps/api/js?v=3&amp;libraries=places&amp;ver=4.4.2'></script>
 @*<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
 <link rel='stylesheet' id='woocommerce-general-css' href='../master/wp-content/plugins/woocommerce/assets/css/woocommerce16b9.css?ver=2.5.2' type='text/css' media='all' />
+<script>
+    jQuery(document).ready(function () {
 
+        var obj2 = { json: "" };
+        getMenu(obj2);
+        console.log(obj2.json);
+        Conf.makeToolbar(obj2.json);
+    });
+</script>
 

@@ -109,11 +109,26 @@ namespace ConferenceWebApp.Controllers
                         NewUserProfile.Photo = NewUserProfile.ID.ToString() + Path.GetExtension(model.ProfileImage.FileName);
                         await DBContext.SaveChangesAsync();
                     }
-                    ViewBag.Status = "The profile of " + model.Name + " have been successfully created.";
+
+                    return RedirectToAction("Index", "Login", new {status = "Your registration have been succesfully done" });
+                    
                 }
             }
             return View();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+
+        public JsonResult IsEmailExists(string Email)
+        {
+            using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
+            {
+                bool result = DBContext.UserProfile.Any(i => i.Username == Email);
+                return Json(!result, JsonRequestBehavior.AllowGet);
+            }
+        }
+        
 
     }
 }

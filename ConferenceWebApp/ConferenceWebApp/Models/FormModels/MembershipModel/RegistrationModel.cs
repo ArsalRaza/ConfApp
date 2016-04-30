@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace ConferenceWebApp.Models.FormModels.MembershipModel
 {
@@ -22,7 +23,7 @@ namespace ConferenceWebApp.Models.FormModels.MembershipModel
         [Required(ErrorMessage = "(Required)")]
         [StringLength(50, ErrorMessage = "Must be less than {1} characters.")]
         [EmailAddress(ErrorMessage = "Invalid Email")]
-        //[System.Web.Mvc.Remote("IsEmailExists", "Membership", HttpMethod = "POST", ErrorMessage = "There is already an account with this Email")]
+        [Remote("IsEmailExists", "Membership", ErrorMessage = "There is already an account with this Email")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

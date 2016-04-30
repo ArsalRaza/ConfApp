@@ -62,10 +62,10 @@ function getMenu(Parameter) {
 
         if (  index != 12) {
             if (index == 0) {
-                menujson += '{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl(\'' + jQuery(this).find('a').attr('href') + '\');"}';
+                menujson += '{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:window.location.href=\'' + jQuery(this).find('a').attr('href') + '\';"}';
             }
             else {
-                menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:GotoUrl(\'' + jQuery(this).find('a').attr('href') + '\');"}';
+                menujson += ',{"name": "' + jQuery(this).find('a').text() + '", ' + '"function":"javascript:window.location.href=\'' + jQuery(this).find('a').attr('href') + '\';"}';
             }
         }
         else {

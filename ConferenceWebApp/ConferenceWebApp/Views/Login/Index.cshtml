@@ -31,7 +31,9 @@
                                     <div class="form leadform leadform-3 align-left">
                                         <div class="form-group">
                                             <div class="col-sm-12">
+                                                @Request.QueryString["Status"]<br />
                                                 @ViewBag.Error <br />
+                                               
                                                 @Html.ValidationMessageFor(m => m.Username, null, new { @class = "text-danger field-validation-error" })
                                                 <span class="wpcf7-form-control-wrap FNAME">
                                                     
@@ -51,7 +53,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-12">
                                                 <span class="wpcf7-form-control-wrap your-message">
-                                                   @Html.CheckBoxFor(m => m.RememberMe) &nbsp; @Html.DisplayNameFor(m => m.RememberMe)
+                                                   @Html.CheckBoxFor(m => m.RememberMe) &nbsp; @Html.DisplayNameFor(m => m.RememberMe) &nbsp; | &nbsp; @Html.ActionLink("Forgot Password", "ForgotPassword", "Home")
                                                 </span>
                                                
                                             </div>

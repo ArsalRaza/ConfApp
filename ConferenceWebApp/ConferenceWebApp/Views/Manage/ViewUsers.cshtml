@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "ViewUsers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -18,6 +17,10 @@
                     grid.Column("Designation"),
                             grid.Column("Role"),
             grid.Column(header: "Edit", format: @<text>@Html.ActionLink("Edit", "EditUserDetails", "Manage", new { UserId = item.ID }, new { target = "_self" })</text>),
-            grid.Column(header: "Delete", format: @<text>@Html.ActionLink("Delete", "DeleteUser", "Manage", new { UserId = item.ID }, new { target = "_self", onClick = "return ConfirmDelete('User');" })</text>)));
+            grid.Column(header: "Delete", format: @<text>@Html.ActionLink("Delete", "DeleteUser", "Manage", new { UserId = item.ID }, new { target = "_self", onClick = "return ConfirmDelete('User');" })</text>),
+            grid.Column(header: "Change Password", format: @<text>@Html.ActionLink("Change Password", "ChangePasswordFromAdmin", "Manage", new { UserId = item.ID }, new { target = "_self", })</text>)
+
+
+             ));
 
 }

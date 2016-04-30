@@ -116,6 +116,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CategoryName" Type="varchar" MaxLength="200" />
           <Property Name="CategoryType" Type="varchar" MaxLength="100" />
+          <Property Name="Sequence" Type="int" />
         </EntityType>
         <EntityType Name="SponsorsAndPartners">
           <Key>
@@ -621,6 +622,7 @@
           <Property Name="CategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="CategoryType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="SponsorsAndPartners" Relationship="ConferenceAppNewModel.FK_Sponsors_Sponsors" FromRole="SponsorPartnerCategory" ToRole="SponsorsAndPartners" />
+          <Property Name="Sequence" Type="Int32" />
         </EntityType>
         <EntityType Name="SponsorsAndPartners">
           <Key>
@@ -832,6 +834,7 @@
           <EntitySetMapping Name="SponsorPartnerCategory">
             <EntityTypeMapping TypeName="ConferenceAppNewModel.SponsorPartnerCategory">
               <MappingFragment StoreEntitySet="SponsorPartnerCategory">
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
                 <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
                 <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />

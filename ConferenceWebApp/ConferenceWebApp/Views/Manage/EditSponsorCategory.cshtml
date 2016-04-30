@@ -1,0 +1,21 @@
+﻿@model ConferenceWebApp.Models.FormModels.ManageModel.SponsorAndPartnerCategoryModel
+@{
+    ViewBag.Title = "EditSponsorCategory";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<h2>EditSponsorCategory</h2>
+
+@using (Html.BeginForm())
+{
+
+    <table>
+        @Html.HiddenFor(m => m.Id)
+        <tr><td>@ViewBag.Error</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.CategoryName):</td><td>@Html.TextBoxFor(m => m.CategoryName)</td><td>@Html.ValidationMessageFor(m => m.CategoryName)</td></tr>
+        <tr><td>@Html.DisplayNameFor(m => m.Sequence):</td><td>@Html.TextBoxFor(m => m.Sequence, new { type = "number" })</td><td>@Html.ValidationMessageFor(m => m.Sequence)</td></tr>
+        <tr><td></td><td></td><td><input type="submit" class="button default" value="Save" /></td></tr>
+    </table>
+
+
+}

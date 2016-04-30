@@ -258,6 +258,11 @@
     <Content Include="Master\CKEditor\skins\moono\images\lock.png" />
     <Content Include="Master\CKEditor\skins\moono\images\refresh.png" />
     <Content Include="Master\CKEditor\skins\moono\images\spinner.gif" />
+    <Content Include="Master\ImageZoomer\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Master\ImageZoomer\dist\main.css" />
+    <Content Include="Master\ImageZoomer\dist\main.js" />
+    <Content Include="Master\ImageZoomer\dist\viewer.min.css" />
+    <Content Include="Master\ImageZoomer\dist\viewer.min.js" />
     <Content Include="Master\wp-content\plugins\contact-form-7\includes\css\styles5b31.css" />
     <Content Include="Master\wp-content\plugins\contact-form-7\includes\js\jquery.form.mind03d.js" />
     <Content Include="Master\wp-content\plugins\contact-form-7\includes\js\scripts5b31.js" />
@@ -575,10 +580,21 @@
     <Content Include="Master\wp-json\oembed\1.0\embedf9e3" />
     <Content Include="Master\wp-json\oembed\1.0\embedfc4e" />
     <Content Include="Master\CKEditor\skins\moono\readme.md" />
+    <Content Include="Master\ImageZoomer\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Master\ImageZoomer\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Master\ImageZoomer\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Master\ImageZoomer\assets\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Custom.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <None Include="Scripts\jquery-2.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-2.1.1.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -674,6 +690,11 @@
     <Content Include="Views\Home\FilesOfSpeaker.cshtml" />
     <Content Include="Views\Home\ForgotPassword.cshtml" />
     <Content Include="Views\Home\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\ViewSponsorCategory.cshtml" />
+    <Content Include="Views\Manage\EditSponsorCategory.cshtml" />
+    <Content Include="Views\Manage\ViewPartnerCategory.cshtml" />
+    <Content Include="Views\Manage\EditPartnerCategory.cshtml" />
+    <Content Include="Views\Manage\ChangePasswordFromAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

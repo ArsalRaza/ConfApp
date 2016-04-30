@@ -29,7 +29,7 @@
                                 <li id="menu-item-2647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2647">@Html.ActionLink("Keynote Members", "SpeakerCategories", "App")</li>
                                 <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Schedule", "Schedule", "Home")</li>
                                 <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Sponsors", "Sponsors", "Home")</li>
-                                
+
                                 @*<li id="menu-item-2653" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-2653">
                                         <a href="shortcodes/index.html">Shortcodes</a>
                                         <ul class="sub-menu">
@@ -75,7 +75,7 @@
                                                 <li id="menu-item-2656" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2656">@Html.ActionLink("Reports and Presentations", "Files", "Home")</li>
                                             </ul>
                                         </li>
-                                    <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Messages", "Message", "Home")</li>
+                                        <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Messages", "Message", "Home")</li>
                                     }
                                 }
                             </ul>
@@ -89,21 +89,24 @@
 </header>
 
 <ul id="MobileMenu" style="display:none">
-    <li id="" class="">@Html.ActionLink("Home", "Index", "Home")</li>
-    <li id="" class="">@Html.ActionLink("Location and Venue", "Contact", "Home")</li>
-    <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646">@Html.ActionLink("Program", "Schedule", "Home")</li>
-    <li id="menu-item-2647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2647">@Html.ActionLink("Speakers", "SpeakerCategories", "App")</li>
-    <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("My Agenda", "MyAgenda", "Home", new { From = "MyAgenda" }, null)
-    <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652">@Html.ActionLink("Exhibition", "Exhibition", "Home")
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Partners", "Partners", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Sponsors", "Sponsors", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Abstract", "Files", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Networking", "Message", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Gallery", "Gallery", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="http://twitter.com" >Twitter</a></li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Survey and Polls", "Survey", "Home")</li>
-    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649">@Html.ActionLink("Conference Organizers", "Organizers", "Home")</li>
-
+    <li id="" class=""><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Index">Home</a> </li>
+    <li id="" class=""><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Contact">Location and Venue</a></li>
+    <li id="menu-item-2646" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2646"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Schedule">Program</a></li>
+    <li id="menu-item-2647" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2647"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/App/SpeakerCategories">Speakers</a></li>
+    <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/MyAgenda">My Agenda</a></li>
+    <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Exhibition">Exhibition</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Partners">Partners</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Sponsors">Sponsors</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Files">Abstract</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Message">Networking</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Gallery">Gallery</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="http://twitter.com">Twitter</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Survey">Survey and Polls</a></li>
+    <li id="menu-item-2649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2649"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Home/Organizers">Conference Organizers</a></li>
+    @if (ConferenceWebApp.BL.Helper.AuthenticationHelper.IsUserLogin)
+    {
+        <li id="menu-item-2652" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2652"><a href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)/Login/Logout">Logout</a></li>
+    }
 </ul>
 
 

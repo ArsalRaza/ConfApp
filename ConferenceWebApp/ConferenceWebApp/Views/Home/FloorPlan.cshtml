@@ -1,8 +1,44 @@
-﻿
+﻿@model ConferenceWebApp.Models.Conference
 @{
-    ViewBag.Title = "FloorPlan";
+    ViewBag.Title = "Floor Plan";
     Layout = "~/Views/Shared/Master.cshtml";
 }
+<link href="~/Master/ImageZoomer/dist/viewer.min.css" rel="stylesheet" />
+<script src="~/Master/ImageZoomer/dist/viewer.min.js"></script>
+<link href="~/Master/ImageZoomer/dist/main.css" rel="stylesheet" />
+<script src="~/Master/ImageZoomer/dist/main.js"></script>
 
-<h2>FloorPlan</h2>
+<br />
+<div class="vc_col-sm-12 wpb_column column_container  ">
+    <div class="wpb_wrapper">
+        <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
+            <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey"><span class="vc_icon_element-icon icon icon-office-21"></span></div>
+        </div>
+        <h3 style="text-align: center" class="vc_custom_heading">Floor Plan</h3><p style="color: #8d93a0;text-align: center" class="vc_custom_heading">
+            @if (string.IsNullOrEmpty(Model.FloorPlanText) && string.IsNullOrEmpty(Convert.ToString(Model.FloorPlanImage)))
+            {
+                @Html.Raw("No Floor plan available")
+            }
+        </p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="docs-galley">
+        <ul class="docs-pictures clearfix">
+            @if (!string.IsNullOrEmpty(Convert.ToString(Model.FloorPlanImage)))
+            {
+                <li><img data-original="@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath@Model.FloorPlanImage" src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath@Model.FloorPlanImage" alt=""></li>
+            }
+        </ul>
+
+        @if (!string.IsNullOrEmpty(Model.FloorPlanText))
+        {
+            <p>Model.FloorPlanText</p>
+        }
+
+
+    </div>
+</div>
+
 

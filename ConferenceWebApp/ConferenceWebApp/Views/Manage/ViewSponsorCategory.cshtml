@@ -2,17 +2,23 @@
 
 @{
     ViewBag.Title = "Sponsor Categories";
-    Layout = "~/Views/Shared/_layout.cshtml";
+    Layout = "~/Views/Shared/_adminlayout.cshtml";
 }
 
 <h2>Sponsor Categories</h2>
-@Html.ActionLink("Add New Sponsor Category", "AddSponsorCategory", "Manage") <br /><br />
-@{
-    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 100, defaultSort: "ID");
-    grid.Pager(WebGridPagerModes.All);
-    @grid.GetHtml(tableStyle: "table striped bordered hovered", headerStyle: "text-left", htmlAttributes: new { id = "UsersList" }, columns: grid.Columns(
-                    grid.Column("CategoryName"),
+
+<div class="panel panel-default">
+    <div class="panel-heading">@Html.ActionLink("Add New Sponsor Category", "AddSponsorCategory", "Manage", new { @class = "btn btn-primary btn-xs" }) </div>
+    <div class="panel-body">
+        @{
+            var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 100, defaultSort: "ID");
+            grid.Pager(WebGridPagerModes.All);
+            @grid.GetHtml(tableStyle: "table table-striped table-hover", headerStyle: "text-left", htmlAttributes: new { id = "UsersList" }, columns: grid.Columns(
+                             grid.Column("CategoryName", header: "Category Name"),
                     grid.Column("Sequence"),
             grid.Column(header: "Edit", format: @<text>@Html.ActionLink("Edit", "EditSponsorCategory", "Manage", new { SponsorCateogryId = item.ID }, new { target = "_self" })</text>)));
-           
-}
+
+        }
+    </div>
+</div>
+

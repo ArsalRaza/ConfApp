@@ -1,31 +1,65 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ConferenceModel
 @{
-    ViewBag.Title = "EditConferenceDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Conference Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>Edit Conference Details</h2>
 
-@using (Html.BeginForm())
+
+@ViewBag.Error
+
+@using (@Html.BeginForm())
 {
-    
-    <table>
-
-        <tr><td>@ViewBag.Error</td></tr>
-        @Html.HiddenFor(m => m.ID)
-        <tr><td>@Html.DisplayNameFor(m => m.ConferenceName):</td><td>@Html.TextBoxFor(m => m.ConferenceName)</td><td>@Html.ValidationMessageFor(m => m.ConferenceName)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.ConferenceDescription):</td><td>@Html.TextAreaFor(m => m.ConferenceDescription)</td><td>@Html.ValidationMessageFor(m => m.ConferenceDescription)</td></tr>
-
-
-        <tr><td>@Html.DisplayNameFor(m => m.ConferenceDate):</td><td>@Html.TextBoxFor(m => m.ConferenceDate, new { @type = "Date", @Value = Model.ConferenceDate.ToString("yyyy-MM-dd") })</td><td>@Html.ValidationMessageFor(m => m.ConferenceDate)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.EndDate):</td><td>@Html.TextBoxFor(m => m.EndDate, new { @type = "Date", @Value = Model.EndDate.ToString("yyyy-MM-dd") })</td><td>@Html.ValidationMessageFor(m => m.EndDate)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.City):</td><td>@Html.TextBoxFor(m => m.City)</td><td>@Html.ValidationMessageFor(m => m.City)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.Address):</td><td>@Html.TextBoxFor(m => m.Address)</td><td>@Html.ValidationMessageFor(m => m.Address)</td></tr>
-        @*<tr><td>@Html.DisplayNameFor(m => m.CityInformation):</td><td>@Html.TextAreaFor(m => m.CityInformation)</td><td>@Html.ValidationMessageFor(m => m.CityInformation)</td></tr>
-<tr><td>@Html.DisplayNameFor(m => m.FeeStructure):</td><td>@Html.TextAreaFor(m => m.FeeStructure)</td><td>@Html.ValidationMessageFor(m => m.FeeStructure)</td></tr>*@
-        <tr><td>@Html.DisplayNameFor(m => m.Organizer):</td><td>@Html.TextAreaFor(m => m.Organizer)</td><td>@Html.ValidationMessageFor(m => m.Organizer)</td></tr>
-        <tr><td></td><td></td><td><input type="submit" class="button default" value="Save Conference Details" /></td></tr>
-    </table>
+    @Html.HiddenFor(m => m.ID)
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ConferenceName) &nbsp; @Html.ValidationMessageFor(m => m.ConferenceName, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.ConferenceName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ConferenceName) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ConferenceDescription) &nbsp; @Html.ValidationMessageFor(m => m.ConferenceDescription, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(m => m.ConferenceDescription, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ConferenceDescription), @rows = "20" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ConferenceDate) &nbsp; @Html.ValidationMessageFor(m => m.ConferenceDate, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.ConferenceDate, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ConferenceDate),  @type = "Date", @Value = Model.ConferenceDate.ToString("yyyy-MM-dd") })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.EndDate) &nbsp; @Html.ValidationMessageFor(m => m.EndDate, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.EndDate, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ConferenceDate), @type = "Date", @Value = Model.EndDate.ToString("yyyy-MM-dd") })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.City) &nbsp; @Html.ValidationMessageFor(m => m.City, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.City) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.Address) &nbsp; @Html.ValidationMessageFor(m => m.Address, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Address), @rows = "5" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Save Conference Details</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 }
+

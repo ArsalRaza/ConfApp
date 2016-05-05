@@ -1,22 +1,31 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.CityInformationModel
 @{
-    ViewBag.Title = "EditCityInfo";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit City Info";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>City Information</h2>
+
+
 @using (@Html.BeginForm())
 {
-    <form role="form">
-        <div class="form-group">
-            <label for="email">@Html.DisplayNameFor(m => m.CityInformation):</label>&nbsp;&nbsp;<label>@Html.ValidationMessageFor(m => m.CityInformation)</label>
-
-            @Html.TextAreaFor(m => m.CityInformation, new {@class="form-control", @cols = "80", @rows = "20" })
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.CityInformation) &nbsp; @Html.ValidationMessageFor(m => m.CityInformation, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(m => m.CityInformation, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.CityInformation) + " (Optional)", @rows = "20" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Save City Information</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
         </div>
-
-        <div class="form-group">
-            <button type="submit" class="btn btn-default">Save City Information</button>
-
-        </div>
-    </form>
+    </div>
 }

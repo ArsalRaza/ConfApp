@@ -216,6 +216,8 @@ namespace ConferenceWebApp.Controllers
                     UpdateProgram.StartTime = model.StartTime;
                     UpdateProgram.EndTime = model.EndTime;
                     UpdateProgram.ProgramDescription = model.ProgramDescription;
+                    UpdateProgram.ProgramDay = Convert.ToInt32(model.ProgramDay);
+
 
                     if (!(model.ProgramDay <= 1))
                     {
@@ -1358,13 +1360,15 @@ namespace ConferenceWebApp.Controllers
             {
                 Conference ConferenceDetails = DBContext.Conference.FirstOrDefault();
 
-                if (FloorPlanImage.ContentLength < 0 || string.IsNullOrEmpty(FloorPlanText))
+                if ((FloorPlanImage != null && FloorPlanImage.ContentLength > 0) || string.IsNullOrEmpty(FloorPlanText))
                 {
                     ViewBag.Error = "Add atleast one of the following";
                 }
                 if (!string.IsNullOrEmpty(FloorPlanText))
                 {
                     ConferenceDetails.FloorPlanText = FloorPlanText;
+                    await DBContext.SaveChangesAsync();
+                    return RedirectToAction("Index", "Manage");
                 }
                 if (FloorPlanImage != null && FloorPlanImage.ContentLength > 0)
                 {
@@ -1376,11 +1380,13 @@ namespace ConferenceWebApp.Controllers
                     ConferenceDetails.FloorPlanImage = "FloorPlanImage" + Path.GetExtension(FloorPlanImage.FileName);
 
                     ConferenceDetails.FloorPlanText = FloorPlanText;
+                    await DBContext.SaveChangesAsync();
+                    return RedirectToAction("Index", "Manage");
                 }
 
-                await DBContext.SaveChangesAsync();
+                
 
-                return RedirectToAction("Index", "Manage");
+                
             }
 
 

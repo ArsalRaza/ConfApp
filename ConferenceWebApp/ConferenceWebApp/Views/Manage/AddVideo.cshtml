@@ -1,76 +1,36 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.AddVideoModel
 @{
     ViewBag.Title = "AddVideo";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
+
 
 @using (@Html.BeginForm())
 {
-
-    <div class="vc_col-sm-12 wpb_column column_container  ">
-        <div class="wpb_wrapper">
-            <div class="vc_icon_element vc_icon_element-outer vc_icon_element-align-center">
-                <div class="vc_icon_element-inner vc_icon_element-color-accent-color vc_icon_element-size-lg vc_icon_element-style- vc_icon_element-background-color-grey">
-                    @*<span class="vc_icon_element-icon icon icon-office-21"></span>*@
-                </div>
-            </div>
-            <h3 style="text-align: center" class="vc_custom_heading">Add Video</h3>
-            <p style="color: #8d93a0;text-align: center" class="vc_custom_heading">e.g. http://www.youtube.com/embed/[VIDEOID] i.e http://www.youtube.com/embed/fxCEcPxUbYA  </p>
-        </div>
-    </div>
-    @*@Html.ValidationSummary(false, "", new { @class = "text-danger" })*@
-    <div id="vsc_row_sigruqjckg" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VZJlg">
-        <div class="vc_col-sm-12 wpb_column column_container  ">
-            <div class="wpb_wrapper">
-                <div id="vsc_row_gwjnpcbksl" class="vc_row vc_inner vc_row-fluid container" style="" data-token="VqGaH">
-                    <div class="vc_col-sm-3 wpb_column column_container  ">
-                        <div class="wpb_wrapper">
-
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>Add Video</legend>
+                    <div class="form-group">
+                        <label for="inputUrl" class="col-lg-2 control-label">Youtube Video Url &nbsp; @Html.ValidationMessageFor(m => m.FileUrl, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.FileUrl, new { @class = "form-control", @placeholder = "Youtube Video Url", @type = "Url" })
                         </div>
                     </div>
-                    <div class="vc_col-sm-6 wpb_column column_container  ">
-                        <div class="wpb_wrapper">
-                            <div class="contact-form-7-data" data-token="vFpQY">
-                                <div role="form" class="wpcf7" id="wpcf7-f1561-p2040-o2" lang="en-US" dir="ltr">
-                                    <div class="screen-reader-response"></div>
-                                    <div class="form leadform leadform-3 align-left">
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                @Html.ValidationMessageFor(m => m.FileUrl, null, new { @class = "text-danger field-validation-error" })
-                                                <span class="wpcf7-form-control-wrap LNAME">
-                                                    @Html.TextBoxFor(m => m.FileUrl, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-text", @placeholder = "Youtube Video Url", @type = "Url" })
-                                                </span>
-                                                <p class="text-danger field-validation-error"> </p>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-12">
-                                                @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger field-validation-error" })
-                                                <span class="wpcf7-form-control-wrap FNAME">
-                                                    @Html.TextAreaFor(m => m.Description, new { @class = "wpcf7-form-control wpcf7-text wpcf7-validates-as-required", @placeholder = @Html.DisplayNameFor(m => m.Description) + " (Optional)", @cols = "40", @rows = "10" })
-                                                </span>
-                                            </div>
-                                        </div>
-                                        <div class="wpcf7-response-output wpcf7-display-none"> </div>
-                                    </div>
-                                    <div class="form leadform leadform-3 align-center">
-                                        <div class="form-group">
-                                            <div class="col-sm-12 col-xs-12">
-                                                <input type="submit" value="Add Video" class="wpcf7-form-control wpcf7-submit btn btn-lg" />
-                                            </div>
-                                        </div>
-                                        <div class="wpcf7-response-output wpcf7-display-none"></div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.Description) &nbsp; @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(m => m.Description, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Description) + " (Optional)", @rows = "3" })
                         </div>
                     </div>
-                    <div class="vc_col-sm-3 wpb_column column_container  ">
-                        <div class="wpb_wrapper">
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Add Video</button>
                         </div>
                     </div>
-                </div>
-            </div>
+                </fieldset>
+            </form>
         </div>
     </div>
 }

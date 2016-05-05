@@ -1,25 +1,52 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.DocumentModel
 @{
-    ViewBag.Title = "AddDocument";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Files and Presentation (Abstract)";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>Add Files and Presentation</h2>
+
+
 
 @using (Html.BeginForm("AddDocument", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
+    @ViewBag.Error
 
-    <table>
-
-        <tr><td>@ViewBag.Error</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.Title):</td><td>@Html.TextBoxFor(m => m.Title)</td><td>@Html.ValidationMessageFor(m => m.Title)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.Description):</td><td>@Html.TextAreaFor(m => m.Description)</td><td>@Html.ValidationMessageFor(m => m.Description)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.SpeakerId):</td><td>@Html.DropDownListFor(m => m.SpeakerId, new SelectList(ViewBag.Speakers, "ID", "Name"), "Select Speaker")</td><td>@Html.ValidationMessageFor(m => m.SpeakerId)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.UploadFile):</td><td><input type="file" data-val="true" data-val-required="please select a file" name="UploadFile" id="UploadFile" /></td><td>@Html.ValidationMessage("UploadFile")</td></tr>
-
-        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add File" /></td></tr>
-    </table>
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.Title) &nbsp; @Html.ValidationMessageFor(m => m.Title, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.Title, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Title) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.Description) &nbsp; @Html.ValidationMessageFor(m => m.Description, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Description) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.SpeakerId) &nbsp; @Html.ValidationMessageFor(m => m.SpeakerId, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                           @Html.DropDownListFor(m => m.SpeakerId, new SelectList(ViewBag.Speakers, "ID", "Name"), "Select Speaker", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.UploadFile) &nbsp; @Html.ValidationMessageFor(m => m.UploadFile, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            <input type="file" class="form-control" name="Image" id="Image" placeholder="@Html.DisplayNameFor(m => m.UploadFile)" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Add</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 }

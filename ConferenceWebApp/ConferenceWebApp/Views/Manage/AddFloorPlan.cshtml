@@ -2,13 +2,13 @@
 
 @{
     ViewBag.Title = "AddFloorPlan";
-    Layout = "~/Views/Shared/_layout.cshtml";
+    Layout = "~/Views/Shared/_adminlayout.cshtml";
 }
 
 <h2> Add / Edit Floor Plan </h2>
 
 
-@using (Html.BeginForm("AddFloorPlan", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@*@using (Html.BeginForm("AddFloorPlan", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
 
     <table>
@@ -27,4 +27,52 @@
         <tr><td></td><td></td><td><input type="submit" class="button default" value="Add Floor Plan" /></td></tr>
 
     </table>
+}*@
+
+@if (!string.IsNullOrEmpty(@ViewBag.Error))
+{
+    <div class="panel panel-warning">
+        <div class="panel-heading">
+            <h3 class="panel-title">&nbsp;</h3>
+        </div>
+        <div class="panel-body">
+            @ViewBag.Error
+        </div>
+    </div>
+}
+
+@using (Html.BeginForm("AddFloorPlan", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="well bs-component">
+        <form class="form-horizontal">
+            <fieldset>
+                <legend>@ViewBag.Title</legend>
+                <div class="form-group">
+                    <label for="inputText" class="col-lg-2 control-label">Current Uploaded Image</label>
+                    <div class="col-lg-10">
+                        <img src="@ConferenceWebApp.BL.Constants.Constants.FilePaths.ExhibitorImagesPath@Model.FloorPlanImage" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputText" class="col-lg-2 control-label">Image: </label>
+                    <div class="col-lg-10">
+                        <input type="file" name="FloorPlanImage" id="Image" placeholder="" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputText" class="col-lg-2 control-label">Floor Plan (Text): </label>
+                    <div class="col-lg-10">
+                        <textarea class="form-control" name="FloorPlanText" id="FloorplanText" rows="2" cols="20"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-10 col-lg-offset-2">
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+
 }

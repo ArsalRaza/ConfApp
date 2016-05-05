@@ -11,6 +11,7 @@ using System.Data.Entity;
 using ConferenceWebApp.BL.Constants;
 using ConferenceWebApp.Models.FormModels.HomeModels;
 using ConferenceWebApp.Models.FormModels.MembershipModel;
+using System.IO;
 
 namespace ConferenceWebApp.Controllers
 {
@@ -454,14 +455,6 @@ namespace ConferenceWebApp.Controllers
         public async Task<ActionResult> ForgotPassword()
         {
 
-            //IndexListModel IndexListModel = new IndexListModel();
-            //using (ConferenceAppEntities DBContext = new ConferenceAppEntities())
-            //{
-
-            //    IndexListModel.ConferenceDetail = await DBContext.Conference.FirstOrDefaultAsync();
-
-            //}
-
             return View();
 
         }
@@ -553,7 +546,12 @@ namespace ConferenceWebApp.Controllers
 
         public FileResult Download(string FileName)
         {
-            return File(Constants.FilePaths.DocumentServerRelativePath + FileName, System.Net.Mime.MediaTypeNames.Application.Octet);
+            string path = Path.Combine(Server.MapPath(Constants.FilePaths.DocumentServerRelativePath),
+                                       Path.GetFileName(FileName));
+
+            return new FilePathResult(path, "application/vnd.openxmlformats-officedocument.wordprocessingml.document");
+
+            //return File(path, System.Net.Mime.MediaTypeNames.Application.Octet);
         }
 
         public ActionResult About()

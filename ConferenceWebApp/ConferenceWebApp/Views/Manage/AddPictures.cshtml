@@ -1,17 +1,33 @@
 ﻿@{
-    ViewBag.Title = "AddPictures";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Pictures";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.MultiFile.js"></script>
 
-<h2>AddPictures</h2>
 
-@using (@Html.BeginForm("AddPictures", "Manage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm())
 {
+    @ViewBag.Error
 
-    <input type="file" multiple accept="gif|png|jpeg|jpg" name="UploadFiles" /><br />
-    
-    <input type="submit" class="button default" value="Upload Pictures" />
-
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">Select Pictures </label>
+                        <div class="col-lg-10">
+                            <input type="file" class="form-control" multiple accept="gif|png|jpeg|jpg" name="UploadFiles" /><br />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Upload Pictures</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 }

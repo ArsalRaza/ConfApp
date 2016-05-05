@@ -1,24 +1,27 @@
 ﻿@model List<ConferenceWebApp.Models.File>
 @{
     ViewBag.Title = "Videos";
-    Layout = "~/Views/Shared/_layout.cshtml";
+    Layout = "~/Views/Shared/_adminlayout.cshtml";
 }
 
-<h2>Videos</h2>
+<h1>Videos</h1> 
 
-@Html.ActionLink("Add Videos", "AddVideo") <br /><br />
+@Html.ActionLink("Add Videos", "AddVideo", null,  new { @class = "btn btn-primary"  }) <br /><br />
 
 @foreach (var Video in Model)
 {
-    @Video.Description  <br /> @Html.ActionLink("Delete", "DeleteVideo", new { VideoId = @Video.ID }, new { onClick = "return ConfirmDelete('Video');" })
+    <div class="panel panel-default">
+        <div style="text-align: center;">
+            <h4>@Video.Description</h4>
+            <div class="panel-body">
+                <iframe width="560"
+                        height="315"
+                        src="@Video.FileUrl"
+                        frameborder="0"
+                        allowfullscreen></iframe><br />
 
-
-    <iframe width="560"
-            height="315"
-            src="@Video.FileUrl"
-            frameborder="0"
-            allowfullscreen></iframe>
-
-
-    <hr />
+                @Html.ActionLink("Delete", "DeleteVideo", new { VideoId = @Video.ID }, new { onClick = "return ConfirmDelete('Video');", @class = "btn btn-danger btn-xs" })
+            </div>
+        </div>
+    </div>
 }

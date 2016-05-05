@@ -1,17 +1,15 @@
 ﻿@model List<ConferenceWebApp.Models.File>
 @{
     ViewBag.Title = "ViewPictures";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
-
-<br />
-@Html.ActionLink("Add Pictures", "AddPictures", "Manage") <br /><br />
 
 
 <div class="row">
-
     <div class="col-lg-12">
         <h1 class="page-header">Image Gallery Pictures</h1>
+        @Html.ActionLink("Add Pictures", "AddPictures", "Manage", new { @class = "btn btn-primary" })
+        <br /><br />
     </div>
 
 
@@ -21,7 +19,7 @@
             <a class="thumbnail" href="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath/@Picture.FileName">
                 <img class="img-responsive" src="@HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority)@ConferenceWebApp.BL.Constants.Constants.FilePaths.PicturePath/@Picture.FileName" alt="">
             </a>
-        @Html.ActionLink("Delete", "DeletePicture", new { PictureId = @Picture.ID })
+        @Html.ActionLink("Delete", "DeletePicture", new { PictureId = @Picture.ID }, new { onClick = "return ConfirmDelete('Picture');", @class = "btn btn-danger btn-xs" }) <br /><br />
         </div>
         
     }

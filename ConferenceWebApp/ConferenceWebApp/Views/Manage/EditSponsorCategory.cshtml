@@ -1,21 +1,40 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.SponsorAndPartnerCategoryModel
 @{
-    ViewBag.Title = "EditSponsorCategory";
-    Layout = "~/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "Edit Sponsor Category";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>EditSponsorCategory</h2>
 
 @using (Html.BeginForm())
 {
-
-    <table>
-        @Html.HiddenFor(m => m.Id)
-        <tr><td>@ViewBag.Error</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.CategoryName):</td><td>@Html.TextBoxFor(m => m.CategoryName)</td><td>@Html.ValidationMessageFor(m => m.CategoryName)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.Sequence):</td><td>@Html.TextBoxFor(m => m.Sequence, new { type = "number" })</td><td>@Html.ValidationMessageFor(m => m.Sequence)</td></tr>
-        <tr><td></td><td></td><td><input type="submit" class="button default" value="Save" /></td></tr>
-    </table>
-
-
+    @ViewBag.Error
+    @Html.HiddenFor(m => m.Id)
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.CategoryName) &nbsp; @Html.ValidationMessageFor(m => m.CategoryName, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.CategoryName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.CategoryName) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.Sequence) &nbsp; @Html.ValidationMessageFor(m => m.Sequence, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.Sequence, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.Sequence), type = "number" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Add</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 }
+
+

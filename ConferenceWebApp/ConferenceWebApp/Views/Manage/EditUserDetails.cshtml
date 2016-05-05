@@ -52,3 +52,39 @@
 
     </table>
 }
+
+@*@ViewBag.Error
+
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ProgramName) &nbsp; @Html.ValidationMessageFor(m => m.ProgramName, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.ProgramName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ProgramName) })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ProgramDay) &nbsp; @Html.ValidationMessageFor(m => m.ProgramDay, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.DropDownListFor(m => m.ProgramDay, (SelectList)ViewBag.Days, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Add Program</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+}*@
+

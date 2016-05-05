@@ -1,30 +1,59 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.AddProgramModel
 @{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Program";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>AddProgram</h2>
 
-@using (Html.BeginForm())
+
+@ViewBag.Error
+
+@using (@Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <table>
-
-        <tr><td>@ViewBag.Error</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.ProgramName):</td><td>@Html.TextBoxFor(m => m.ProgramName)</td><td>@Html.ValidationMessageFor(m => m.ProgramName)</td></tr>
-        <tr><td>@Html.DisplayNameFor(m => m.ProgramDescription):</td><td>@Html.TextAreaFor(m => m.ProgramDescription, new { @class = "form-control", @cols = "80", @rows = "20" })</td><td>@Html.ValidationMessageFor(m => m.ProgramDescription)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.ProgramDay):</td><td>@Html.DropDownListFor(m => m.ProgramDay, (SelectList)ViewBag.Days, "Select Day")</td><td>@Html.ValidationMessageFor(m => m.ProgramDay)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.StartTime):</td><td>@Html.TextBoxFor(m => m.StartTime, new { type = "time" })</td><td>@Html.ValidationMessageFor(m => m.StartTime)</td></tr>
-
-        <tr><td>@Html.DisplayNameFor(m => m.EndTime):</td><td>@Html.TextBoxFor(m => m.EndTime, new { type = "time" })</td><td>@Html.ValidationMessageFor(m => m.EndTime)</td></tr>
-
-        <tr><td></td><td></td><td><input type="submit" class="button default" value="Add Program" /></td></tr>
-
-    </table>
-
-
+    <div class="col-lg-6">
+        <div class="well bs-component">
+            <form class="form-horizontal">
+                <fieldset>
+                    <legend>@ViewBag.Title</legend>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ProgramName) &nbsp; @Html.ValidationMessageFor(m => m.ProgramName, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.ProgramName, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ProgramName) })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ProgramDescription) &nbsp; @Html.ValidationMessageFor(m => m.ProgramDescription, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextAreaFor(m => m.ProgramDescription, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.ProgramDescription), @rows = "20" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.ProgramDay) &nbsp; @Html.ValidationMessageFor(m => m.ProgramDay, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                             @Html.DropDownListFor(m => m.ProgramDay, (SelectList)ViewBag.Days, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.StartTime) &nbsp; @Html.ValidationMessageFor(m => m.StartTime, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.StartTime, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.StartTime), type = "time" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-lg-2 control-label">@Html.DisplayNameFor(m => m.EndTime) &nbsp; @Html.ValidationMessageFor(m => m.EndTime, null, new { @class = "text-danger field-validation-error" })</label>
+                        <div class="col-lg-10">
+                            @Html.TextBoxFor(m => m.EndTime, new { @class = "form-control", @placeholder = @Html.DisplayNameFor(m => m.EndTime), type = "time" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-10 col-lg-offset-2">
+                            <button type="submit" class="btn btn-success">Add Program</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
 }
+

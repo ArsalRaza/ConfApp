@@ -1,17 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="ConferenceAppNewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="MyAgenda">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Date" Type="DateTime" Precision="3" />
-    <Property Name="Day" Type="Int32" />
-    <Property Name="Agenda" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="UserId" Type="Int32" />
-    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="UserProfile" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="MyAgenda" ToRole="UserProfile" />
-  </EntityType>
   <EntityType Name="Program">
     <Key>
       <PropertyRef Name="ID" />
@@ -26,6 +14,7 @@
     <Property Name="ProgramDay" Type="Int32" />
     <NavigationProperty Name="ProgramPeople" Relationship="ConferenceAppNewModel.FK_Program_ProgramPeople" FromRole="Program" ToRole="ProgramPeople" />
     <NavigationProperty Name="Conference" Relationship="ConferenceAppNewModel.FK_Conference_Program" FromRole="Program" ToRole="Conference" />
+    <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_Program" FromRole="Program" ToRole="MyAgenda" />
   </EntityType>
   <EntityType Name="ProgramMemberCategories">
     <Key>
@@ -49,33 +38,18 @@
     <Property Name="Profile" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Designation" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Organization" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="MyAgenda" Relationship="Self.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
     <NavigationProperty Name="ProgramPeople" Relationship="ConferenceAppNewModel.FK_User_ProgramPeople" FromRole="UserProfile" ToRole="ProgramPeople" />
+    <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="UserProfile" ToRole="Conversation_reply" />
+    <NavigationProperty Name="MyAgenda" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="UserProfile" ToRole="MyAgenda" />
     <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="UserProfile" ToRole="Conversation" />
     <NavigationProperty Name="Conversation1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="UserProfile" ToRole="Conversation" />
-    <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="UserProfile" ToRole="Conversation_reply" />
+    <NavigationProperty Name="File" Relationship="ConferenceAppNewModel.FK_File_UserProfile" FromRole="UserProfile" ToRole="File" />
+    <Property Name="IsReset" Type="Byte" />
   </EntityType>
-  <Association Name="FK_MyAgenda_UserProfile">
-    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
-    <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserProfile">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="MyAgenda">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="ConferenceAppEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" />
     <EntitySet Name="Program" EntityType="Self.Program" />
     <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" />
     <EntitySet Name="UserProfile" EntityType="Self.UserProfile" />
-    <AssociationSet Name="FK_MyAgenda_UserProfile" Association="Self.FK_MyAgenda_UserProfile">
-      <End Role="UserProfile" EntitySet="UserProfile" />
-      <End Role="MyAgenda" EntitySet="MyAgenda" />
-    </AssociationSet>
     <EntitySet Name="File" EntityType="ConferenceAppNewModel.File" />
     <EntitySet Name="ProgramPeople" EntityType="ConferenceAppNewModel.ProgramPeople" />
     <AssociationSet Name="FK_Program_ProgramPeople" Association="ConferenceAppNewModel.FK_Program_ProgramPeople">
@@ -90,7 +64,37 @@
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="ProgramPeople" EntitySet="ProgramPeople" />
     </AssociationSet>
+    <EntitySet Name="Conference" EntityType="ConferenceAppNewModel.Conference" />
+    <AssociationSet Name="FK_Conference_Program" Association="ConferenceAppNewModel.FK_Conference_Program">
+      <End Role="Conference" EntitySet="Conference" />
+      <End Role="Program" EntitySet="Program" />
+    </AssociationSet>
+    <EntitySet Name="Conversation_reply" EntityType="ConferenceAppNewModel.Conversation_reply" />
+    <AssociationSet Name="FK_Conversation_reply_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_reply_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="Conversation_reply" EntitySet="Conversation_reply" />
+    </AssociationSet>
+    <EntitySet Name="MyAgenda" EntityType="ConferenceAppNewModel.MyAgenda" />
+    <AssociationSet Name="FK_MyAgenda_Program" Association="ConferenceAppNewModel.FK_MyAgenda_Program">
+      <End Role="Program" EntitySet="Program" />
+      <End Role="MyAgenda" EntitySet="MyAgenda" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyAgenda_UserProfile" Association="ConferenceAppNewModel.FK_MyAgenda_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="MyAgenda" EntitySet="MyAgenda" />
+    </AssociationSet>
+    <EntitySet Name="SponsorPartnerCategory" EntityType="ConferenceAppNewModel.SponsorPartnerCategory" />
+    <EntitySet Name="SponsorsAndPartners" EntityType="ConferenceAppNewModel.SponsorsAndPartners" />
+    <AssociationSet Name="FK_Sponsors_Sponsors" Association="ConferenceAppNewModel.FK_Sponsors_Sponsors">
+      <End Role="SponsorPartnerCategory" EntitySet="SponsorPartnerCategory" />
+      <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
+    </AssociationSet>
+    <EntitySet Name="Organizers" EntityType="ConferenceAppNewModel.Organizers" />
     <EntitySet Name="Conversation" EntityType="ConferenceAppNewModel.Conversation" />
+    <AssociationSet Name="FK_Conversation_reply_Conversation" Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation">
+      <End Role="Conversation" EntitySet="Conversation" />
+      <End Role="Conversation_reply" EntitySet="Conversation_reply" />
+    </AssociationSet>
     <AssociationSet Name="FK_Conversation_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_UserProfile">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Conversation" EntitySet="Conversation" />
@@ -99,19 +103,10 @@
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Conversation" EntitySet="Conversation" />
     </AssociationSet>
-    <EntitySet Name="Conference" EntityType="ConferenceAppNewModel.Conference" />
-    <AssociationSet Name="FK_Conference_Program" Association="ConferenceAppNewModel.FK_Conference_Program">
-      <End Role="Conference" EntitySet="Conference" />
-      <End Role="Program" EntitySet="Program" />
-    </AssociationSet>
-    <EntitySet Name="Conversation_reply" EntityType="ConferenceAppNewModel.Conversation_reply" />
-    <AssociationSet Name="FK_Conversation_reply_Conversation" Association="ConferenceAppNewModel.FK_Conversation_reply_Conversation">
-      <End Role="Conversation" EntitySet="Conversation" />
-      <End Role="Conversation_reply" EntitySet="Conversation_reply" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Conversation_reply_UserProfile" Association="ConferenceAppNewModel.FK_Conversation_reply_UserProfile">
+    <EntitySet Name="Exhibition" EntityType="ConferenceAppNewModel.Exhibition" />
+    <AssociationSet Name="FK_File_UserProfile" Association="ConferenceAppNewModel.FK_File_UserProfile">
       <End Role="UserProfile" EntitySet="UserProfile" />
-      <End Role="Conversation_reply" EntitySet="Conversation_reply" />
+      <End Role="File" EntitySet="File" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="File">
@@ -124,6 +119,8 @@
     <Property Name="FileName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FileType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="FileUrl" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="SpeakerId" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_File_UserProfile" FromRole="File" ToRole="UserProfile" />
   </EntityType>
   <EntityType Name="ProgramPeople">
     <Key>
@@ -173,6 +170,136 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="Conference">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ConferenceName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ConferenceDate" Type="DateTime" Precision="0" />
+    <Property Name="Organizer" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="EndDate" Type="DateTime" Precision="0" />
+    <Property Name="ConferenceDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="IsEnabled" Type="Boolean" />
+    <Property Name="FeeStructure" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="CityInformation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Program" Relationship="ConferenceAppNewModel.FK_Conference_Program" FromRole="Conference" ToRole="Program" />
+    <Property Name="FloorPlanText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FloorPlanImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Conference_Program">
+    <End Type="ConferenceAppNewModel.Conference" Role="Conference" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.Program" Role="Program" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conference">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Program">
+        <PropertyRef Name="ConferenceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Conversation_reply">
+    <Key>
+      <PropertyRef Name="CR_ID" />
+    </Key>
+    <Property Name="CR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="Time" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="ConversationID" Type="Int32" />
+    <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="Conversation_reply" ToRole="UserProfile" />
+    <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation_reply" ToRole="Conversation" />
+  </EntityType>
+  <Association Name="FK_Conversation_reply_UserProfile">
+    <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Conversation_reply">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="MyAgenda">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="ProgramId" Type="Int32" />
+    <NavigationProperty Name="Program" Relationship="ConferenceAppNewModel.FK_MyAgenda_Program" FromRole="MyAgenda" ToRole="Program" />
+    <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_MyAgenda_UserProfile" FromRole="MyAgenda" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="FK_MyAgenda_Program">
+    <End Type="ConferenceAppNewModel.Program" Role="Program" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.MyAgenda" Role="MyAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyAgenda">
+        <PropertyRef Name="ProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyAgenda_UserProfile">
+    <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.MyAgenda" Role="MyAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyAgenda">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="SponsorPartnerCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SponsorsAndPartners" Relationship="ConferenceAppNewModel.FK_Sponsors_Sponsors" FromRole="SponsorPartnerCategory" ToRole="SponsorsAndPartners" />
+    <Property Name="Sequence" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SponsorsAndPartners">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SponsorName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CategoryID" Type="Int32" />
+    <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="SponsorPartnerCategory" Relationship="ConferenceAppNewModel.FK_Sponsors_Sponsors" FromRole="SponsorsAndPartners" ToRole="SponsorPartnerCategory" />
+  </EntityType>
+  <Association Name="FK_Sponsors_Sponsors">
+    <End Type="ConferenceAppNewModel.SponsorPartnerCategory" Role="SponsorPartnerCategory" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.SponsorsAndPartners" Role="SponsorsAndPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SponsorPartnerCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SponsorsAndPartners">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Organizers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrganizerName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
   <EntityType Name="Conversation">
     <Key>
       <PropertyRef Name="ID" />
@@ -182,10 +309,22 @@
     <Property Name="UserIdTwo" Type="Int32" />
     <Property Name="Time" Type="Time" Precision="7" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation" ToRole="Conversation_reply" />
     <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile" FromRole="Conversation" ToRole="UserProfile" />
     <NavigationProperty Name="UserProfile1" Relationship="ConferenceAppNewModel.FK_Conversation_UserProfile1" FromRole="Conversation" ToRole="UserProfile" />
-    <NavigationProperty Name="Conversation_reply" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation" ToRole="Conversation_reply" />
   </EntityType>
+  <Association Name="FK_Conversation_reply_Conversation">
+    <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="0..1" />
+    <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Conversation">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Conversation_reply">
+        <PropertyRef Name="ConversationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Conversation_UserProfile">
     <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
     <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="*" />
@@ -210,69 +349,23 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityType Name="Conference">
+  <EntityType Name="Exhibition">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ConferenceName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="ConferenceDate" Type="DateTime" Precision="0" />
-    <Property Name="Organizer" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="EndDate" Type="DateTime" Precision="0" />
-    <Property Name="ConferenceDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Address" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="IsEnabled" Type="Boolean" />
-    <Property Name="FeeStructure" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-    <Property Name="CityInformation" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Program" Relationship="ConferenceAppNewModel.FK_Conference_Program" FromRole="Conference" ToRole="Program" />
+    <Property Name="ExhibitorName" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="Photo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
   </EntityType>
-  <Association Name="FK_Conference_Program">
-    <End Type="ConferenceAppNewModel.Conference" Role="Conference" Multiplicity="0..1" />
-    <End Type="ConferenceAppNewModel.Program" Role="Program" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Conference">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Program">
-        <PropertyRef Name="ConferenceID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="Conversation_reply">
-    <Key>
-      <PropertyRef Name="CR_ID" />
-    </Key>
-    <Property Name="CR_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Reply" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="UserId" Type="Int32" />
-    <Property Name="Time" Type="DateTime" Precision="3" />
-    <Property Name="Status" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="ConversationID" Type="Int32" />
-    <NavigationProperty Name="Conversation" Relationship="ConferenceAppNewModel.FK_Conversation_reply_Conversation" FromRole="Conversation_reply" ToRole="Conversation" />
-    <NavigationProperty Name="UserProfile" Relationship="ConferenceAppNewModel.FK_Conversation_reply_UserProfile" FromRole="Conversation_reply" ToRole="UserProfile" />
-  </EntityType>
-  <Association Name="FK_Conversation_reply_Conversation">
-    <End Type="ConferenceAppNewModel.Conversation" Role="Conversation" Multiplicity="0..1" />
-    <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Conversation">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="Conversation_reply">
-        <PropertyRef Name="ConversationID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Conversation_reply_UserProfile">
+  <Association Name="FK_File_UserProfile">
     <End Type="ConferenceAppNewModel.UserProfile" Role="UserProfile" Multiplicity="0..1" />
-    <End Type="ConferenceAppNewModel.Conversation_reply" Role="Conversation_reply" Multiplicity="*" />
+    <End Type="ConferenceAppNewModel.File" Role="File" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="UserProfile">
         <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="Conversation_reply">
-        <PropertyRef Name="UserId" />
+      <Dependent Role="File">
+        <PropertyRef Name="SpeakerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

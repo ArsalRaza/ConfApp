@@ -2,26 +2,45 @@
 
 @{
     ViewBag.Title = "ViewProgram";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
 <h2>ViewProgram</h2>
 
 @Html.ActionLink("Add Program", "AddProgram")<br /><br />
 
-@foreach (var item in Model.ProgramDates)
-{
-    @item.Value.ToShortDateString()
 
-    var Programs = Model.Programs.Where(x => x.ProgramDate == item);
-    foreach (var item1 in Programs)
+
+<ul class="nav nav-tabs">
+    @for (int i = 0; i < Model.ProgramDates.Count(); i++)
     {
-        <p>@Convert.ToDateTime(item1.StartTime.Value.ToString()).ToShortTimeString() &nbsp; &nbsp; @Convert.ToDateTime(item1.EndTime.Value.ToString()).ToShortTimeString() </p>
-        @Html.ActionLink(@item1.ProgrameName, "ProgramDetails", "Manage", new { ProgramId = @item1.ID }, null) <br />
-        @Html.ActionLink("Delete", "DeleteProgram", new { ProgramId = @item1.ID }, new { onClick = "return ConfirmDelete('Program');" }) <br /><hr /><br />
+        <li class=""><a href="#@i" data-toggle="tab" aria-expanded="false">@Model.ProgramDates[i].Value.ToShortDateString()</a></li>
+
     }
+</ul>
+<div id="myTabContent" class="tab-content">
 
+    @for (int i = 0; i < Model.ProgramDates.Count(); i++)
+    {
 
-}
+        <div class="tab-pane fade @if(i == 0) {@Html.Raw("active in"); }" id="@i">
+            @{
 
+        var Programs = Model.Programs.Where(x => x.ProgramDate == Model.ProgramDates[i]);
+            }
+            <div class="list-group">
+                @foreach (var item1 in Programs)
+                {
 
+                    <div class="list-group-item">
+                        <p>@Convert.ToDateTime(item1.StartTime.Value.ToString()).ToShortTimeString() &nbsp; &nbsp; @Convert.ToDateTime(item1.EndTime.Value.ToString()).ToShortTimeString() </p>
+                        <h4 class="list-group-item-heading">@Html.ActionLink(@item1.ProgrameName, "ProgramDetails", "Manage", new { ProgramId = @item1.ID }, null)</h4>
+                        <p class="list-group-item-text">@Html.ActionLink("Delete", "DeleteProgram", new { ProgramId = @item1.ID }, new { onClick = "return ConfirmDelete('Program');" })</p>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+    }
+</div>

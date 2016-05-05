@@ -15,6 +15,8 @@
     <Property Name="IsEnabled" Type="bit" />
     <Property Name="FeeStructure" Type="varchar" MaxLength="300" />
     <Property Name="CityInformation" Type="varchar" MaxLength="500" />
+    <Property Name="FloorPlanText" Type="varchar(max)" />
+    <Property Name="FloorPlanImage" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Conversation">
     <Key>
@@ -37,6 +39,14 @@
     <Property Name="Status" Type="varchar" MaxLength="10" />
     <Property Name="ConversationID" Type="int" />
   </EntityType>
+  <EntityType Name="Exhibition">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ExhibitorName" Type="varchar" MaxLength="300" />
+    <Property Name="Photo" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="File">
     <Key>
       <PropertyRef Name="ID" />
@@ -47,17 +57,23 @@
     <Property Name="FileName" Type="varchar" MaxLength="50" />
     <Property Name="FileType" Type="varchar" MaxLength="50" />
     <Property Name="FileUrl" Type="varchar" MaxLength="300" />
+    <Property Name="SpeakerId" Type="int" />
   </EntityType>
   <EntityType Name="MyAgenda">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Date" Type="datetime" />
-    <Property Name="Day" Type="int" />
-    <Property Name="Agenda" Type="varchar" MaxLength="500" />
     <Property Name="UserId" Type="int" />
-    <Property Name="Title" Type="varchar" MaxLength="100" />
+    <Property Name="ProgramId" Type="int" />
+  </EntityType>
+  <EntityType Name="Organizers">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrganizerName" Type="varchar" MaxLength="100" />
+    <Property Name="Photo" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Program">
     <Key>
@@ -88,6 +104,24 @@
     <Property Name="UserId" Type="int" />
     <Property Name="CategoryId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="SponsorPartnerCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CategoryName" Type="varchar" MaxLength="200" />
+    <Property Name="CategoryType" Type="varchar" MaxLength="100" />
+    <Property Name="Sequence" Type="int" />
+  </EntityType>
+  <EntityType Name="SponsorsAndPartners">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SponsorName" Type="varchar" MaxLength="100" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="Photo" Type="varchar" MaxLength="100" />
+  </EntityType>
   <EntityType Name="UserProfile">
     <Key>
       <PropertyRef Name="ID" />
@@ -102,6 +136,7 @@
     <Property Name="Profile" Type="varchar(max)" />
     <Property Name="Designation" Type="varchar" MaxLength="100" />
     <Property Name="Organization" Type="varchar" MaxLength="200" />
+    <Property Name="IsReset" Type="tinyint" />
   </EntityType>
   <Association Name="FK_Conference_Program">
     <End Role="Conference" Type="Self.Conference" Multiplicity="0..1" />
@@ -163,6 +198,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_File_UserProfile">
+    <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
+    <End Role="File" Type="Self.File" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="File">
+        <PropertyRef Name="SpeakerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_MyAgenda_Program">
+    <End Role="Program" Type="Self.Program" Multiplicity="0..1" />
+    <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="MyAgenda">
+        <PropertyRef Name="ProgramId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_MyAgenda_UserProfile">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
     <End Role="MyAgenda" Type="Self.MyAgenda" Multiplicity="*" />
@@ -199,6 +258,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Sponsors_Sponsors">
+    <End Role="SponsorPartnerCategory" Type="Self.SponsorPartnerCategory" Multiplicity="0..1" />
+    <End Role="SponsorsAndPartners" Type="Self.SponsorsAndPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SponsorPartnerCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SponsorsAndPartners">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_User_ProgramPeople">
     <End Role="UserProfile" Type="Self.UserProfile" Multiplicity="0..1" />
     <End Role="ProgramPeople" Type="Self.ProgramPeople" Multiplicity="*" />
@@ -215,11 +286,15 @@
     <EntitySet Name="Conference" EntityType="Self.Conference" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conversation" EntityType="Self.Conversation" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Conversation_reply" EntityType="Self.Conversation_reply" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exhibition" EntityType="Self.Exhibition" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MyAgenda" EntityType="Self.MyAgenda" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Organizers" EntityType="Self.Organizers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Program" EntityType="Self.Program" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProgramMemberCategories" EntityType="Self.ProgramMemberCategories" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProgramPeople" EntityType="Self.ProgramPeople" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SponsorPartnerCategory" EntityType="Self.SponsorPartnerCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SponsorsAndPartners" EntityType="Self.SponsorsAndPartners" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserProfile" EntityType="Self.UserProfile" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_Conference_Program" Association="Self.FK_Conference_Program">
       <End Role="Conference" EntitySet="Conference" />
@@ -241,6 +316,14 @@
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="Conversation" EntitySet="Conversation" />
     </AssociationSet>
+    <AssociationSet Name="FK_File_UserProfile" Association="Self.FK_File_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfile" />
+      <End Role="File" EntitySet="File" />
+    </AssociationSet>
+    <AssociationSet Name="FK_MyAgenda_Program" Association="Self.FK_MyAgenda_Program">
+      <End Role="Program" EntitySet="Program" />
+      <End Role="MyAgenda" EntitySet="MyAgenda" />
+    </AssociationSet>
     <AssociationSet Name="FK_MyAgenda_UserProfile" Association="Self.FK_MyAgenda_UserProfile">
       <End Role="UserProfile" EntitySet="UserProfile" />
       <End Role="MyAgenda" EntitySet="MyAgenda" />
@@ -252,6 +335,10 @@
     <AssociationSet Name="FK_ProgramMemberCategories_ProgramPeople" Association="Self.FK_ProgramMemberCategories_ProgramPeople">
       <End Role="ProgramMemberCategories" EntitySet="ProgramMemberCategories" />
       <End Role="ProgramPeople" EntitySet="ProgramPeople" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sponsors_Sponsors" Association="Self.FK_Sponsors_Sponsors">
+      <End Role="SponsorPartnerCategory" EntitySet="SponsorPartnerCategory" />
+      <End Role="SponsorsAndPartners" EntitySet="SponsorsAndPartners" />
     </AssociationSet>
     <AssociationSet Name="FK_User_ProgramPeople" Association="Self.FK_User_ProgramPeople">
       <End Role="UserProfile" EntitySet="UserProfile" />

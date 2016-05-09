@@ -8,7 +8,7 @@
             <h3 style="text-align: center" class="vc_custom_heading">Program</h3>
             <div class="wpb_text_column wpb_content_element ">
                 <div class="wpb_wrapper">
-                    <p style="text-align: center;"><span style="color: #8d93a0;">Highly <mark>configurable</mark> block with optional auditoriums and threads</span></p>
+                    <p style="text-align: center;"></p>
 
                 </div>
             </div>
@@ -47,28 +47,24 @@
                                             y++;
                                             <div class="panel schedule-item">
                                                 <div class="lecture-icon-wrapper" style="background-image: url('/Files/ProfileImages/')"></div>
+
                                                 <a data-toggle="collapse" data-parent="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_@y" @*href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y"*@ class="schedule-item-toggle collapsed">
                                                     <strong class="time highlight"><span class="icon icon-office-24"></span>@Convert.ToDateTime(Program.StartTime.Value.ToString()).ToShortTimeString() &nbsp; - &nbsp; @Convert.ToDateTime(Program.EndTime.Value.ToString()).ToShortTimeString() </strong>
-                                                   
-                                                    @if (ConferenceWebApp.BL.Helper.AuthenticationHelper.IsUserLogin)
-                                                    {
-                                                        if (!Model.MyAgendas.Exists(x => x.ProgramId == Program.ID))
-                                                        {
-                                                            <span style="float: right; cursor:pointer;" onclick="AddToMyAgenda(this, @Program.ID);"><strong class="time highlight">Add to my agenda</strong></span>
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        <span style="float: right; cursor:pointer;" onclick="alert('You need to login to add it as your agenda')"><strong class="time highlight">Add to my agenda</strong></span>
-                                                    }
+
+
 
                                                 </a>
+
                                                 <a data-toggle="collapse" data-parent="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_@y" href="#@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="schedule-item-toggle collapsed">
+
                                                     <h6 class="title">
+
                                                         @Program.ProgrameName<i class="icon icon-arrows-06"></i>
                                                     </h6>
 
-                                                </a><div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="panel-collapse collapse schedule-item-body">
+                                                </a>
+
+                                                <div id="@Model.ProgramDatesAndDays[i].Day.Replace(" ", string.Empty).ToLower()_roomname_timeline_time_@y" class="panel-collapse collapse schedule-item-body">
                                                     <article>
                                                         <p class="description">
                                                             @Program.ProgramDescription
@@ -92,8 +88,20 @@
                                                                 @SpeakerNames
                                                             }
                                                         </strong>
+
                                                     </article>
-                                                </div>
+                                                </div>@if (ConferenceWebApp.BL.Helper.AuthenticationHelper.IsUserLogin)
+                                                {
+                                                    if (!Model.MyAgendas.Exists(x => x.ProgramId == Program.ID))
+                                                    {
+
+                                                        <strong class="time highlight" onclick="AddToMyAgenda(this, @Program.ID);">Add to my agenda</strong>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <span style="float: right; cursor:pointer;" onclick="alert('You need to login to add it as your agenda')"><strong class="time highlight">Add to my agenda</strong></span>
+                                                }
                                             </div>
                                         }
                                     </div>

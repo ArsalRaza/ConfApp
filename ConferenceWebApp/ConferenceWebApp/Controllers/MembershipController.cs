@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace ConferenceWebApp.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class MembershipController : Controller
     {
         //

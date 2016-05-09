@@ -28,7 +28,7 @@
                                         <div class="wpb_text_column wpb_content_element ">
                                             <div class="wpb_wrapper">
                                                 <p>@File.Description </p>
-                                                <p style="text-align:right;">@Html.ActionLink("Download", "Download", new  { Filename = File.FileName })</p>
+                                                <p style="text-align:right;"><a href="@ConferenceWebApp.BL.Constants.Constants.FilePaths.DocumentPath/@File.FileName">Download</a>   @*@Html.ActionLink("Download", "Download", new  { Filename = File.FileName })*@</p>
                                             </div>
                                         </div>
                                     </div>

@@ -1,18 +1,31 @@
 ﻿@model ConferenceWebApp.Models.FormModels.ManageModel.ViewModel.ManageListsModel
 @{
-    ViewBag.Title = "ProgramDetails";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Program Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
 }
 
-<h2>ProgramDetails</h2>
+<h1>@ViewBag.Title</h1>
 
 @Html.Hidden("ProgramId", Request.QueryString["ProgramId"])
 
-@Model.Program.ProgrameName <br />
-@Model.Program.StartTime &nbsp; @Model.Program.EndTime <br />@Html.ActionLink("Edit", "EditProgram", new { Programid = Request.QueryString["ProgramId"] }, null)<br />
 
 
-<h3>Keynote Members</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Model.Program.ProgrameName</h3>
+    </div>
+    <div class="panel-body">
+        <b>@Convert.ToDateTime(Model.Program.StartTime.Value.ToString()).ToShortTimeString() &nbsp;-&nbsp; @Convert.ToDateTime(Model.Program.EndTime.Value.ToString()).ToShortTimeString()</b><br />
+
+        <p> @Model.Program.ProgramDescription </p>
+
+        @Html.ActionLink("Edit", "EditProgram", new { Programid = Request.QueryString["ProgramId"] }, null)<br />
+    </div>
+</div>
+
+
+
+@*<h3>Keynote Members</h3>
 @Html.ActionLink("Add", "AddMemberToProgram", new { Programid = Request.QueryString["ProgramId"] }) <br /><br />
 
 @foreach (var Category in Model.Categories)
@@ -27,4 +40,41 @@
         @KeyNoteMember.Organization <br /> @KeyNoteMember.Profile  <br />     @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');" })<hr />
     }
 
-}
+}*@
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Keynote Members</div>
+    <div class="panel-body">
+        <table class="table table-striped table-hover ">
+
+            @foreach (var Category in Model.Categories)
+            {
+                <thead>
+                    <tr>
+                        <th colspan="4">@Category.CategoryName</th>
+                    </tr>
+                </thead>
+
+                var ProgramPeopleIDs = Model.Program.ProgramPeople.Where(x => x.CategoryId == Category.ID).Select(y => y.UserId);
+                <tbody>
+                    @foreach (var KeyNoteMember in Model.UserProfiles.Where(x => ProgramPeopleIDs.Contains(x.ID)))
+                    {
+
+                    <tr>
+                        <td colspan="4">
+
+                            @KeyNoteMember.Name - @KeyNoteMember.Organization
+                            <br /><br /> @KeyNoteMember.Profile
+                            <br />     @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');" })
+
+
+                        </td>
+                    </tr>
+
+                    }
+                </tbody>
+            }      
+    </table>
+</div>
+</div>

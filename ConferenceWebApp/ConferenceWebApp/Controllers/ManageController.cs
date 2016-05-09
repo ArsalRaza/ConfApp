@@ -16,6 +16,7 @@ using ConferenceWebApp.Models.FormModels.MembershipModel;
 
 namespace ConferenceWebApp.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class ManageController : Controller
     {
         //

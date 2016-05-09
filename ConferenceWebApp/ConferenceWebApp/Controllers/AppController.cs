@@ -13,6 +13,7 @@ using ConferenceWebApp.BL.Constants;
 
 namespace ConferenceWebApp.Controllers
 {
+    [OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
     public class AppController : AsyncController
     {
         //

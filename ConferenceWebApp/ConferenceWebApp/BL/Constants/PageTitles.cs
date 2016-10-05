@@ -7,7 +7,7 @@ namespace ConferenceWebApp.BL.Constants
 {
     public static class PageTitles
     {
-        public static string AppTitle = " | App Title";
+        public static string AppTitle = "Conference App";
         public static string LoginPage = "Login";
         public static string AdministrationManagePage = "Manage Apps";
         public static string SiteCreated = "SiteCreated";

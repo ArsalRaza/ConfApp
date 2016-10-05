@@ -19,39 +19,19 @@
 
         <p> @Model.Program.ProgramDescription </p>
 
-        @Html.ActionLink("Edit", "EditProgram", new { Programid = Request.QueryString["ProgramId"] }, null)<br />
+        @Html.ActionLink("Edit", "EditProgram", new { Programid = Request.QueryString["ProgramId"] }, new { @class = "btn btn-primary btn-xs", @style = "float:right;" })<br />
     </div>
 </div>
 
-
-
-@*<h3>Keynote Members</h3>
-@Html.ActionLink("Add", "AddMemberToProgram", new { Programid = Request.QueryString["ProgramId"] }) <br /><br />
-
-@foreach (var Category in Model.Categories)
-{
-    <h4>@Category.CategoryName</h4><br />
-
-    var ProgramPeopleIDs = Model.Program.ProgramPeople.Where(x => x.CategoryId == Category.ID).Select(y => y.UserId);
-
-    foreach (var KeyNoteMember in Model.UserProfiles.Where(x => ProgramPeopleIDs.Contains(x.ID)))
-    {
-        @KeyNoteMember.Name<br />
-        @KeyNoteMember.Organization <br /> @KeyNoteMember.Profile  <br />     @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');" })<hr />
-    }
-
-}*@
-
-
 <div class="panel panel-default">
-    <div class="panel-heading">Keynote Members</div>
+    <div class="panel-heading">Keynote Members &nbsp;  @Html.ActionLink("Add ", "AddMemberToProgram", new { Programid = Request.QueryString["ProgramId"] }, new { @class = "btn btn-primary btn-xs" })</div>
     <div class="panel-body">
         <table class="table table-striped table-hover ">
 
             @foreach (var Category in Model.Categories)
             {
                 <thead>
-                    <tr>
+                    <tr class="info">
                         <th colspan="4">@Category.CategoryName</th>
                     </tr>
                 </thead>
@@ -60,21 +40,16 @@
                 <tbody>
                     @foreach (var KeyNoteMember in Model.UserProfiles.Where(x => ProgramPeopleIDs.Contains(x.ID)))
                     {
-
-                    <tr>
-                        <td colspan="4">
-
-                            @KeyNoteMember.Name - @KeyNoteMember.Organization
-                            <br /><br /> @KeyNoteMember.Profile
-                            <br />     @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');" })
-
-
-                        </td>
-                    </tr>
-
+                        <tr>
+                            <td colspan="4">
+                                <strong> @KeyNoteMember.Name </strong> - @KeyNoteMember.Organization
+                                <br /><br /> @KeyNoteMember.Profile
+                                <br /> @Html.ActionLink("Remove", "RemoveMemberFromProgram", new { ProgramId = Request.QueryString["ProgramId"], UserId = @KeyNoteMember.ID }, new { onClick = "return ConfirmDelete('Member');", @class = "btn btn-danger btn-xs", @style="float:right;" })
+                            </td>
+                        </tr>
                     }
                 </tbody>
-            }      
-    </table>
-</div>
+            }
+        </table>
+    </div>
 </div>

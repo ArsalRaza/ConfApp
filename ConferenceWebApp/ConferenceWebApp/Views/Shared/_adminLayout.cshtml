@@ -11,25 +11,6 @@
 
 </head>
 <body>
-    @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("Application name", "Index", "Manage", null, new { @class = "navbar-brand" })
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Manage", "Index", "Manage")</li>
-                        <li>@Html.ActionLink("About", "About", "Home")</li>
-                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                    </ul>
-                </div>
-            </div>
-        </div>*@
 
     <nav class="navbar navbar-default">
         <div class="container-fluid">
@@ -40,33 +21,55 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Brand</a>
+                @Html.ActionLink(@ConferenceWebApp.BL.Constants.PageTitles.AppTitle, "Index", "Manage", null, new { @class = "navbar-brand" })
+
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">Link</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Conference <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
+                            <li> @Html.ActionLink("Edit Conference Details", "EditConferenceDetails") </li>
+                            <li> @Html.ActionLink("Edit City Information", "EditCityInfo") </li>
+                            <li> @Html.ActionLink("Fee Structure Information", "EditFeeStructure") </li>
+                            <li> @Html.ActionLink("Add Floor Plan", "AddFloorPlan", "Manage") </li>
                             <li class="divider"></li>
-                            <li><a href="#">Separated link</a></li>
-                            <li class="divider"></li>
-                            <li><a href="#">One more separated link</a></li>
                         </ul>
                     </li>
+
+                    <li class="active">@Html.ActionLink("Programs", "ViewPrograms")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Sponsors <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> @Html.ActionLink("Sponsor Categories", "ViewSponsorCategory") </li>
+                            <li class="divider"></li>
+                            <li> @Html.ActionLink("Manage Sponsors", "ViewSponsors") </li>
+
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Partners <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> @Html.ActionLink("Partner Categories", "ViewPartnerCategory") </li>
+                            <li class="divider"></li>
+                            <li> @Html.ActionLink("Manage Partners", "ViewPartners") </li>
+                        </ul>
+                    </li>
+                    <li> @Html.ActionLink("Organizers", "ViewOrganizers") </li>
+                    <li> @Html.ActionLink("Exhibition", "ViewExhibitors", "Manage") </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> Gallery <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li> @Html.ActionLink("Reports and Presentations", "viewDocument", "Manage") </li>
+                            <li> @Html.ActionLink("Videos", "Videos", "Manage") </li>
+                            <li> @Html.ActionLink("ImageGallery", "ViewPictures", "Manage") </li>
+                        </ul>
+                    </li>
+                    
                 </ul>
-                <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                </form>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Link</a></li>
+                    <li>@Html.ActionLink("Log Out", "Logout", "Login")</li>
                 </ul>
             </div>
         </div>
@@ -81,7 +84,7 @@
     </div>
 
 
-    
+
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/Custom.js"></script>
